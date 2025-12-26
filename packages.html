@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,6 +16,7 @@
         header .container { display: flex; justify-content: space-between; align-items: center; padding: 20px 15px; }
         .logo h1 { color: #2c3e50; font-size: 1.8rem; }
         .logo span { color: #e74c3c; }
+        .logo .tagline { color: #e74c3c; font-size: 0.9rem; font-weight: 500; margin-top: 5px; }
         nav ul { display: flex; list-style: none; }
         nav ul li { margin-left: 30px; }
         nav ul li a { text-decoration: none; color: #2c3e50; font-weight: 600; padding: 5px 0; position: relative; }
@@ -54,10 +56,12 @@
         .pricing-button .btn { display: inline-block; width: 100%; background: #e74c3c; color: white; padding: 15px; border-radius: 4px; text-decoration: none; font-weight: 600; transition: 0.3s; border: none; cursor: pointer; }
         .pricing-button .btn:hover { background: #c0392b; }
         
-        /* Custom Package */
-        .custom-package { padding: 80px 0; background: #f5f7fa; text-align: center; }
-        .custom-package h2 { font-size: 2.5rem; color: #2c3e50; margin-bottom: 20px; }
-        .custom-package p { font-size: 1.2rem; color: #666; max-width: 700px; margin: 0 auto 30px; }
+        /* Contact Section */
+        .package-contact { padding: 80px 0; background: #f5f7fa; text-align: center; }
+        .package-contact h2 { font-size: 2.5rem; color: #2c3e50; margin-bottom: 20px; }
+        .package-contact p { font-size: 1.2rem; color: #666; max-width: 700px; margin: 0 auto 30px; }
+        .contact-numbers { display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; margin: 30px 0; }
+        .contact-number { background: #fff; padding: 15px 25px; border-radius: 4px; box-shadow: 0 3px 10px rgba(0,0,0,0.1); font-weight: 600; }
         
         /* FAQ */
         .faq { padding: 80px 0; background: #fff; }
@@ -67,15 +71,16 @@
         .faq-answer.active { padding: 20px; max-height: 500px; }
         
         /* Footer */
-        footer { background: #2c3e50; color: #ecf0f1; padding: 60px 0 20px; }
+        footer { background: #1a252f; color: #ecf0f1; padding: 60px 0 20px; }
         .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px; }
-        .footer-bottom { text-align: center; padding-top: 20px; border-top: 1px solid #34495e; }
+        .footer-bottom { text-align: center; padding-top: 20px; border-top: 1px solid #2c3e50; }
         
         /* Responsive */
         @media (max-width: 768px) {
             nav ul { display: none; }
             .page-header h1 { font-size: 2rem; }
             .pricing-grid { grid-template-columns: 1fr; }
+            .contact-numbers { flex-direction: column; }
         }
     </style>
 </head>
@@ -84,6 +89,7 @@
         <div class="container">
             <div class="logo">
                 <h1>Event Planners <span>Tanzania</span></h1>
+                <p class="tagline">Creating Unforgettable Experiences</p>
             </div>
             <nav>
                 <ul>
@@ -100,16 +106,7 @@
 
     <section class="page-header">
         <h1>Event Planning Packages</h1>
-        <p>Flexible pricing options tailored to your needs and budget</p>
-    </section>
-
-    <section class="pricing-toggle">
-        <div class="container">
-            <div class="toggle">
-                <button class="toggle-btn active" data-period="monthly">Monthly Packages</button>
-                <button class="toggle-btn" data-period="custom">Custom Quotes</button>
-            </div>
-        </div>
+        <p>Flexible packages based on our 10 R's methodology, tailored to your needs and budget</p>
     </section>
 
     <section class="pricing-tables">
@@ -123,17 +120,18 @@
                     </div>
                     <div class="pricing-features">
                         <ul>
-                            <li><i>✓</i> Initial consultation & planning</li>
-                            <li><i>✓</i> Vendor recommendations (3)</li>
+                            <li><i>✓</i> Initial consultation & Right Planning</li>
+                            <li><i>✓</i> Vendor recommendations (3 Right Vendors)</li>
                             <li><i>✓</i> Budget planning assistance</li>
-                            <li><i>✓</i> Timeline creation</li>
+                            <li><i>✓</i> Timeline creation (Right Time Management)</li>
+                            <li><i>✓</i> Basic theme suggestions</li>
                             <li class="disabled"><i>✗</i> On-site coordination</li>
                             <li class="disabled"><i>✗</i> Full vendor management</li>
-                            <li class="disabled"><i>✗</i> Design & theme development</li>
+                            <li class="disabled"><i>✗</i> Custom design & theme development</li>
                         </ul>
                     </div>
                     <div class="pricing-button">
-                        <a href="contact.html" class="btn">Choose Basic</a>
+                        <a href="contact.html" class="btn">Choose Basic Package</a>
                     </div>
                 </div>
 
@@ -146,17 +144,18 @@
                     </div>
                     <div class="pricing-features">
                         <ul>
-                            <li><i>✓</i> Full planning & coordination</li>
-                            <li><i>✓</i> Vendor management (all vendors)</li>
-                            <li><i>✓</i> Custom design & theme</li>
+                            <li><i>✓</i> Full planning & coordination (All 10 R's)</li>
+                            <li><i>✓</i> Vendor management (Right Vendors & Partners)</li>
+                            <li><i>✓</i> Custom design & theme (Right Creativity)</li>
                             <li><i>✓</i> Budget planning & tracking</li>
-                            <li><i>✓</i> On-site coordination (8 hours)</li>
+                            <li><i>✓</i> On-site coordination (Right Team)</li>
                             <li><i>✓</i> Venue selection assistance</li>
+                            <li><i>✓</i> Guest logistics planning</li>
                             <li class="disabled"><i>✗</i> Month-of coordination only</li>
                         </ul>
                     </div>
                     <div class="pricing-button">
-                        <a href="contact.html" class="btn">Choose Premium</a>
+                        <a href="contact.html" class="btn">Choose Premium Package</a>
                     </div>
                 </div>
 
@@ -168,28 +167,39 @@
                     </div>
                     <div class="pricing-features">
                         <ul>
-                            <li><i>✓</i> Full-service planning (start to finish)</li>
+                            <li><i>✓</i> Full-service planning (Complete 10 R's implementation)</li>
                             <li><i>✓</i> Unlimited vendor management</li>
                             <li><i>✓</i> Custom design & theme development</li>
                             <li><i>✓</i> Complete budget management</li>
-                            <li><i>✓</i> Full on-site coordination</li>
-                            <li><i>✓</i> VIP guest management</li>
-                            <li><i>✓</i> Post-event follow-up & analysis</li>
+                            <li><i>✓</i> Full on-site coordination (Right Team)</li>
+                            <li><i>✓</i> VIP guest management (Right Experience)</li>
+                            <li><i>✓</i> Post-event follow-up & analysis (Right Results)</li>
+                            <li><i>✓</i> Marketing & promotion assistance</li>
                         </ul>
                     </div>
                     <div class="pricing-button">
-                        <a href="contact.html" class="btn">Choose Platinum</a>
+                        <a href="contact.html" class="btn">Choose Platinum Package</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="custom-package">
+    <section class="package-contact">
         <div class="container">
             <h2>Need a Custom Package?</h2>
-            <p>Every event is unique. Contact us for a personalized quote tailored to your specific requirements, guest count, and budget.</p>
-            <a href="contact.html" class="btn" style="background: #2c3e50;">Request Custom Quote</a>
+            <p>Every event is unique. Contact us for a personalized quote tailored to your specific requirements, guest count, and budget. We apply our 10 R's methodology to ensure your event's success.</p>
+            
+            <div class="contact-numbers">
+                <div class="contact-number">📞 +255 655 600 000</div>
+                <div class="contact-number">📞 +255 742 678 777</div>
+                <div class="contact-number">📞 +255 755 775 077</div>
+                <div class="contact-number">📞 +255 656 000 000</div>
+            </div>
+            
+            <p>📧 info@eventplannerstanzania.co.tz | 📧 eventplannertanzania@gmail.com</p>
+            
+            <a href="contact.html" class="btn" style="background: #2c3e50; margin-top: 30px;">Request Custom Quote</a>
         </div>
     </section>
 
@@ -203,7 +213,17 @@
                     <span>+</span>
                 </div>
                 <div class="faq-answer">
-                    <p>All packages include planning consultations, vendor recommendations, and budget assistance. Higher packages include full vendor management, on-site coordination, and custom design services. Exact inclusions vary by package.</p>
+                    <p>All packages include planning consultations, vendor recommendations, and budget assistance based on our 10 R's methodology. Higher packages include full vendor management, on-site coordination, and custom design services. Exact inclusions vary by package.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How do you implement the 10 R's in your packages?</span>
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Our 10 R's methodology is integrated into every package: Right Planning starts each project, Right Packages are tailored to you, Right Creativity ensures unique designs, Right Team handles execution, Right Communication keeps you informed, Right Experience is curated, Right Time Management ensures deadlines, Right Vendors are selected, Right Reputation is maintained, and Right Results are delivered.</p>
                 </div>
             </div>
             
@@ -213,7 +233,7 @@
                     <span>+</span>
                 </div>
                 <div class="faq-answer">
-                    <p>Yes, we offer month-of coordination services starting at $1,500. This includes finalizing details, creating timelines, and on-site coordination on the event day.</p>
+                    <p>Yes, we offer month-of coordination services starting at $1,500. This includes finalizing details, creating timelines, and on-site coordination on the event day - applying Right Time Management and Right Team principles.</p>
                 </div>
             </div>
             
@@ -223,7 +243,7 @@
                     <span>+</span>
                 </div>
                 <div class="faq-answer">
-                    <p>Our packages cover planning fees only. Vendor costs, venue fees, decor, catering, and other event expenses are additional and will be included in your overall event budget.</p>
+                    <p>Our packages cover planning fees only. Vendor costs, venue fees, decor, catering, and other event expenses are additional and will be included in your overall event budget as part of our Right Planning process.</p>
                 </div>
             </div>
             
@@ -233,7 +253,7 @@
                     <span>+</span>
                 </div>
                 <div class="faq-answer">
-                    <p>We require a 50% deposit to book your date, 25% at the halfway point, and the remaining 25% two weeks before your event. All payments are outlined in our contract.</p>
+                    <p>We require a 50% deposit to book your date, 25% at the halfway point, and the remaining 25% two weeks before your event. All payments are outlined in our contract as part of our Right Communication practice.</p>
                 </div>
             </div>
         </div>
@@ -244,17 +264,29 @@
             <div class="footer-content">
                 <div>
                     <h3>Event Planners Tanzania</h3>
-                    <p>Professional event planning services across Tanzania.</p>
+                    <p>Registered Event Planners based in Tanzania, providing best practice, leading edge, creative event management services.</p>
+                    <p>✉️ info@eventplannerstanzania.co.tz</p>
+                    <p>✉️ eventplannertanzania@gmail.com</p>
                 </div>
                 <div>
-                    <h3>Contact Info</h3>
+                    <h3>Quick Contact</h3>
                     <p>📍 Dar es Salaam, Tanzania</p>
-                    <p>📞 +255 123 456 789</p>
-                    <p>✉️ info@eventplannerstanzania.co.tz</p>
+                    <p>📞 +255 655 600 000</p>
+                    <p>📞 +255 742 678 777</p>
+                    <p>📞 +255 755 775 077</p>
+                    <p>📞 +255 656 000 000</p>
+                </div>
+                <div>
+                    <h3>Services</h3>
+                    <p>• Conference & Wedding Planning</p>
+                    <p>• Concerts & Launch Events</p>
+                    <p>• Hotel & Car Hire</p>
+                    <p>• Holiday Packages</p>
+                    <p>• Public Road Shows</p>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2023 Event Planners Tanzania. All rights reserved. | Website: eventplannerstanzania.co.tz</p>
+                <p>&copy; 2023 Event Planners Tanzania. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -284,15 +316,6 @@
                         answer.classList.add('active');
                         this.querySelector('span:last-child').textContent = '−';
                     }
-                });
-            });
-            
-            // Pricing toggle
-            const toggleBtns = document.querySelectorAll('.toggle-btn');
-            toggleBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    toggleBtns.forEach(b => b.classList.remove('active'));
-                    this.classList.add('active');
                 });
             });
         });
