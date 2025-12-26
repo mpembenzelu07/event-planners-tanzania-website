@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - Event Planners Tanzania</title>
+    <style>
+        /* CSS INCLUDED DIRECTLY IN SERVICES PAGE */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial', sans-serif; }
+        body { background: #f8f9fa; color: #333; line-height: 1.6; }
+        .container { width: 90%; max-width: 1200px; margin: 0 auto; padding: 0 15px; }
+        
+        /* Header */
+        header { background: #fff; box-shadow: 0 2px 15px rgba(0,0,0,0.1); position: fixed; width: 100%; top: 0; z-index: 1000; }
+        header .container { display: flex; justify-content: space-between; align-items: center; padding: 20px 15px; }
+        .logo h1 { color: #2c3e50; font-size: 1.8rem; }
+        .logo span { color: #e74c3c; }
+        nav ul { display: flex; list-style: none; }
+        nav ul li { margin-left: 30px; }
+        nav ul li a { text-decoration: none; color: #2c3e50; font-weight: 600; padding: 5px 0; position: relative; }
+        nav ul li a:hover, nav ul li a.active { color: #e74c3c; }
+        nav ul li a.active::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 100%; height: 3px; background: #e74c3c; }
+        
+        /* Page Header */
+        .page-header { background: linear-gradient(rgba(231,76,60,0.9), rgba(231,76,60,0.9)), url('https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=1770&q=80'); background-size: cover; color: white; text-align: center; padding: 150px 20px 80px; margin-top: 80px; }
+        .page-header h1 { font-size: 3rem; margin-bottom: 15px; }
+        .page-header p { font-size: 1.2rem; opacity: 0.9; }
+        
+        /* Services Detail */
+        .services-detail { padding: 80px 0; background: #fff; }
+        .service-item { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; margin-bottom: 60px; }
+        .service-item:nth-child(even) .service-text { order: 2; }
+        .service-item:nth-child(even) .service-image { order: 1; }
+        .service-text h2 { color: #2c3e50; margin-bottom: 20px; font-size: 2rem; }
+        .service-text p { margin-bottom: 20px; color: #555; }
+        .service-features { list-style: none; padding-left: 20px; }
+        .service-features li { margin-bottom: 10px; padding-left: 20px; position: relative; }
+        .service-features li:before { content: '✓'; color: #e74c3c; position: absolute; left: 0; }
+        .service-image img { width: 100%; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        
+        /* CTA */
+        .cta { padding: 80px 0; background: linear-gradient(rgba(44,62,80,0.9), rgba(44,62,80,0.9)), url('https://images.unsplash.com/photo-1492684223066-dd23140edf6d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1770&q=80'); background-size: cover; color: white; text-align: center; }
+        .cta h2 { font-size: 2.5rem; margin-bottom: 20px; }
+        .cta p { font-size: 1.2rem; margin-bottom: 30px; max-width: 700px; margin-left: auto; margin-right: auto; }
+        .btn { display: inline-block; background: #e74c3c; color: white; padding: 14px 32px; border-radius: 4px; text-decoration: none; font-weight: 600; transition: 0.3s; }
+        .btn:hover { background: #c0392b; transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        
+        /* Footer */
+        footer { background: #2c3e50; color: #ecf0f1; padding: 60px 0 20px; }
+        .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px; }
+        .footer-bottom { text-align: center; padding-top: 20px; border-top: 1px solid #34495e; }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul { display: none; }
+            .page-header h1 { font-size: 2rem; }
+            .service-item { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>Event Planners <span>Tanzania</span></h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html" class="active">Services</a></li>
+                    <li><a href="portfolio.html">Portfolio</a></li>
+                    <li><a href="packages.html">Packages</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <h1>Our Event Services</h1>
+        <p>Comprehensive event planning solutions for every occasion</p>
+    </section>
+
+    <section class="services-detail">
+        <div class="container">
+            <div class="service-item" id="weddings">
+                <div class="service-text">
+                    <h2>Wedding Planning</h2>
+                    <p>Create the wedding of your dreams with our comprehensive planning services. We handle every detail from venue selection to decor, catering, and coordination.</p>
+                    <ul class="service-features">
+                        <li>Complete wedding planning & coordination</li>
+                        <li>Venue selection & booking</li>
+                        <li>Vendor management & negotiation</li>
+                        <li>Decor & theme design</li>
+                        <li>Budget planning & management</li>
+                        <li>Day-of coordination</li>
+                    </ul>
+                </div>
+                <div class="service-image">
+                    <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-4.0.3&auto=format&fit=crop&w=1770&q=80" alt="Wedding Planning">
+                </div>
+            </div>
+
+            <div class="service-item" id="corporate">
+                <div class="service-text">
+                    <h2>Corporate Events</h2>
+                    <p>Professional event management for businesses. We organize successful conferences, product launches, team buildings, and corporate parties that achieve your business objectives.</p>
+                    <ul class="service-features">
+                        <li>Conference & seminar planning</li>
+                        <li>Product launches & exhibitions</li>
+                        <li>Team building activities</li>
+                        <li>Corporate gala dinners</li>
+                        <li>Annual general meetings</li>
+                        <li>Client appreciation events</li>
+                    </ul>
+                </div>
+                <div class="service-image">
+                    <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=1770&q=80" alt="Corporate Events">
+                </div>
+            </div>
+
+            <div class="service-item" id="private">
+                <div class="service-text">
+                    <h2>Private Celebrations</h2>
+                    <p>Make your personal milestones memorable with our private event services. We specialize in birthdays, anniversaries, graduation parties, and family celebrations.</p>
+                    <ul class="service-features">
+                        <li>Birthday & anniversary parties</li>
+                        <li>Graduation celebrations</li>
+                        <li>Baby showers & gender reveals</li>
+                        <li>Engagement parties</li>
+                        <li>Family reunions</li>
+                        <li>Theme party planning</li>
+                    </ul>
+                </div>
+                <div class="service-image">
+                    <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1770&q=80" alt="Private Events">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to Plan Your Perfect Event?</h2>
+            <p>Contact us today for a free consultation and let us bring your vision to life.</p>
+            <a href="contact.html" class="btn">Get Started Now</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <h3>Event Planners Tanzania</h3>
+                    <p>Professional event planning services across Tanzania.</p>
+                </div>
+                <div>
+                    <h3>Contact Info</h3>
+                    <p>📍 Dar es Salaam, Tanzania</p>
+                    <p>📞 +255 123 456 789</p>
+                    <p>✉️ info@eventplannerstanzania.co.tz</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Event Planners Tanzania. All rights reserved. | Website: eventplannerstanzania.co.tz</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
