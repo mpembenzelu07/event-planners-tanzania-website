@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Planners Tanzania - Professional Event Management</title>
+    <style>
+        /* CSS INCLUDED DIRECTLY IN HOMEPAGE */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial', sans-serif; }
+        body { background: #f8f9fa; color: #333; line-height: 1.6; }
+        .container { width: 90%; max-width: 1200px; margin: 0 auto; padding: 0 15px; }
+        
+        /* Header */
+        header { background: #fff; box-shadow: 0 2px 15px rgba(0,0,0,0.1); position: fixed; width: 100%; top: 0; z-index: 1000; }
+        header .container { display: flex; justify-content: space-between; align-items: center; padding: 20px 15px; }
+        .logo h1 { color: #2c3e50; font-size: 1.8rem; }
+        .logo span { color: #e74c3c; }
+        nav ul { display: flex; list-style: none; }
+        nav ul li { margin-left: 30px; }
+        nav ul li a { text-decoration: none; color: #2c3e50; font-weight: 600; padding: 5px 0; position: relative; }
+        nav ul li a:hover, nav ul li a.active { color: #e74c3c; }
+        nav ul li a.active::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 100%; height: 3px; background: #e74c3c; }
+        
+        /* Hero */
+        .hero { background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80'); background-size: cover; color: white; text-align: center; padding: 180px 20px 120px; margin-top: 80px; }
+        .hero h2 { font-size: 3rem; margin-bottom: 20px; }
+        .hero p { font-size: 1.2rem; max-width: 700px; margin: 0 auto 30px; }
+        .btn { display: inline-block; background: #e74c3c; color: white; padding: 14px 32px; border-radius: 4px; text-decoration: none; font-weight: 600; transition: 0.3s; }
+        .btn:hover { background: #c0392b; transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        
+        /* Services */
+        .services { padding: 80px 0; background: #fff; }
+        .section-title { text-align: center; margin-bottom: 50px; color: #2c3e50; font-size: 2.2rem; }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .service-card { background: #fff; border-radius: 8px; padding: 30px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: 0.3s; border-top: 4px solid #e74c3c; }
+        .service-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
+        .service-icon { font-size: 2.5rem; color: #e74c3c; margin-bottom: 20px; }
+        
+        /* Testimonials */
+        .testimonials { padding: 80px 0; background: #f5f7fa; }
+        .testimonial-slider { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 40px; }
+        .testimonial { background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        
+        /* Footer */
+        footer { background: #2c3e50; color: #ecf0f1; padding: 60px 0 20px; }
+        .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px; }
+        .footer-bottom { text-align: center; padding-top: 20px; border-top: 1px solid #34495e; }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul { display: none; }
+            .hero h2 { font-size: 2rem; }
+            .services-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>Event Planners <span>Tanzania</span></h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="portfolio.html">Portfolio</a></li>
+                    <li><a href="packages.html">Packages</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h2>Professional Event Planning Services in Tanzania</h2>
+        <p>We transform your vision into unforgettable experiences for weddings, corporate events, and private celebrations.</p>
+        <a href="contact.html" class="btn">Book a Consultation</a>
+    </section>
+
+    <section class="services">
+        <div class="container">
+            <h2 class="section-title">Our Specialized Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">💍</div>
+                    <h3>Weddings</h3>
+                    <p>Beautiful, stress-free wedding planning from ceremony to reception.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">💼</div>
+                    <h3>Corporate Events</h3>
+                    <p>Professional event management for conferences and corporate parties.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🎉</div>
+                    <h3>Private Events</h3>
+                    <p>Memorable birthday parties, anniversaries, and family celebrations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">What Our Clients Say</h2>
+            <div class="testimonial-slider">
+                <div class="testimonial">
+                    <p>"Event Planners Tanzania made our wedding day absolutely perfect. Their attention to detail exceeded our expectations."</p>
+                    <h4>Sarah & James</h4>
+                    <p>Wedding Clients, Dar es Salaam</p>
+                </div>
+                <div class="testimonial">
+                    <p>"Our annual corporate conference was flawlessly executed. The team handled everything perfectly."</p>
+                    <h4>Michael Johnson</h4>
+                    <p>CEO, Tech Solutions Ltd</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <h3>Event Planners Tanzania</h3>
+                    <p>Professional event planning services across Tanzania.</p>
+                </div>
+                <div>
+                    <h3>Contact Info</h3>
+                    <p>📍 Dar es Salaam, Tanzania</p>
+                    <p>📞 +255 123 456 789</p>
+                    <p>✉️ info@eventplannerstanzania.co.tz</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Event Planners Tanzania. All rights reserved. | Website: eventplannerstanzania.co.tz</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
