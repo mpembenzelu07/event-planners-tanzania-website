@@ -15,6 +15,7 @@
         header .container { display: flex; justify-content: space-between; align-items: center; padding: 20px 15px; }
         .logo h1 { color: #2c3e50; font-size: 1.8rem; }
         .logo span { color: #e74c3c; }
+        .logo .tagline { color: #e74c3c; font-size: 0.9rem; font-weight: 500; margin-top: 5px; }
         nav ul { display: flex; list-style: none; }
         nav ul li { margin-left: 30px; }
         nav ul li a { text-decoration: none; color: #2c3e50; font-weight: 600; padding: 5px 0; position: relative; }
@@ -28,6 +29,14 @@
         .btn { display: inline-block; background: #e74c3c; color: white; padding: 14px 32px; border-radius: 4px; text-decoration: none; font-weight: 600; transition: 0.3s; }
         .btn:hover { background: #c0392b; transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
         
+        /* 10 R's Section */
+        .ten-rs { padding: 80px 0; background: #2c3e50; color: white; }
+        .ten-rs h2 { text-align: center; margin-bottom: 50px; font-size: 2.2rem; }
+        .rs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .rs-item { background: rgba(255,255,255,0.1); padding: 25px; border-radius: 8px; border-left: 4px solid #e74c3c; }
+        .rs-item h3 { color: #e74c3c; margin-bottom: 15px; font-size: 1.3rem; }
+        .rs-item p { opacity: 0.9; }
+        
         /* Services */
         .services { padding: 80px 0; background: #fff; }
         .section-title { text-align: center; margin-bottom: 50px; color: #2c3e50; font-size: 2.2rem; }
@@ -36,21 +45,23 @@
         .service-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
         .service-icon { font-size: 2.5rem; color: #e74c3c; margin-bottom: 20px; }
         
-        /* Testimonials */
-        .testimonials { padding: 80px 0; background: #f5f7fa; }
-        .testimonial-slider { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 40px; }
-        .testimonial { background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        /* Contact Banner */
+        .contact-banner { padding: 60px 0; background: #e74c3c; color: white; text-align: center; }
+        .contact-banner h2 { font-size: 2.2rem; margin-bottom: 15px; }
+        .contact-numbers { display: flex; justify-content: center; flex-wrap: wrap; gap: 30px; margin-top: 20px; }
+        .contact-number { font-size: 1.2rem; font-weight: 600; }
         
         /* Footer */
-        footer { background: #2c3e50; color: #ecf0f1; padding: 60px 0 20px; }
+        footer { background: #1a252f; color: #ecf0f1; padding: 60px 0 20px; }
         .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px; }
-        .footer-bottom { text-align: center; padding-top: 20px; border-top: 1px solid #34495e; }
+        .footer-bottom { text-align: center; padding-top: 20px; border-top: 1px solid #2c3e50; }
         
         /* Responsive */
         @media (max-width: 768px) {
             nav ul { display: none; }
             .hero h2 { font-size: 2rem; }
             .services-grid { grid-template-columns: 1fr; }
+            .contact-numbers { flex-direction: column; gap: 15px; }
         }
     </style>
 </head>
@@ -59,6 +70,7 @@
         <div class="container">
             <div class="logo">
                 <h1>Event Planners <span>Tanzania</span></h1>
+                <p class="tagline">Creating Unforgettable Experiences</p>
             </div>
             <nav>
                 <ul>
@@ -75,48 +87,107 @@
 
     <section class="hero">
         <h2>Professional Event Planning Services in Tanzania</h2>
-        <p>We transform your vision into unforgettable experiences for weddings, corporate events, and private celebrations.</p>
+        <p>We transform your vision into unforgettable experiences for weddings, corporate events, and private celebrations with our proven 10 R's methodology.</p>
         <a href="contact.html" class="btn">Book a Consultation</a>
     </section>
 
-    <section class="services">
+    <section class="ten-rs">
         <div class="container">
-            <h2 class="section-title">Our Specialized Services</h2>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">💍</div>
-                    <h3>Weddings</h3>
-                    <p>Beautiful, stress-free wedding planning from ceremony to reception.</p>
+            <h2>Our 10 R's of Event Planning Excellence</h2>
+            <div class="rs-grid">
+                <div class="rs-item">
+                    <h3>1. Right Planning</h3>
+                    <p>Every successful event starts with a solid, strategic plan.</p>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">💼</div>
-                    <h3>Corporate Events</h3>
-                    <p>Professional event management for conferences and corporate parties.</p>
+                <div class="rs-item">
+                    <h3>2. Right Packages</h3>
+                    <p>Flexible, value-driven packages tailored to your needs and budget.</p>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">🎉</div>
-                    <h3>Private Events</h3>
-                    <p>Memorable birthday parties, anniversaries, and family celebrations.</p>
+                <div class="rs-item">
+                    <h3>3. Right Creativity & Innovation</h3>
+                    <p>Bold, fresh, and unique ideas for every event.</p>
+                </div>
+                <div class="rs-item">
+                    <h3>4. Right Team</h3>
+                    <p>Passionate, skilled, and professional team delivering excellence.</p>
+                </div>
+                <div class="rs-item">
+                    <h3>5. Right Communication</h3>
+                    <p>Clear, timely, and transparent communication from start to finish.</p>
+                </div>
+                <div class="rs-item">
+                    <h3>6. Right Experience</h3>
+                    <p>We curate unforgettable experiences that leave lasting impressions.</p>
+                </div>
+                <div class="rs-item">
+                    <h3>7. Right Time Management</h3>
+                    <p>Respecting deadlines and executing with precision.</p>
+                </div>
+                <div class="rs-item">
+                    <h3>8. Right Vendors & Partners</h3>
+                    <p>Collaboration with trusted and quality-driven suppliers.</p>
+                </div>
+                <div class="rs-item">
+                    <h3>9. Right Reputation</h3>
+                    <p>Built on trust, consistency, and client satisfaction.</p>
+                </div>
+                <div class="rs-item">
+                    <h3>10. Right Results</h3>
+                    <p>We don't just plan events — we deliver impact.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="testimonials">
+    <section class="services">
         <div class="container">
-            <h2 class="section-title">What Our Clients Say</h2>
-            <div class="testimonial-slider">
-                <div class="testimonial">
-                    <p>"Event Planners Tanzania made our wedding day absolutely perfect. Their attention to detail exceeded our expectations."</p>
-                    <h4>Sarah & James</h4>
-                    <p>Wedding Clients, Dar es Salaam</p>
+            <h2 class="section-title">Our Event Planning Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">💍</div>
+                    <h3>Wedding Events</h3>
+                    <p>Complete wedding planning from venue selection to ceremony coordination.</p>
                 </div>
-                <div class="testimonial">
-                    <p>"Our annual corporate conference was flawlessly executed. The team handled everything perfectly."</p>
-                    <h4>Michael Johnson</h4>
-                    <p>CEO, Tech Solutions Ltd</p>
+                <div class="service-card">
+                    <div class="service-icon">💼</div>
+                    <h3>Corporate Events</h3>
+                    <p>Professional management for conferences, launches, and corporate functions.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🎉</div>
+                    <h3>Private Events</h3>
+                    <p>Birthday parties, anniversaries, family celebrations, and special occasions.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📢</div>
+                    <h3>Event Marketing & Management</h3>
+                    <p>Complete event promotion and execution services.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🚌</div>
+                    <h3>Guest Logistics Planning</h3>
+                    <p>Transportation, accommodation, and guest management solutions.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🏨</div>
+                    <h3>Event Venue Selection</h3>
+                    <p>Finding and booking the perfect venue for your event.</p>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <section class="contact-banner">
+        <div class="container">
+            <h2>Ready to Start Planning Your Event?</h2>
+            <p>Contact us today for expert event planning services across Tanzania.</p>
+            <div class="contact-numbers">
+                <div class="contact-number">📞 +255 655 600 000</div>
+                <div class="contact-number">📞 +255 742 678 777</div>
+                <div class="contact-number">📞 +255 755 775 077</div>
+                <div class="contact-number">📞 +255 656 000 000</div>
+            </div>
+            <a href="contact.html" class="btn" style="background: #2c3e50; margin-top: 30px;">Contact Us Now</a>
         </div>
     </section>
 
@@ -125,17 +196,29 @@
             <div class="footer-content">
                 <div>
                     <h3>Event Planners Tanzania</h3>
-                    <p>Professional event planning services across Tanzania.</p>
+                    <p>Registered Event Planners based in Tanzania, providing best practice, leading edge, creative event management services.</p>
+                    <p>✉️ info@eventplannerstanzania.co.tz</p>
+                    <p>✉️ eventplannertanzania@gmail.com</p>
                 </div>
                 <div>
-                    <h3>Contact Info</h3>
+                    <h3>Quick Contact</h3>
                     <p>📍 Dar es Salaam, Tanzania</p>
-                    <p>📞 +255 123 456 789</p>
-                    <p>✉️ info@eventplannerstanzania.co.tz</p>
+                    <p>📞 +255 655 600 000</p>
+                    <p>📞 +255 742 678 777</p>
+                    <p>📞 +255 755 775 077</p>
+                    <p>📞 +255 656 000 000</p>
+                </div>
+                <div>
+                    <h3>Services</h3>
+                    <p>• Conference & Wedding Planning</p>
+                    <p>• Concerts & Launch Events</p>
+                    <p>• Hotel & Car Hire</p>
+                    <p>• Holiday Packages</p>
+                    <p>• Public Road Shows</p>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2023 Event Planners Tanzania. All rights reserved. | Website: eventplannerstanzania.co.tz</p>
+                <p>&copy; 2023 Event Planners Tanzania. All rights reserved.</p>
             </div>
         </div>
     </footer>
