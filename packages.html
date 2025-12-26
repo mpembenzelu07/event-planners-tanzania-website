@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Packages - Event Planners Tanzania</title>
+    <style>
+        /* CSS INCLUDED DIRECTLY IN PACKAGES PAGE */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial', sans-serif; }
+        body { background: #f8f9fa; color: #333; line-height: 1.6; }
+        .container { width: 90%; max-width: 1200px; margin: 0 auto; padding: 0 15px; }
+        
+        /* Header */
+        header { background: #fff; box-shadow: 0 2px 15px rgba(0,0,0,0.1); position: fixed; width: 100%; top: 0; z-index: 1000; }
+        header .container { display: flex; justify-content: space-between; align-items: center; padding: 20px 15px; }
+        .logo h1 { color: #2c3e50; font-size: 1.8rem; }
+        .logo span { color: #e74c3c; }
+        nav ul { display: flex; list-style: none; }
+        nav ul li { margin-left: 30px; }
+        nav ul li a { text-decoration: none; color: #2c3e50; font-weight: 600; padding: 5px 0; position: relative; }
+        nav ul li a:hover, nav ul li a.active { color: #e74c3c; }
+        nav ul li a.active::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 100%; height: 3px; background: #e74c3c; }
+        
+        /* Page Header */
+        .page-header { background: linear-gradient(rgba(231,76,60,0.9), rgba(231,76,60,0.9)), url('https://images.unsplash.com/photo-1492684223066-dd23140edf6d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1770&q=80'); background-size: cover; color: white; text-align: center; padding: 150px 20px 80px; margin-top: 80px; }
+        .page-header h1 { font-size: 3rem; margin-bottom: 15px; }
+        .page-header p { font-size: 1.2rem; opacity: 0.9; }
+        
+        /* Pricing Toggle */
+        .pricing-toggle { text-align: center; padding: 40px 0; background: #fff; }
+        .toggle { display: inline-flex; background: #ecf0f1; border-radius: 30px; padding: 5px; }
+        .toggle-btn { padding: 10px 30px; border: none; background: transparent; border-radius: 25px; cursor: pointer; font-weight: 600; transition: 0.3s; }
+        .toggle-btn.active { background: #e74c3c; color: white; }
+        
+        /* Pricing Tables */
+        .pricing-tables { padding: 40px 0 80px; background: #fff; }
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .pricing-card { background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); text-align: center; transition: 0.3s; position: relative; }
+        .pricing-card:hover { transform: translateY(-10px); box-shadow: 0 15px 35px rgba(0,0,0,0.15); }
+        .pricing-card.featured { border: 3px solid #e74c3c; }
+        .featured-badge { position: absolute; top: 20px; right: -35px; background: #e74c3c; color: white; padding: 8px 40px; transform: rotate(45deg); font-weight: 600; font-size: 0.9rem; }
+        .pricing-header { padding: 40px 20px; background: #2c3e50; color: white; }
+        .pricing-header h3 { font-size: 1.8rem; margin-bottom: 10px; }
+        .pricing-header .price { font-size: 3rem; font-weight: 700; margin: 20px 0; }
+        .pricing-header .price span { font-size: 1rem; opacity: 0.9; }
+        .pricing-features { padding: 30px; }
+        .pricing-features ul { list-style: none; }
+        .pricing-features ul li { padding: 12px 0; border-bottom: 1px solid #eee; }
+        .pricing-features ul li:last-child { border-bottom: none; }
+        .pricing-features ul li i { color: #2ecc71; margin-right: 10px; }
+        .pricing-features ul li.disabled { color: #bdc3c7; }
+        .pricing-features ul li.disabled i { color: #bdc3c7; }
+        .pricing-button { padding: 0 30px 40px; }
+        .pricing-button .btn { display: inline-block; width: 100%; background: #e74c3c; color: white; padding: 15px; border-radius: 4px; text-decoration: none; font-weight: 600; transition: 0.3s; border: none; cursor: pointer; }
+        .pricing-button .btn:hover { background: #c0392b; }
+        
+        /* Custom Package */
+        .custom-package { padding: 80px 0; background: #f5f7fa; text-align: center; }
+        .custom-package h2 { font-size: 2.5rem; color: #2c3e50; margin-bottom: 20px; }
+        .custom-package p { font-size: 1.2rem; color: #666; max-width: 700px; margin: 0 auto 30px; }
+        
+        /* FAQ */
+        .faq { padding: 80px 0; background: #fff; }
+        .faq-item { margin-bottom: 20px; border: 1px solid #eee; border-radius: 8px; overflow: hidden; }
+        .faq-question { padding: 20px; background: #f9f9f9; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 600; color: #2c3e50; }
+        .faq-answer { padding: 0 20px; max-height: 0; overflow: hidden; transition: 0.3s; }
+        .faq-answer.active { padding: 20px; max-height: 500px; }
+        
+        /* Footer */
+        footer { background: #2c3e50; color: #ecf0f1; padding: 60px 0 20px; }
+        .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px; }
+        .footer-bottom { text-align: center; padding-top: 20px; border-top: 1px solid #34495e; }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul { display: none; }
+            .page-header h1 { font-size: 2rem; }
+            .pricing-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>Event Planners <span>Tanzania</span></h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="portfolio.html">Portfolio</a></li>
+                    <li><a href="packages.html" class="active">Packages</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <h1>Event Planning Packages</h1>
+        <p>Flexible pricing options tailored to your needs and budget</p>
+    </section>
+
+    <section class="pricing-toggle">
+        <div class="container">
+            <div class="toggle">
+                <button class="toggle-btn active" data-period="monthly">Monthly Packages</button>
+                <button class="toggle-btn" data-period="custom">Custom Quotes</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing-tables">
+        <div class="container">
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Basic Package</h3>
+                        <p>Perfect for small private events</p>
+                        <div class="price">$999<span>/event</span></div>
+                    </div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li><i>✓</i> Initial consultation & planning</li>
+                            <li><i>✓</i> Vendor recommendations (3)</li>
+                            <li><i>✓</i> Budget planning assistance</li>
+                            <li><i>✓</i> Timeline creation</li>
+                            <li class="disabled"><i>✗</i> On-site coordination</li>
+                            <li class="disabled"><i>✗</i> Full vendor management</li>
+                            <li class="disabled"><i>✗</i> Design & theme development</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-button">
+                        <a href="contact.html" class="btn">Choose Basic</a>
+                    </div>
+                </div>
+
+                <div class="pricing-card featured">
+                    <div class="featured-badge">Most Popular</div>
+                    <div class="pricing-header">
+                        <h3>Premium Package</h3>
+                        <p>Complete planning for medium events</p>
+                        <div class="price">$2,499<span>/event</span></div>
+                    </div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li><i>✓</i> Full planning & coordination</li>
+                            <li><i>✓</i> Vendor management (all vendors)</li>
+                            <li><i>✓</i> Custom design & theme</li>
+                            <li><i>✓</i> Budget planning & tracking</li>
+                            <li><i>✓</i> On-site coordination (8 hours)</li>
+                            <li><i>✓</i> Venue selection assistance</li>
+                            <li class="disabled"><i>✗</i> Month-of coordination only</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-button">
+                        <a href="contact.html" class="btn">Choose Premium</a>
+                    </div>
+                </div>
+
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Platinum Package</h3>
+                        <p>Full-service for large or complex events</p>
+                        <div class="price">$4,999<span>/event</span></div>
+                    </div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li><i>✓</i> Full-service planning (start to finish)</li>
+                            <li><i>✓</i> Unlimited vendor management</li>
+                            <li><i>✓</i> Custom design & theme development</li>
+                            <li><i>✓</i> Complete budget management</li>
+                            <li><i>✓</i> Full on-site coordination</li>
+                            <li><i>✓</i> VIP guest management</li>
+                            <li><i>✓</i> Post-event follow-up & analysis</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-button">
+                        <a href="contact.html" class="btn">Choose Platinum</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="custom-package">
+        <div class="container">
+            <h2>Need a Custom Package?</h2>
+            <p>Every event is unique. Contact us for a personalized quote tailored to your specific requirements, guest count, and budget.</p>
+            <a href="contact.html" class="btn" style="background: #2c3e50;">Request Custom Quote</a>
+        </div>
+    </section>
+
+    <section class="faq">
+        <div class="container">
+            <h2 class="section-title" style="text-align: center; margin-bottom: 50px;">Frequently Asked Questions</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>What's included in your packages?</span>
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>All packages include planning consultations, vendor recommendations, and budget assistance. Higher packages include full vendor management, on-site coordination, and custom design services. Exact inclusions vary by package.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Do you offer month-of coordination only?</span>
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes, we offer month-of coordination services starting at $1,500. This includes finalizing details, creating timelines, and on-site coordination on the event day.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Are there any additional fees?</span>
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Our packages cover planning fees only. Vendor costs, venue fees, decor, catering, and other event expenses are additional and will be included in your overall event budget.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>What is your payment schedule?</span>
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>We require a 50% deposit to book your date, 25% at the halfway point, and the remaining 25% two weeks before your event. All payments are outlined in our contract.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <h3>Event Planners Tanzania</h3>
+                    <p>Professional event planning services across Tanzania.</p>
+                </div>
+                <div>
+                    <h3>Contact Info</h3>
+                    <p>📍 Dar es Salaam, Tanzania</p>
+                    <p>📞 +255 123 456 789</p>
+                    <p>✉️ info@eventplannerstanzania.co.tz</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Event Planners Tanzania. All rights reserved. | Website: eventplannerstanzania.co.tz</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ Accordion
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', function() {
+                    const answer = this.nextElementSibling;
+                    const isActive = answer.classList.contains('active');
+                    
+                    // Close all answers
+                    document.querySelectorAll('.faq-answer').forEach(ans => {
+                        ans.classList.remove('active');
+                    });
+                    
+                    // Update all icons
+                    document.querySelectorAll('.faq-question span:last-child').forEach(icon => {
+                        icon.textContent = '+';
+                    });
+                    
+                    // If not active, open this one
+                    if (!isActive) {
+                        answer.classList.add('active');
+                        this.querySelector('span:last-child').textContent = '−';
+                    }
+                });
+            });
+            
+            // Pricing toggle
+            const toggleBtns = document.querySelectorAll('.toggle-btn');
+            toggleBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    toggleBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
