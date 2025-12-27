@@ -3,283 +3,1376 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio - Event Planners Tanzania</title>
+    <title data-translate="page_title">Our Portfolio - Where Dreams Became Reality | Event Planners Tanzania</title>
     <style>
         /* CSS INCLUDED DIRECTLY IN PORTFOLIO PAGE */
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial', sans-serif; }
-        body { background: #f8f9fa; color: #333; line-height: 1.6; }
+        body { background: #f8f9fa; color: #333; line-height: 1.6; overflow-x: hidden; }
         .container { width: 90%; max-width: 1200px; margin: 0 auto; padding: 0 15px; }
         
+        /* Language Switcher */
+        .language-switcher {
+            position: fixed;
+            top: 100px;
+            right: 0;
+            z-index: 1001;
+            display: flex;
+            flex-direction: column;
+            background: white;
+            border-radius: 10px 0 0 10px;
+            box-shadow: -5px 5px 20px rgba(0,0,0,0.15);
+            overflow: hidden;
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        
+        .language-switcher.active {
+            transform: translateX(0);
+        }
+        
+        .lang-tab {
+            position: absolute;
+            left: -40px;
+            top: 20px;
+            background: #e74c3c;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 10px 0 0 10px;
+            cursor: pointer;
+            font-weight: 700;
+            transform: rotate(-90deg);
+            transform-origin: right center;
+            white-space: nowrap;
+            box-shadow: -3px 3px 10px rgba(231,76,60,0.3);
+        }
+        
+        .lang-buttons {
+            padding: 15px;
+        }
+        
+        .lang-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 20px;
+            border: none;
+            background: #f8f9fa;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+        
+        .lang-btn.active {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+            box-shadow: 0 5px 15px rgba(231,76,60,0.3);
+        }
+        
+        .lang-flag {
+            font-size: 1.2rem;
+        }
+        
         /* Header */
-        header { background: #fff; box-shadow: 0 2px 15px rgba(0,0,0,0.1); position: fixed; width: 100%; top: 0; z-index: 1000; }
-        header .container { display: flex; justify-content: space-between; align-items: center; padding: 20px 15px; }
-        .logo h1 { color: #2c3e50; font-size: 1.8rem; }
-        .logo span { color: #e74c3c; }
-        .logo .tagline { color: #e74c3c; font-size: 0.9rem; font-weight: 500; margin-top: 5px; }
-        nav ul { display: flex; list-style: none; }
-        nav ul li { margin-left: 30px; }
-        nav ul li a { text-decoration: none; color: #2c3e50; font-weight: 600; padding: 5px 0; position: relative; }
-        nav ul li a:hover, nav ul li a.active { color: #e74c3c; }
-        nav ul li a.active::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 100%; height: 3px; background: #e74c3c; }
+        header { 
+            background: rgba(255,255,255,0.98); 
+            backdrop-filter: blur(15px);
+            box-shadow: 0 8px 40px rgba(0,0,0,0.08); 
+            position: fixed; 
+            width: 100%; 
+            top: 0; 
+            z-index: 1000; 
+        }
+        
+        header .container { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 20px 15px; 
+        }
+        
+        .logo h1 { 
+            color: #2c3e50; 
+            font-size: 1.8rem; 
+        }
+        
+        .logo span { 
+            color: #e74c3c; 
+        }
+        
+        .logo .tagline { 
+            color: #e74c3c; 
+            font-size: 0.9rem; 
+            font-weight: 600; 
+            margin-top: 5px;
+        }
+        
+        nav ul { 
+            display: flex; 
+            list-style: none; 
+        }
+        
+        nav ul li { 
+            margin-left: 35px; 
+        }
+        
+        nav ul li a { 
+            text-decoration: none; 
+            color: #2c3e50; 
+            font-weight: 600; 
+            padding: 8px 0; 
+            position: relative; 
+            transition: all 0.3s ease;
+        }
+        
+        nav ul li a.active { 
+            color: #e74c3c; 
+        }
+        
+        nav ul li a.active::after { 
+            content: ''; 
+            position: absolute; 
+            bottom: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 3px; 
+            background: linear-gradient(90deg, #e74c3c 0%, #3498db 100%);
+            border-radius: 3px;
+        }
         
         /* Page Header */
-        .page-header { background: linear-gradient(rgba(44,62,80,0.9), rgba(44,62,80,0.9)), url('https://images.unsplash.com/photo-1464366400600-716db5d4d949?ixlib=rb-4.0.3&auto=format&fit=crop&w=1770&q=80'); background-size: cover; color: white; text-align: center; padding: 150px 20px 80px; margin-top: 80px; }
-        .page-header h1 { font-size: 3rem; margin-bottom: 15px; }
-        .page-header p { font-size: 1.2rem; opacity: 0.9; }
+        .page-header { 
+            background: linear-gradient(rgba(44,62,80,0.92), rgba(44,62,80,0.85)), 
+                      url('https://images.unsplash.com/photo-1464366400600-716db5d4d949?ixlib=rb-4.0.3&auto=format&fit=crop&w=1770&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            text-align: center;
+            padding: 200px 20px 120px;
+            margin-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #e74c3c, #f1c40f, #3498db);
+            background-size: 300% 100%;
+            animation: gradientFlow 8s infinite linear;
+        }
+        
+        @keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .page-header h1 { 
+            font-size: 3.5rem; 
+            margin-bottom: 20px; 
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        .page-header p { 
+            font-size: 1.4rem; 
+            opacity: 0.9; 
+            max-width: 700px;
+            margin: 0 auto;
+            animation: fadeInUp 1s 0.3s both;
+        }
         
         /* Portfolio Filters */
-        .portfolio-filters { padding: 30px 0; background: #fff; text-align: center; }
-        .filter-btn { background: #ecf0f1; border: none; padding: 10px 20px; margin: 0 5px; border-radius: 4px; cursor: pointer; transition: 0.3s; font-weight: 600; }
-        .filter-btn:hover, .filter-btn.active { background: #e74c3c; color: white; }
+        .portfolio-filters {
+            padding: 60px 0 40px;
+            background: #fff;
+            text-align: center;
+        }
+        
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .filter-btn {
+            padding: 15px 30px;
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 50px;
+            font-weight: 600;
+            color: #2c3e50;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+        
+        .filter-btn.active {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+            border-color: #e74c3c;
+            box-shadow: 0 10px 25px rgba(231,76,60,0.2);
+            transform: translateY(-3px);
+        }
         
         /* Portfolio Grid */
-        .portfolio-grid { padding: 60px 0; background: #fff; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 30px; }
-        .portfolio-item { position: relative; overflow: hidden; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-        .portfolio-item img { width: 100%; height: 250px; object-fit: cover; transition: 0.5s; }
-        .portfolio-item:hover img { transform: scale(1.1); }
-        .portfolio-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: rgba(44,62,80,0.9); color: white; padding: 20px; transform: translateY(100%); transition: 0.3s; }
-        .portfolio-item:hover .portfolio-overlay { transform: translateY(0); }
-        .portfolio-overlay h3 { margin-bottom: 10px; font-size: 1.3rem; }
-        .portfolio-overlay p { font-size: 0.9rem; opacity: 0.9; }
+        .portfolio-grid {
+            padding: 60px 0;
+            background: #f8f9fa;
+        }
         
-        /* Client Testimonials */
-        .testimonials { padding: 80px 0; background: #f5f7fa; }
-        .testimonial-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .testimonial-card { background: #fff; border-radius: 8px; padding: 30px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-        .testimonial-text { font-style: italic; margin-bottom: 20px; color: #555; }
-        .client-info h4 { color: #2c3e50; }
-        .client-info p { color: #e74c3c; font-weight: 600; }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
         
-        /* Contact Section */
-        .portfolio-contact { padding: 80px 0; background: #2c3e50; color: white; text-align: center; }
-        .portfolio-contact h2 { font-size: 2.5rem; margin-bottom: 20px; }
-        .portfolio-contact p { font-size: 1.2rem; margin-bottom: 30px; max-width: 700px; margin-left: auto; margin-right: auto; }
-        .contact-details { display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; margin: 30px 0; }
-        .contact-detail { background: rgba(255,255,255,0.1); padding: 15px 25px; border-radius: 4px; }
-        .btn { display: inline-block; background: #e74c3c; color: white; padding: 14px 32px; border-radius: 4px; text-decoration: none; font-weight: 600; transition: 0.3s; }
-        .btn:hover { background: #c0392b; transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .portfolio-item {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: fadeInUp 0.6s ease-out;
+        }
+        
+        .portfolio-item.hidden {
+            opacity: 0;
+            transform: scale(0.8);
+            display: none;
+        }
+        
+        .portfolio-item:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+        }
+        
+        .portfolio-image {
+            height: 300px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .portfolio-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .portfolio-item:hover .portfolio-image img {
+            transform: scale(1.1);
+        }
+        
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.8) 100%);
+            display: flex;
+            align-items: flex-end;
+            padding: 30px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+        
+        .portfolio-content {
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+        }
+        
+        .portfolio-item:hover .portfolio-content {
+            transform: translateY(0);
+        }
+        
+        .portfolio-content h3 {
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .portfolio-content p {
+            color: rgba(255,255,255,0.9);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        
+        .portfolio-category {
+            display: inline-block;
+            background: #e74c3c;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        /* Stats Section */
+        .portfolio-stats {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #2c3e50 0%, #1a252f 100%);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .stat-item {
+            padding: 40px 30px;
+        }
+        
+        .stat-number {
+            font-size: 4rem;
+            font-weight: 900;
+            color: #e74c3c;
+            margin-bottom: 15px;
+            line-height: 1;
+        }
+        
+        .stat-label {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            font-weight: 500;
+        }
+        
+        /* Testimonials */
+        .testimonials-section {
+            padding: 120px 0;
+            background: #fff;
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+        
+        .testimonial-card {
+            background: #f8f9fa;
+            border-radius: 20px;
+            padding: 40px 35px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial-card:hover {
+            background: white;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.1);
+            transform: translateY(-10px);
+        }
+        
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 5rem;
+            color: rgba(231,76,60,0.1);
+            font-family: serif;
+        }
+        
+        .testimonial-text {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #555;
+            margin-bottom: 25px;
+            font-style: italic;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .client-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .client-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+        
+        .client-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .client-details h4 {
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        
+        .client-details p {
+            color: #e74c3c;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        /* Video Portfolio */
+        .video-portfolio {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .video-container {
+            max-width: 900px;
+            margin: 60px auto 0;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+            position: relative;
+        }
+        
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .video-overlay:hover {
+            background: rgba(0,0,0,0.2);
+        }
+        
+        .play-button {
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: #e74c3c;
+            transition: all 0.3s ease;
+        }
+        
+        .video-overlay:hover .play-button {
+            transform: scale(1.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        /* CTA Section */
+        .portfolio-cta {
+            padding: 120px 0;
+            background: #fff;
+            text-align: center;
+        }
+        
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+            padding: 18px 45px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.4s ease;
+            box-shadow: 0 15px 35px rgba(231,76,60,0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 25px 50px rgba(231,76,60,0.4);
+        }
         
         /* Footer */
-        footer { background: #1a252f; color: #ecf0f1; padding: 60px 0 20px; }
-        .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px; }
-        .footer-bottom { text-align: center; padding-top: 20px; border-top: 1px solid #2c3e50; }
+        footer { 
+            background: linear-gradient(135deg, #1a252f 0%, #0d1218 100%);
+            color: #ecf0f1; 
+            padding: 80px 0 30px; 
+            position: relative;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #e74c3c, #f1c40f, #3498db);
+        }
+        
+        .footer-content { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 50px; 
+            margin-bottom: 50px; 
+            position: relative;
+            z-index: 1;
+        }
+        
+        .footer-column h3 {
+            color: #f1c40f;
+            margin-bottom: 30px;
+            font-size: 1.5rem;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: #e74c3c;
+        }
+        
+        .footer-column p {
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+        
+        .footer-bottom { 
+            text-align: center; 
+            padding-top: 40px; 
+            border-top: 1px solid rgba(255,255,255,0.1); 
+            font-size: 0.9rem;
+            opacity: 0.8;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Modal Lightbox */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.95);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .modal.active {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .modal-content {
+            max-width: 900px;
+            width: 100%;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .modal-image {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        /* Modal Details */
+        .modal-details {
+            padding: 30px;
+        }
+        
+        .modal-details h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        
+        .modal-details .modal-category {
+            display: inline-block;
+            background: #e74c3c;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .modal-details p {
+            margin-bottom: 20px;
+            color: #555;
+            line-height: 1.7;
+        }
+        
+        .modal-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 25px 0;
+        }
+        
+        .modal-feature {
+            background: #f8f9fa;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            color: #2c3e50;
+            font-weight: 500;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
         
         /* Responsive */
+        @media (max-width: 1100px) {
+            .grid-container {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+        }
+        
         @media (max-width: 768px) {
-            nav ul { display: none; }
+            .page-header h1 { font-size: 2.5rem; }
+            .page-header p { font-size: 1.2rem; }
+            .grid-container { grid-template-columns: 1fr; }
+            .filter-buttons { flex-direction: column; align-items: center; }
+            .filter-btn { width: 100%; max-width: 300px; }
+            .stats-grid { grid-template-columns: 1fr; }
+            .testimonials-grid { grid-template-columns: 1fr; }
+            .modal-image { height: 300px; }
+            nav ul li { margin-left: 20px; }
+        }
+        
+        @media (max-width: 576px) {
+            nav ul { flex-wrap: wrap; justify-content: center; }
+            nav ul li { margin: 0 10px; }
+            .page-header { padding: 150px 20px 80px; }
             .page-header h1 { font-size: 2rem; }
-            .grid { grid-template-columns: 1fr; }
-            .contact-details { flex-direction: column; }
+            .page-header p { font-size: 1rem; }
         }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+    <!-- Language Switcher -->
+    <div class="language-switcher" id="languageSwitcher">
+        <div class="lang-tab" id="langTab">
+            <i class="fas fa-globe"></i>
+        </div>
+        <div class="lang-buttons">
+            <button class="lang-btn active" data-lang="en">
+                <span class="lang-flag">🇬🇧</span>
+                <span data-translate="lang_en">English</span>
+            </button>
+            <button class="lang-btn" data-lang="sw">
+                <span class="lang-flag">🇹🇿</span>
+                <span data-translate="lang_sw">Kiswahili</span>
+            </button>
+        </div>
+    </div>
+
     <header>
         <div class="container">
             <div class="logo">
-                <h1>Event Planners <span>Tanzania</span></h1>
-                <p class="tagline">Creating Unforgettable Experiences</p>
+                <h1 data-translate="company_name">Event Planners <span>Tanzania</span></h1>
+                <p class="tagline" data-translate="tagline">Creating Moments That Live Forever</p>
             </div>
             <nav>
                 <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="portfolio.html" class="active">Portfolio</a></li>
-                    <li><a href="packages.html">Packages</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="index.html" data-translate="nav_home">Home</a></li>
+                    <li><a href="about.html" data-translate="nav_about">About</a></li>
+                    <li><a href="services.html" data-translate="nav_services">Services</a></li>
+                    <li><a href="portfolio.html" class="active" data-translate="nav_portfolio">Portfolio</a></li>
+                    <li><a href="packages.html" data-translate="nav_packages">Packages</a></li>
+                    <li><a href="contact.html" data-translate="nav_contact">Contact</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
     <section class="page-header">
-        <h1>Our Portfolio</h1>
-        <p>Showcasing our most memorable events and success stories</p>
+        <div class="container">
+            <h1 data-translate="portfolio_title">Our Event Portfolio</h1>
+            <p data-translate="portfolio_subtitle">Explore our collection of successfully executed events across Tanzania. Each event tells a unique story of celebration, innovation, and excellence.</p>
+        </div>
     </section>
 
     <section class="portfolio-filters">
         <div class="container">
-            <button class="filter-btn active" data-filter="all">All Events</button>
-            <button class="filter-btn" data-filter="wedding">Weddings</button>
-            <button class="filter-btn" data-filter="corporate">Corporate</button>
-            <button class="filter-btn" data-filter="private">Private</button>
-            <button class="filter-btn" data-filter="concert">Concerts</button>
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All Events</button>
+                <button class="filter-btn" data-filter="wedding">Weddings</button>
+                <button class="filter-btn" data-filter="corporate">Corporate</button>
+                <button class="filter-btn" data-filter="social">Social Events</button>
+                <button class="filter-btn" data-filter="cultural">Cultural</button>
+            </div>
         </div>
     </section>
 
     <section class="portfolio-grid">
         <div class="container">
-            <div class="grid">
-                <div class="portfolio-item" data-category="wedding">
-                    <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-4.0.3&auto=format&fit=crop&w=1770&q=80" alt="Beach Wedding">
-                    <div class="portfolio-overlay">
-                        <h3>Luxury Beach Wedding</h3>
-                        <p>Stunning sunset ceremony at Kunduchi Beach with 200 guests</p>
+            <div class="grid-container" id="portfolioGrid">
+                <!-- Portfolio items will be generated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <section class="portfolio-stats">
+        <div class="container">
+            <h2 style="color: white; margin-bottom: 60px; font-size: 2.5rem;" data-translate="stats_title">Our Impact in Numbers</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number" data-count="350">0</div>
+                    <div class="stat-label" data-translate="stat_events">Events Successfully Executed</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-count="15">0</div>
+                    <div class="stat-label" data-translate="stat_years">Years of Experience</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-count="98">0</div>
+                    <div class="stat-label" data-translate="stat_satisfaction">% Client Satisfaction</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-count="42">0</div>
+                    <div class="stat-label" data-translate="stat_awards">Industry Awards</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials-section">
+        <div class="container">
+            <h2 style="text-align: center; color: #2c3e50; margin-bottom: 20px; font-size: 2.5rem;" data-translate="testimonials_title">Client Testimonials</h2>
+            <p style="text-align: center; color: #666; max-width: 700px; margin: 0 auto 50px; font-size: 1.1rem;" data-translate="testimonials_subtitle">See what our clients have to say about our work</p>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-text" data-translate="testimonial_1_text">
+                        "Event Planners Tanzania turned our wedding into a fairy tale. Every detail was perfect, and our guests are still talking about it months later!"
+                    </div>
+                    <div class="client-info">
+                        <div class="client-avatar">
+                            <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Client">
+                        </div>
+                        <div class="client-details">
+                            <h4 data-translate="testimonial_1_name">Sarah & James M.</h4>
+                            <p data-translate="testimonial_1_event">Wedding Clients</p>
+                        </div>
                     </div>
                 </div>
-                <div class="portfolio-item" data-category="corporate">
-                    <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=1770&q=80" alt="Corporate Conference">
-                    <div class="portfolio-overlay">
-                        <h3>Tech Innovation Conference</h3>
-                        <p>500+ attendees at Dar es Salaam Serena Hotel with international speakers</p>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-text" data-translate="testimonial_2_text">
+                        "Our annual corporate gala was our most successful yet, thanks to the incredible team at Event Planners Tanzania. Professional, creative, and flawless execution."
+                    </div>
+                    <div class="client-info">
+                        <div class="client-avatar">
+                            <img src="https://randomuser.me/api/portraits/men/54.jpg" alt="Client">
+                        </div>
+                        <div class="client-details">
+                            <h4 data-translate="testimonial_2_name">David Chen</h4>
+                            <p data-translate="testimonial_2_event">CEO, TechCorp Tanzania</p>
+                        </div>
                     </div>
                 </div>
-                <div class="portfolio-item" data-category="private">
-                    <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1770&q=80" alt="Birthday Party">
-                    <div class="portfolio-overlay">
-                        <h3>50th Birthday Celebration</h3>
-                        <p>Elegant garden party with 150 guests, live band, and custom decor</p>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-text" data-translate="testimonial_3_text">
+                        "The cultural festival they organized for our community was breathtaking. They captured the essence of our traditions while adding modern elegance."
                     </div>
-                </div>
-                <div class="portfolio-item" data-category="wedding">
-                    <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1769&q=80" alt="Traditional Wedding">
-                    <div class="portfolio-overlay">
-                        <h3>Traditional Cultural Wedding</h3>
-                        <p>Blending modern and traditional elements with 300+ attendees</p>
-                    </div>
-                </div>
-                <div class="portfolio-item" data-category="corporate">
-                    <img src="https://images.unsplash.com/photo-1492684223066-dd23140edf6d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1770&q=80" alt="Product Launch">
-                    <div class="portfolio-overlay">
-                        <h3>Product Launch Event</h3>
-                        <p>Innovative tech product reveal with media coverage and VIP guests</p>
-                    </div>
-                </div>
-                <div class="portfolio-item" data-category="concert">
-                    <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1770&q=80" alt="Music Concert">
-                    <div class="portfolio-overlay">
-                        <h3>Live Music Concert</h3>
-                        <p>Outdoor concert with local artists and 1000+ attendees</p>
-                    </div>
-                </div>
-                <div class="portfolio-item" data-category="private">
-                    <img src="https://images.unsplash.com/photo-1464366400600-716db5d4d949?ixlib=rb-4.0.3&auto=format&fit=crop&w=1770&q=80" alt="Anniversary Party">
-                    <div class="portfolio-overlay">
-                        <h3>25th Anniversary Celebration</h3>
-                        <p>Golden anniversary with family and friends at exclusive venue</p>
-                    </div>
-                </div>
-                <div class="portfolio-item" data-category="corporate">
-                    <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?ixlib=rb-4.0.3&auto=format&fit=crop&w=1769&q=80" alt="Corporate Gala">
-                    <div class="portfolio-overlay">
-                        <h3>Annual Corporate Gala</h3>
-                        <p>Black-tie event with awards ceremony and entertainment</p>
+                    <div class="client-info">
+                        <div class="client-avatar">
+                            <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Client">
+                        </div>
+                        <div class="client-details">
+                            <h4 data-translate="testimonial_3_name">Amina Hassan</h4>
+                            <p data-translate="testimonial_3_event">Community Leader</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="testimonials">
+    <section class="video-portfolio">
         <div class="container">
-            <h2 class="section-title" style="text-align: center; margin-bottom: 50px;">Client Testimonials</h2>
-            <div class="testimonial-grid">
-                <div class="testimonial-card">
-                    <div class="testimonial-text">
-                        "Event Planners Tanzania made our wedding day absolutely perfect. Their attention to detail and professionalism exceeded our expectations. The 10 R's philosophy really shows in their work!"
-                    </div>
-                    <div class="client-info">
-                        <h4>Sarah & James</h4>
-                        <p>Wedding Clients, Dar es Salaam</p>
+            <h2 style="margin-bottom: 20px; font-size: 2.5rem;">Event Highlights</h2>
+            <p style="opacity: 0.9; max-width: 700px; margin: 0 auto 30px; font-size: 1.1rem;" data-translate="video_description">Watch highlights from some of our most memorable events across Tanzania.</p>
+            
+            <div class="video-container">
+                <div class="video-overlay" id="videoOverlay">
+                    <div class="play-button">
+                        <i class="fas fa-play"></i>
                     </div>
                 </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-text">
-                        "Our annual corporate conference was flawlessly executed. The team handled everything from venue selection to guest management. Their Right Time Management was impressive!"
-                    </div>
-                    <div class="client-info">
-                        <h4>Michael Johnson</h4>
-                        <p>CEO, Tech Solutions Ltd</p>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-text">
-                        "The 50th birthday party they organized for my husband was spectacular! From the Right Creativity to the Right Vendors, everything was perfect. Highly recommended!"
-                    </div>
-                    <div class="client-info">
-                        <h4>Mrs. Amina Hassan</h4>
-                        <p>Private Event Client</p>
-                    </div>
-                </div>
+                <video id="portfolioVideo" style="width: 100%; display: none;">
+                    <source src="https://assets.mixkit.co/videos/preview/mixkit-wedding-couple-looking-at-the-sunset-7375-large.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <img id="videoThumbnail" src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&auto=format&fit=crop&w=1769&q=80" alt="Event Video Thumbnail" style="width: 100%; height: 500px; object-fit: cover;">
             </div>
         </div>
     </section>
 
-    <section class="portfolio-contact">
+    <section class="portfolio-cta">
         <div class="container">
-            <h2>Ready to Create Your Perfect Event?</h2>
-            <p>Contact us today to discuss your event vision and see how we can bring it to life with our proven 10 R's methodology.</p>
-            
-            <div class="contact-details">
-                <div class="contact-detail">📞 +255 655 600 000</div>
-                <div class="contact-detail">📞 +255 742 678 777</div>
-                <div class="contact-detail">📞 +255 755 775 077</div>
-                <div class="contact-detail">📞 +255 656 000 000</div>
-            </div>
-            
-            <p style="margin-top: 30px;">📧 info@eventplannerstanzania.co.tz | 📧 eventplannertanzania@gmail.com</p>
-            
-            <a href="contact.html" class="btn" style="margin-top: 30px;">Start Planning Your Event</a>
+            <h2 style="color: #2c3e50; margin-bottom: 20px; font-size: 2.5rem;" data-translate="cta_title">Ready to Create Your Perfect Event?</h2>
+            <p style="color: #666; max-width: 700px; margin: 0 auto 50px; font-size: 1.2rem;" data-translate="cta_subtitle">Let us turn your vision into reality. Contact us today to start planning your unforgettable event.</p>
+            <a href="contact.html" class="btn-primary">
+                <span data-translate="cta_button">Start Planning Now</span>
+                <i class="fas fa-arrow-right"></i>
+            </a>
         </div>
     </section>
+
+    <!-- Modal Lightbox -->
+    <div class="modal" id="portfolioModal">
+        <div class="modal-content">
+            <div class="modal-close" id="modalClose">
+                <i class="fas fa-times"></i>
+            </div>
+            <img class="modal-image" id="modalImage" src="" alt="Event Image">
+            <div class="modal-details">
+                <h3 id="modalTitle"></h3>
+                <span class="modal-category" id="modalCategory"></span>
+                <p id="modalDescription"></p>
+                <div class="modal-features" id="modalFeatures"></div>
+                <p><strong>Location:</strong> <span id="modalLocation"></span></p>
+                <p><strong>Date:</strong> <span id="modalDate"></span></p>
+            </div>
+        </div>
+    </div>
 
     <footer>
         <div class="container">
             <div class="footer-content">
-                <div>
-                    <h3>Event Planners Tanzania</h3>
-                    <p>Registered Event Planners based in Tanzania, providing best practice, leading edge, creative event management services.</p>
-                    <p>✉️ info@eventplannerstanzania.co.tz</p>
-                    <p>✉️ eventplannertanzania@gmail.com</p>
+                <div class="footer-column">
+                    <h3 data-translate="footer_about">About Us</h3>
+                    <p data-translate="footer_about_text">Event Planners Tanzania is the premier event management company in Tanzania, creating unforgettable experiences since 2008.</p>
+                    <p><i class="fas fa-map-marker-alt"></i> <span data-translate="footer_address">Dar es Salaam, Tanzania</span></p>
+                    <p><i class="fas fa-phone"></i> <span>+255 123 456 789</span></p>
+                    <p><i class="fas fa-envelope"></i> <span>info@eventplannerstz.co.tz</span></p>
                 </div>
-                <div>
-                    <h3>Quick Contact</h3>
-                    <p>📍 Dar es Salaam, Tanzania</p>
-                    <p>📞 +255 655 600 000</p>
-                    <p>📞 +255 742 678 777</p>
-                    <p>📞 +255 755 775 077</p>
-                    <p>📞 +255 656 000 000</p>
+                <div class="footer-column">
+                    <h3 data-translate="footer_services">Our Services</h3>
+                    <p data-translate="service_weddings">Wedding Planning</p>
+                    <p data-translate="service_corporate">Corporate Events</p>
+                    <p data-translate="service_social">Social Gatherings</p>
+                    <p data-translate="service_cultural">Cultural Events</p>
                 </div>
-                <div>
-                    <h3>Services</h3>
-                    <p>• Conference & Wedding Planning</p>
-                    <p>• Concerts & Launch Events</p>
-                    <p>• Hotel & Car Hire</p>
-                    <p>• Holiday Packages</p>
-                    <p>• Public Road Shows</p>
+                <div class="footer-column">
+                    <h3 data-translate="footer_links">Quick Links</h3>
+                    <p><a href="index.html" style="color: #ecf0f1; text-decoration: none;" data-translate="nav_home">Home</a></p>
+                    <p><a href="about.html" style="color: #ecf0f1; text-decoration: none;" data-translate="nav_about">About Us</a></p>
+                    <p><a href="services.html" style="color: #ecf0f1; text-decoration: none;" data-translate="nav_services">Services</a></p>
+                    <p><a href="contact.html" style="color: #ecf0f1; text-decoration: none;" data-translate="nav_contact">Contact</a></p>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2023 Event Planners Tanzania. All rights reserved.</p>
+                <p data-translate="footer_copyright">&copy; 2023 Event Planners Tanzania. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Portfolio Filtering
-        document.addEventListener('DOMContentLoaded', function() {
-            const filterBtns = document.querySelectorAll('.filter-btn');
-            const portfolioItems = document.querySelectorAll('.portfolio-item');
+        // Portfolio Data
+        const portfolioItems = [
+            {
+                id: 1,
+                title: "Lakeside Luxury Wedding",
+                category: "wedding",
+                image: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-4.0.3&auto=format&fit=crop&w=1770&q=80",
+                description: "An elegant lakeside wedding with traditional Tanzanian elements blended with modern luxury.",
+                location: "Lake Manyara",
+                date: "December 2022",
+                features: ["Traditional Decor", "Live Band", "Gourmet Dining", "Fireworks Display"]
+            },
+            {
+                id: 2,
+                title: "Tech Summit Tanzania",
+                category: "corporate",
+                image: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1770&q=80",
+                description: "Annual technology summit for 500+ industry professionals with immersive tech experiences.",
+                location: "Dar es Salaam",
+                date: "October 2022",
+                features: ["Stage Design", "Networking Lounge", "VR Experiences", "Catering for 500"]
+            },
+            {
+                id: 3,
+                title: "Masai Cultural Festival",
+                category: "cultural",
+                image: "https://images.unsplash.com/photo-1531058020387-3be344556be6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1770&q=80",
+                description: "Celebration of Masai traditions with dance, music, and authentic cultural displays.",
+                location: "Arusha",
+                date: "August 2022",
+                features: ["Traditional Dance", "Cultural Exhibits", "Artisan Market", "Community Feast"]
+            },
+            {
+                id: 4,
+                title: "Beachside Birthday Gala",
+                category: "social",
+                image: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&auto=format&fit=crop&w=1769&q=80",
+                description: "A milestone birthday celebration on the pristine beaches of Zanzibar.",
+                location: "Zanzibar",
+                date: "June 2022",
+                features: ["Beach Setup", "Seafood Feast", "Live DJ", "Bonfire"]
+            },
+            {
+                id: 5,
+                title: "Mountain View Wedding",
+                category: "wedding",
+                image: "https://images.unsplash.com/photo-1465495976277-4387d4b0e4a6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1770&q=80",
+                description: "Intimate wedding ceremony with breathtaking views of Mount Kilimanjaro.",
+                location: "Moshi",
+                date: "February 2023",
+                features: ["Mountain Backdrop", "Intimate Ceremony", "Local Cuisine", "Sunset Reception"]
+            },
+            {
+                id: 6,
+                title: "Corporate Awards Night",
+                category: "corporate",
+                image: "https://images.unsplash.com/photo-1511578314322-379afb476865?ixlib=rb-4.0.3&auto=format&fit=crop&w=1769&q=80",
+                description: "Annual awards gala recognizing outstanding achievements in the corporate sector.",
+                location: "Dar es Salaam",
+                date: "March 2023",
+                features: ["Red Carpet", "Awards Ceremony", "Gala Dinner", "Entertainment"]
+            }
+        ];
+
+        // Language translations
+        const translations = {
+            en: {
+                // Page title
+                page_title: "Our Portfolio - Where Dreams Became Reality | Event Planners Tanzania",
+                
+                // Navigation
+                company_name: "Event Planners Tanzania",
+                tagline: "Creating Moments That Live Forever",
+                nav_home: "Home",
+                nav_about: "About",
+                nav_services: "Services",
+                nav_portfolio: "Portfolio",
+                nav_packages: "Packages",
+                nav_contact: "Contact",
+                
+                // Language switcher
+                lang_en: "English",
+                lang_sw: "Kiswahili",
+                
+                // Page header
+                portfolio_title: "Our Event Portfolio",
+                portfolio_subtitle: "Explore our collection of successfully executed events across Tanzania. Each event tells a unique story of celebration, innovation, and excellence.",
+                
+                // Stats
+                stats_title: "Our Impact in Numbers",
+                stat_events: "Events Successfully Executed",
+                stat_years: "Years of Experience",
+                stat_satisfaction: "% Client Satisfaction",
+                stat_awards: "Industry Awards",
+                
+                // Testimonials
+                testimonials_title: "Client Testimonials",
+                testimonials_subtitle: "See what our clients have to say about our work",
+                testimonial_1_text: "\"Event Planners Tanzania turned our wedding into a fairy tale. Every detail was perfect, and our guests are still talking about it months later!\"",
+                testimonial_1_name: "Sarah & James M.",
+                testimonial_1_event: "Wedding Clients",
+                testimonial_2_text: "\"Our annual corporate gala was our most successful yet, thanks to the incredible team at Event Planners Tanzania. Professional, creative, and flawless execution.\"",
+                testimonial_2_name: "David Chen",
+                testimonial_2_event: "CEO, TechCorp Tanzania",
+                testimonial_3_text: "\"The cultural festival they organized for our community was breathtaking. They captured the essence of our traditions while adding modern elegance.\"",
+                testimonial_3_name: "Amina Hassan",
+                testimonial_3_event: "Community Leader",
+                
+                // Video
+                video_description: "Watch highlights from some of our most memorable events across Tanzania.",
+                
+                // CTA
+                cta_title: "Ready to Create Your Perfect Event?",
+                cta_subtitle: "Let us turn your vision into reality. Contact us today to start planning your unforgettable event.",
+                cta_button: "Start Planning Now",
+                
+                // Footer
+                footer_about: "About Us",
+                footer_about_text: "Event Planners Tanzania is the premier event management company in Tanzania, creating unforgettable experiences since 2008.",
+                footer_address: "Dar es Salaam, Tanzania",
+                footer_services: "Our Services",
+                service_weddings: "Wedding Planning",
+                service_corporate: "Corporate Events",
+                service_social: "Social Gatherings",
+                service_cultural: "Cultural Events",
+                footer_links: "Quick Links",
+                footer_copyright: "© 2023 Event Planners Tanzania. All Rights Reserved."
+            },
+            sw: {
+                // Page title
+                page_title: "Portfolio Yetu - Mahali Ndoto Zikaja Kuwa Ukweli | Waupangaji Matukio Tanzania",
+                
+                // Navigation
+                company_name: "Waupangaji Matukio Tanzania",
+                tagline: "Kuunda Muda Unaokaa Milele",
+                nav_home: "Nyumbani",
+                nav_about: "Kuhusu",
+                nav_services: "Huduma",
+                nav_portfolio: "Portfolio",
+                nav_packages: "Vifurushi",
+                nav_contact: "Wasiliana",
+                
+                // Language switcher
+                lang_en: "Kiingereza",
+                lang_sw: "Kiswahili",
+                
+                // Page header
+                portfolio_title: "Portfolio Yetu ya Matukio",
+                portfolio_subtitle: "Gundua mkusanyiko wetu wa matukio yaliyotekelezwa kwa mafanikio nchini Tanzania. Kila tukio linasimulia hadithi ya kipekee ya sherehe, uvumbuzi, na ubora.",
+                
+                // Stats
+                stats_title: "Athari Yetu Kwa Nambari",
+                stat_events: "Matukio Yaliyotekelezwa Kwa Mafanikio",
+                stat_years: "Miaka ya Uzoefu",
+                stat_satisfaction: "% Ya Kuridhika kwa Wateja",
+                stat_awards: "Tuzo za Sekta",
+                
+                // Testimonials
+                testimonials_title: "Ushuhuda wa Wateja",
+                testimonials_subtitle: "Tazama wateja wetu wanachosema kuhusu kazi yetu",
+                testimonial_1_text: "\"Waupangaji Matukio Tanzania walifanya harusi yetu kuwa hadithi ya visiwa. Kila undani ulikuwa kamili, na wageni wetu bado wanazungumzia miezi baadaye!\"",
+                testimonial_1_name: "Sarah & James M.",
+                testimonial_1_event: "Wateja wa Harusi",
+                testimonial_2_text: "\"Gala yetu ya kila mwaka ya kikampuni ilikuwa ya kufanikiwa zaidi hadi sasa, shukrani kwa timu ya kustaajabisha ya Waupangaji Matukio Tanzania. Utaalamu, ubunifu, na utekelezaji bila dosari.\"",
+                testimonial_2_name: "David Chen",
+                testimonial_2_event: "Mkurugenzi Mtendaji, TechCorp Tanzania",
+                testimonial_3_text: "\"Tamasha la kitamaduni walilopangia jamii yetu lilikuwa la kuvutia. Walishika kiini cha mila zetu wakiongezea umaini wa kisasa.\"",
+                testimonial_3_name: "Amina Hassan",
+                testimonial_3_event: "Kiongozi wa Jamii",
+                
+                // Video
+                video_description: "Tazama vionjo kutoka kwa baadhi ya matukio yetu yanayokumbukwa zaidi nchini Tanzania.",
+                
+                // CTA
+                cta_title: "Uko Tayari Kuunda Tukio Lako Kamili?",
+                cta_subtitle: "Tuaribu kugeuza mtazamo wako kuwa ukweli. Wasiliana nasi leo kuanza kupanga tukio lako lisiloweza kusahaulika.",
+                cta_button: "Anza Kupanga Sasa",
+                
+                // Footer
+                footer_about: "Kuhusu Sisi",
+                footer_about_text: "Waupangaji Matukio Tanzania ni kampuni kuu ya usimamizi wa matukio nchini Tanzania, ikiunda uzoefu usioweza kusahaulika tangu 2008.",
+                footer_address: "Dar es Salaam, Tanzania",
+                footer_services: "Huduma Zetu",
+                service_weddings: "Upangaji wa Harusi",
+                service_corporate: "Matukio ya Kikampuni",
+                service_social: "Mikutano ya Kijamii",
+                service_cultural: "Matukio ya Kitamaduni",
+                footer_links: "Viungo vya Haraka",
+                footer_copyright: "© 2023 Waupangaji Matukio Tanzania. Haki zote zimehifadhiwa."
+            }
+        };
+
+        // DOM elements
+        let currentLang = 'en';
+        const langSwitcher = document.getElementById('languageSwitcher');
+        const langTab = document.getElementById('langTab');
+        const langButtons = document.querySelectorAll('.lang-btn');
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const portfolioGrid = document.getElementById('portfolioGrid');
+        const portfolioModal = document.getElementById('portfolioModal');
+        const modalClose = document.getElementById('modalClose');
+        const modalImage = document.getElementById('modalImage');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalCategory = document.getElementById('modalCategory');
+        const modalDescription = document.getElementById('modalDescription');
+        const modalFeatures = document.getElementById('modalFeatures');
+        const modalLocation = document.getElementById('modalLocation');
+        const modalDate = document.getElementById('modalDate');
+        const videoOverlay = document.getElementById('videoOverlay');
+        const portfolioVideo = document.getElementById('portfolioVideo');
+        const videoThumbnail = document.getElementById('videoThumbnail');
+
+        // Initialize portfolio grid
+        function renderPortfolioItems(filter = 'all') {
+            portfolioGrid.innerHTML = '';
             
-            filterBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    // Update active button
-                    filterBtns.forEach(b => b.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    // Filter items
-                    const filter = this.getAttribute('data-filter');
-                    
-                    portfolioItems.forEach(item => {
-                        if (filter === 'all' || item.getAttribute('data-category') === filter) {
-                            item.style.display = 'block';
-                        } else {
-                            item.style.display = 'none';
-                        }
-                    });
+            const filteredItems = filter === 'all' 
+                ? portfolioItems 
+                : portfolioItems.filter(item => item.category === filter);
+            
+            filteredItems.forEach(item => {
+                const categoryNames = {
+                    'wedding': 'Wedding',
+                    'corporate': 'Corporate',
+                    'social': 'Social Event',
+                    'cultural': 'Cultural Festival'
+                };
+                
+                const portfolioItem = document.createElement('div');
+                portfolioItem.className = 'portfolio-item';
+                portfolioItem.dataset.category = item.category;
+                
+                portfolioItem.innerHTML = `
+                    <div class="portfolio-image">
+                        <img src="${item.image}" alt="${item.title}">
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-content">
+                                <h3>${item.title}</h3>
+                                <p>${item.description.substring(0, 100)}...</p>
+                                <span class="portfolio-category">${categoryNames[item.category]}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                // Add click event to open modal
+                portfolioItem.addEventListener('click', () => openModal(item));
+                
+                portfolioGrid.appendChild(portfolioItem);
+            });
+        }
+
+        // Open modal with portfolio item details
+        function openModal(item) {
+            const categoryNames = {
+                'wedding': 'Wedding',
+                'corporate': 'Corporate',
+                'social': 'Social Event',
+                'cultural': 'Cultural Festival'
+            };
+            
+            modalImage.src = item.image;
+            modalImage.alt = item.title;
+            modalTitle.textContent = item.title;
+            modalCategory.textContent = categoryNames[item.category];
+            modalDescription.textContent = item.description;
+            modalLocation.textContent = item.location;
+            modalDate.textContent = item.date;
+            
+            // Clear and add features
+            modalFeatures.innerHTML = '';
+            item.features.forEach(feature => {
+                const featureEl = document.createElement('span');
+                featureEl.className = 'modal-feature';
+                featureEl.textContent = feature;
+                modalFeatures.appendChild(featureEl);
+            });
+            
+            portfolioModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close modal
+        function closeModal() {
+            portfolioModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Language switching functionality
+        function switchLanguage(lang) {
+            currentLang = lang;
+            
+            // Update active button
+            langButtons.forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.lang === lang);
+            });
+            
+            // Translate all elements with data-translate attribute
+            document.querySelectorAll('[data-translate]').forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[lang] && translations[lang][key]) {
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.placeholder = translations[lang][key];
+                    } else {
+                        element.textContent = translations[lang][key];
+                    }
+                }
+            });
+            
+            // Update page title
+            document.title = translations[lang].page_title;
+        }
+
+        // Animated counter for stats
+        function animateCounter(element, target) {
+            let current = 0;
+            const increment = target / 100;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = target;
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current);
+                }
+            }, 20);
+        }
+
+        // Initialize animated counters when in viewport
+        function initCounters() {
+            const statNumbers = document.querySelectorAll('.stat-number');
+            statNumbers.forEach(stat => {
+                const target = parseInt(stat.getAttribute('data-count'));
+                animateCounter(stat, target);
+            });
+        }
+
+        // Video play functionality
+        function toggleVideo() {
+            if (portfolioVideo.paused) {
+                videoThumbnail.style.display = 'none';
+                portfolioVideo.style.display = 'block';
+                portfolioVideo.play();
+                videoOverlay.style.display = 'none';
+            } else {
+                portfolioVideo.pause();
+                videoOverlay.style.display = 'flex';
+            }
+        }
+
+        // Event Listeners
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize portfolio
+            renderPortfolioItems();
+            
+            // Language switcher toggle
+            langTab.addEventListener('click', () => {
+                langSwitcher.classList.toggle('active');
+            });
+            
+            // Language button clicks
+            langButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const lang = button.getAttribute('data-lang');
+                    switchLanguage(lang);
+                    langSwitcher.classList.remove('active');
                 });
+            });
+            
+            // Filter button clicks
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Update active filter button
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    
+                    // Filter portfolio items
+                    const filter = button.getAttribute('data-filter');
+                    renderPortfolioItems(filter);
+                });
+            });
+            
+            // Modal close
+            modalClose.addEventListener('click', closeModal);
+            portfolioModal.addEventListener('click', (e) => {
+                if (e.target === portfolioModal) closeModal();
+            });
+            
+            // Video controls
+            videoOverlay.addEventListener('click', toggleVideo);
+            portfolioVideo.addEventListener('click', toggleVideo);
+            portfolioVideo.addEventListener('ended', () => {
+                videoOverlay.style.display = 'flex';
+                portfolioVideo.style.display = 'none';
+                videoThumbnail.style.display = 'block';
+            });
+            
+            // Initialize counters after a delay
+            setTimeout(initCounters, 500);
+            
+            // Close language switcher when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!langSwitcher.contains(e.target) && !langTab.contains(e.target)) {
+                    langSwitcher.classList.remove('active');
+                }
+            });
+            
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Header scroll effect
+            window.addEventListener('scroll', () => {
+                const header = document.querySelector('header');
+                if (window.scrollY > 100) {
+                    header.style.boxShadow = '0 8px 40px rgba(0,0,0,0.15)';
+                    header.style.backdropFilter = 'blur(20px)';
+                } else {
+                    header.style.boxShadow = '0 8px 40px rgba(0,0,0,0.08)';
+                    header.style.backdropFilter = 'blur(15px)';
+                }
             });
         });
     </script>
