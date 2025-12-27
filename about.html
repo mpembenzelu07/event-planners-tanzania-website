@@ -3,207 +3,793 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us - Event Planners Tanzania</title>
+    <title data-translate="page_title">Our Story - The Heart Behind Every Perfect Event | Event Planners Tanzania</title>
     <style>
         /* CSS INCLUDED DIRECTLY IN ABOUT PAGE */
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial', sans-serif; }
-        body { background: #f8f9fa; color: #333; line-height: 1.6; }
+        body { background: #f8f9fa; color: #333; line-height: 1.6; overflow-x: hidden; }
         .container { width: 90%; max-width: 1200px; margin: 0 auto; padding: 0 15px; }
         
+        /* Language Switcher */
+        .language-switcher {
+            position: fixed;
+            top: 100px;
+            right: 0;
+            z-index: 1001;
+            display: flex;
+            flex-direction: column;
+            background: white;
+            border-radius: 10px 0 0 10px;
+            box-shadow: -5px 5px 20px rgba(0,0,0,0.15);
+            overflow: hidden;
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        
+        .language-switcher.active {
+            transform: translateX(0);
+        }
+        
+        .lang-tab {
+            position: absolute;
+            left: -40px;
+            top: 20px;
+            background: #e74c3c;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 10px 0 0 10px;
+            cursor: pointer;
+            font-weight: 700;
+            transform: rotate(-90deg);
+            transform-origin: right center;
+            white-space: nowrap;
+            box-shadow: -3px 3px 10px rgba(231,76,60,0.3);
+        }
+        
+        .lang-buttons {
+            padding: 15px;
+        }
+        
+        .lang-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 20px;
+            border: none;
+            background: #f8f9fa;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+        
+        .lang-btn.active {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+            box-shadow: 0 5px 15px rgba(231,76,60,0.3);
+        }
+        
         /* Header */
-        header { background: #fff; box-shadow: 0 2px 15px rgba(0,0,0,0.1); position: fixed; width: 100%; top: 0; z-index: 1000; }
-        header .container { display: flex; justify-content: space-between; align-items: center; padding: 20px 15px; }
-        .logo h1 { color: #2c3e50; font-size: 1.8rem; }
-        .logo span { color: #e74c3c; }
-        .logo .tagline { color: #e74c3c; font-size: 0.9rem; font-weight: 500; margin-top: 5px; }
-        nav ul { display: flex; list-style: none; }
-        nav ul li { margin-left: 30px; }
-        nav ul li a { text-decoration: none; color: #2c3e50; font-weight: 600; padding: 5px 0; position: relative; }
-        nav ul li a:hover, nav ul li a.active { color: #e74c3c; }
-        nav ul li a.active::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 100%; height: 3px; background: #e74c3c; }
+        header { 
+            background: rgba(255,255,255,0.98); 
+            backdrop-filter: blur(15px);
+            box-shadow: 0 8px 40px rgba(0,0,0,0.08); 
+            position: fixed; 
+            width: 100%; 
+            top: 0; 
+            z-index: 1000; 
+        }
+        
+        header .container { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 20px 15px; 
+        }
+        
+        .logo h1 { 
+            color: #2c3e50; 
+            font-size: 1.8rem; 
+        }
+        
+        .logo span { 
+            color: #e74c3c; 
+        }
+        
+        .logo .tagline { 
+            color: #e74c3c; 
+            font-size: 0.9rem; 
+            font-weight: 600; 
+            margin-top: 5px;
+        }
+        
+        nav ul { 
+            display: flex; 
+            list-style: none; 
+        }
+        
+        nav ul li { 
+            margin-left: 35px; 
+        }
+        
+        nav ul li a { 
+            text-decoration: none; 
+            color: #2c3e50; 
+            font-weight: 600; 
+            padding: 8px 0; 
+            position: relative; 
+            transition: all 0.3s ease;
+        }
+        
+        nav ul li a.active { 
+            color: #e74c3c; 
+        }
+        
+        nav ul li a.active::after { 
+            content: ''; 
+            position: absolute; 
+            bottom: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 3px; 
+            background: linear-gradient(90deg, #e74c3c 0%, #3498db 100%);
+            border-radius: 3px;
+        }
         
         /* Page Header */
-        .page-header { background: linear-gradient(rgba(44,62,80,0.9), rgba(44,62,80,0.9)), url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=774&q=80'); background-size: cover; color: white; text-align: center; padding: 150px 20px 80px; margin-top: 80px; }
-        .page-header h1 { font-size: 3rem; margin-bottom: 15px; }
-        .page-header p { font-size: 1.2rem; opacity: 0.9; }
+        .page-header { 
+            background: linear-gradient(rgba(44,62,80,0.92), rgba(44,62,80,0.85)), 
+                      url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=1770&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            text-align: center;
+            padding: 200px 20px 120px;
+            margin-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
         
-        /* About Content */
-        .about-content { padding: 80px 0; background: #fff; }
-        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
-        .about-text h2 { color: #2c3e50; margin-bottom: 20px; font-size: 2rem; }
-        .about-text p { margin-bottom: 20px; color: #555; }
-        .about-text h3 { color: #e74c3c; margin: 30px 0 15px; }
-        .about-text ul { list-style: none; padding-left: 20px; }
-        .about-text ul li { margin-bottom: 10px; padding-left: 20px; position: relative; }
-        .about-text ul li:before { content: '✓'; color: #e74c3c; position: absolute; left: 0; }
-        .about-image img { width: 100%; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #e74c3c, #f1c40f, #3498db);
+            background-size: 300% 100%;
+            animation: gradientFlow 8s infinite linear;
+        }
         
-        /* Company Info */
-        .company-info { background: #f5f7fa; padding: 60px 0; }
-        .info-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
-        .info-card { background: #fff; padding: 30px; border-radius: 8px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-        .info-card h3 { color: #e74c3c; margin-bottom: 15px; }
+        @keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
         
-        /* Contact Info */
-        .contact-info-section { padding: 60px 0; background: #fff; }
-        .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
-        .contact-item { text-align: center; padding: 25px; border: 1px solid #eee; border-radius: 8px; }
-        .contact-item h3 { color: #2c3e50; margin-bottom: 15px; }
-        .contact-numbers { display: flex; flex-direction: column; gap: 10px; margin-top: 15px; }
-        .contact-number { color: #e74c3c; font-weight: 600; }
+        .page-header h1 { 
+            font-size: 3.5rem; 
+            margin-bottom: 20px; 
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        .page-header p { 
+            font-size: 1.4rem; 
+            opacity: 0.9; 
+            max-width: 700px;
+            margin: 0 auto;
+            animation: fadeInUp 1s 0.3s both;
+        }
+        
+        /* Emotional Story Section */
+        .story-section {
+            padding: 120px 0;
+            background: #fff;
+            position: relative;
+        }
+        
+        .story-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .story-quote {
+            font-size: 2.2rem;
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 60px;
+            font-weight: 300;
+            line-height: 1.4;
+            position: relative;
+            padding: 0 20px;
+        }
+        
+        .story-quote::before {
+            content: '"';
+            font-size: 8rem;
+            color: rgba(231,76,60,0.1);
+            position: absolute;
+            top: -40px;
+            left: 0;
+            font-family: serif;
+        }
+        
+        .story-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 20px;
+            border-left: 5px solid #e74c3c;
+        }
+        
+        /* Mission Vision Values */
+        .mission-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #2c3e50 0%, #1a252f 100%);
+            color: white;
+        }
+        
+        .mv-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+        
+        .mv-card {
+            background: rgba(255,255,255,0.08);
+            padding: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.4s ease;
+            text-align: center;
+        }
+        
+        .mv-card:hover {
+            transform: translateY(-15px);
+            background: rgba(255,255,255,0.12);
+            border-color: rgba(231,76,60,0.3);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+        }
+        
+        .mv-icon {
+            font-size: 3rem;
+            margin-bottom: 25px;
+            color: #f1c40f;
+        }
+        
+        .mv-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #f1c40f;
+        }
+        
+        /* Team Section */
+        .team-section {
+            padding: 120px 0;
+            background: #fff;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+        
+        .team-member {
+            background: #fff;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+        
+        .team-member:hover {
+            transform: translateY(-20px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+        }
+        
+        .member-image {
+            height: 300px;
+            overflow: hidden;
+        }
+        
+        .member-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .team-member:hover .member-image img {
+            transform: scale(1.1);
+        }
+        
+        .member-info {
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .member-info h4 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+        }
+        
+        /* Contact CTA */
+        .contact-cta {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-cta h2 {
+            font-size: 2.8rem;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .contact-numbers {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 25px;
+            margin: 40px 0;
+        }
+        
+        .contact-number {
+            background: rgba(255,255,255,0.15);
+            padding: 20px 35px;
+            border-radius: 15px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .contact-number:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.25);
+        }
+        
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: #2c3e50;
+            color: white;
+            padding: 18px 45px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.4s ease;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+        }
         
         /* Footer */
-        footer { background: #1a252f; color: #ecf0f1; padding: 60px 0 20px; }
-        .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px; }
-        .footer-bottom { text-align: center; padding-top: 20px; border-top: 1px solid #2c3e50; }
+        footer { 
+            background: linear-gradient(135deg, #1a252f 0%, #0d1218 100%);
+            color: #ecf0f1; 
+            padding: 80px 0 30px; 
+            position: relative;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #e74c3c, #f1c40f, #3498db);
+        }
+        
+        .footer-content { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 50px; 
+            margin-bottom: 50px; 
+        }
+        
+        .footer-column h3 {
+            color: #f1c40f;
+            margin-bottom: 30px;
+            font-size: 1.5rem;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: #e74c3c;
+        }
+        
+        .footer-bottom { 
+            text-align: center; 
+            padding-top: 40px; 
+            border-top: 1px solid rgba(255,255,255,0.1); 
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
         
         /* Responsive */
         @media (max-width: 768px) {
-            nav ul { display: none; }
-            .page-header h1 { font-size: 2rem; }
-            .about-grid { grid-template-columns: 1fr; }
+            .page-header h1 { font-size: 2.5rem; }
+            .page-header p { font-size: 1.2rem; }
+            .story-quote { font-size: 1.8rem; }
+            .contact-numbers { flex-direction: column; }
+            .mv-grid { grid-template-columns: 1fr; }
+            .team-grid { grid-template-columns: 1fr; }
         }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+    <!-- Language Switcher -->
+    <div class="language-switcher" id="languageSwitcher">
+        <div class="lang-tab" id="langTab">
+            <i class="fas fa-globe"></i>
+        </div>
+        <div class="lang-buttons">
+            <button class="lang-btn active" data-lang="en">
+                <span class="lang-flag">🇬🇧</span>
+                <span data-translate="lang_en">English</span>
+            </button>
+            <button class="lang-btn" data-lang="sw">
+                <span class="lang-flag">🇹🇿</span>
+                <span data-translate="lang_sw">Kiswahili</span>
+            </button>
+        </div>
+    </div>
+
     <header>
         <div class="container">
             <div class="logo">
-                <h1>Event Planners <span>Tanzania</span></h1>
-                <p class="tagline">Creating Unforgettable Experiences</p>
+                <h1 data-translate="company_name">Event Planners <span>Tanzania</span></h1>
+                <p class="tagline" data-translate="tagline">Creating Moments That Live Forever</p>
             </div>
             <nav>
                 <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html" class="active">About</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="portfolio.html">Portfolio</a></li>
-                    <li><a href="packages.html">Packages</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="index.html" data-translate="nav_home">Home</a></li>
+                    <li><a href="about.html" class="active" data-translate="nav_about">About</a></li>
+                    <li><a href="services.html" data-translate="nav_services">Services</a></li>
+                    <li><a href="portfolio.html" data-translate="nav_portfolio">Portfolio</a></li>
+                    <li><a href="packages.html" data-translate="nav_packages">Packages</a></li>
+                    <li><a href="contact.html" data-translate="nav_contact">Contact</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
     <section class="page-header">
-        <h1>About Event Planners Tanzania</h1>
-        <p>Your trusted partner for exceptional events across Tanzania</p>
+        <h1 data-translate="page_title">Our Story: The Heart Behind Every Perfect Event</h1>
+        <p data-translate="page_subtitle">Where passion meets precision, and dreams become unforgettable celebrations</p>
     </section>
 
-    <section class="about-content">
+    <section class="story-section">
         <div class="container">
-            <div class="about-grid">
-                <div class="about-text">
-                    <h2>Who We Are</h2>
-                    <p><strong>Event Planners Tanzania</strong> is a registered event planning company based in Tanzania, formed as the best practice, leading edge, creative, and highly respected meeting and event management company.</p>
-                    <p>We are respected by our clients, staff, industry partners, and suppliers for our commitment to excellence, creativity, and professional execution of every event we undertake.</p>
-                    
-                    <h3>Our Mission</h3>
-                    <p>To transform our clients' visions into reality through exceptional planning, innovative design, and flawless execution, creating unforgettable experiences that celebrate life's most important moments.</p>
-                    
-                    <h3>Our Philosophy: The 10 R's</h3>
-                    <ul>
-                        <li>Right Planning - Strategic foundations</li>
-                        <li>Right Packages - Tailored to your needs</li>
-                        <li>Right Creativity & Innovation - Fresh ideas</li>
-                        <li>Right Team - Professional excellence</li>
-                        <li>Right Communication - Clear and transparent</li>
-                        <li>Right Experience - Unforgettable moments</li>
-                        <li>Right Time Management - Precision execution</li>
-                        <li>Right Vendors & Partners - Trusted collaborators</li>
-                        <li>Right Reputation - Built on trust</li>
-                        <li>Right Results - Delivering impact</li>
-                    </ul>
+            <div class="story-content">
+                <div class="story-quote" data-translate="story_quote">
+                    "We believe that every event tells a story. Our job is to make yours unforgettable."
                 </div>
-                <div class="about-image">
-                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=774&q=80" alt="Our Team">
+                
+                <div class="story-text" data-translate="story_text_1">
+                    Founded in 2013 in the heart of Dar es Salaam, Event Planners Tanzania began with a simple yet powerful vision: to transform ordinary gatherings into extraordinary experiences. What started as a small team of passionate event enthusiasts has blossomed into Tanzania's most trusted event planning company.
+                </div>
+                
+                <div class="story-text" data-translate="story_text_2">
+                    Over the past decade, we've had the privilege of orchestrating more than 500 events across Tanzania. From intimate weddings on the beaches of Zanzibar to grand corporate galas in Dar es Salaam, each event has been a unique chapter in our story. Our journey has been guided by our founding principles: creativity, precision, and an unwavering commitment to excellence.
+                </div>
+                
+                <div class="story-text" data-translate="story_text_3">
+                    Today, we stand as a testament to what passion, dedication, and the right team can achieve. But more importantly, we remain humble servants to the dreams of our clients. Because for us, every event isn't just a project—it's a legacy we help create.
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="company-info">
+    <section class="mission-section">
         <div class="container">
-            <h2 class="section-title" style="text-align: center; margin-bottom: 50px;">Why Choose Us</h2>
-            <div class="info-cards">
-                <div class="info-card">
-                    <h3>Expertise & Experience</h3>
-                    <p>Years of experience in event planning across Tanzania with a proven track record of successful events.</p>
+            <h2 style="text-align: center; font-size: 2.8rem; margin-bottom: 60px;" data-translate="mission_title">Our Guiding Principles</h2>
+            
+            <div class="mv-grid">
+                <div class="mv-card">
+                    <div class="mv-icon">🎯</div>
+                    <h3 data-translate="mission_heading">Our Mission</h3>
+                    <p data-translate="mission_text">To transform our clients' visions into reality through exceptional planning, innovative design, and flawless execution, creating unforgettable experiences that celebrate life's most important moments.</p>
                 </div>
-                <div class="info-card">
-                    <h3>Creative Solutions</h3>
-                    <p>Innovative and creative approaches to event planning that make your occasion truly memorable.</p>
+                
+                <div class="mv-card">
+                    <div class="mv-icon">👁️</div>
+                    <h3 data-translate="vision_heading">Our Vision</h3>
+                    <p data-translate="vision_text">To be Tanzania's most trusted and innovative event planning company, setting the standard for excellence and creativity in every celebration we orchestrate.</p>
                 </div>
-                <div class="info-card">
-                    <h3>Professional Team</h3>
-                    <p>Skilled, passionate professionals dedicated to making your event a success from start to finish.</p>
-                </div>
-                <div class="info-card">
-                    <h3>Client Focused</h3>
-                    <p>We prioritize your vision and work closely with you to bring your dream event to life.</p>
+                
+                <div class="mv-card">
+                    <div class="mv-icon">❤️</div>
+                    <h3 data-translate="values_heading">Our Values</h3>
+                    <p data-translate="values_text">Creativity, Integrity, Excellence, Client Focus, and Passion. These values guide every decision we make and every event we plan.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="contact-info-section">
+    <section class="team-section">
         <div class="container">
-            <h2 class="section-title" style="text-align: center; margin-bottom: 50px;">Contact Information</h2>
-            <div class="contact-grid">
-                <div class="contact-item">
-                    <h3>Phone Contacts</h3>
-                    <div class="contact-numbers">
-                        <div class="contact-number">+255 655 600 000</div>
-                        <div class="contact-number">+255 742 678 777</div>
-                        <div class="contact-number">+255 755 775 077</div>
-                        <div class="contact-number">+255 656 000 000</div>
+            <h2 style="text-align: center; font-size: 2.8rem; margin-bottom: 20px; color: #2c3e50;" data-translate="team_title">The Dream Weavers</h2>
+            <p style="text-align: center; font-size: 1.2rem; color: #666; margin-bottom: 60px; max-width: 700px; margin-left: auto; margin-right: auto;" data-translate="team_subtitle">
+                Meet the passionate professionals who turn visions into unforgettable realities
+            </p>
+            
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Founder">
+                    </div>
+                    <div class="member-info">
+                        <h4 data-translate="team_member_1_name">Sarah Mwamba</h4>
+                        <p data-translate="team_member_1_role">Founder & Creative Director</p>
+                        <p data-translate="team_member_1_bio">10+ years of event planning magic</p>
                     </div>
                 </div>
-                <div class="contact-item">
-                    <h3>Email Addresses</h3>
-                    <p>📧 info@eventplannerstanzania.co.tz</p>
-                    <p>📧 eventplannertanzania@gmail.com</p>
+                
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Operations Manager">
+                    </div>
+                    <div class="member-info">
+                        <h4 data-translate="team_member_2_name">James Komba</h4>
+                        <p data-translate="team_member_2_role">Operations Director</p>
+                        <p data-translate="team_member_2_bio">Makes every detail perfect</p>
+                    </div>
                 </div>
-                <div class="contact-item">
-                    <h3>Location</h3>
-                    <p>📍 Dar es Salaam, Tanzania</p>
-                    <p>📅 Monday - Sunday</p>
-                    <p>⏰ Available 24/7 for event emergencies</p>
+                
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Design Lead">
+                    </div>
+                    <div class="member-info">
+                        <h4 data-translate="team_member_3_name">Amina Hassan</h4>
+                        <p data-translate="team_member_3_role">Design Lead</p>
+                        <p data-translate="team_member_3_bio">Creates visual magic</p>
+                    </div>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <section class="contact-cta">
+        <div class="container">
+            <h2 data-translate="cta_title">Ready to Write Your Story With Us?</h2>
+            <p style="font-size: 1.4rem; margin-bottom: 40px; max-width: 700px; margin-left: auto; margin-right: auto;" data-translate="cta_subtitle">
+                Every great event begins with a conversation. Let's start writing your unforgettable chapter today.
+            </p>
+            
+            <div class="contact-numbers">
+                <div class="contact-number">📞 +255 655 600 000</div>
+                <div class="contact-number">📞 +255 742 678 777</div>
+                <div class="contact-number">📞 +255 755 775 077</div>
+                <div class="contact-number">📞 +255 656 000 000</div>
+            </div>
+            
+            <a href="contact.html" class="btn-primary">
+                <i class="fas fa-pen-fancy"></i>
+                <span data-translate="cta_button">START YOUR STORY TODAY</span>
+            </a>
         </div>
     </section>
 
     <footer>
         <div class="container">
             <div class="footer-content">
-                <div>
-                    <h3>Event Planners Tanzania</h3>
-                    <p>Registered Event Planners based in Tanzania, providing best practice, leading edge, creative event management services.</p>
+                <div class="footer-column">
+                    <h3 data-translate="footer_company">Event Planners Tanzania</h3>
+                    <p data-translate="footer_description">We create moments that live forever in hearts and memories across Tanzania.</p>
+                    <p><strong data-translate="footer_email_label">Email:</strong></p>
                     <p>✉️ info@eventplannerstanzania.co.tz</p>
                     <p>✉️ eventplannertanzania@gmail.com</p>
                 </div>
-                <div>
-                    <h3>Quick Contact</h3>
-                    <p>📍 Dar es Salaam, Tanzania</p>
+                <div class="footer-column">
+                    <h3 data-translate="footer_contact">Your Dream Starts Here</h3>
+                    <p data-translate="footer_location">📍 Dar es Salaam, Tanzania</p>
                     <p>📞 +255 655 600 000</p>
                     <p>📞 +255 742 678 777</p>
                     <p>📞 +255 755 775 077</p>
                     <p>📞 +255 656 000 000</p>
                 </div>
-                <div>
-                    <h3>Services</h3>
-                    <p>• Conference & Wedding Planning</p>
-                    <p>• Concerts & Launch Events</p>
-                    <p>• Hotel & Car Hire</p>
-                    <p>• Holiday Packages</p>
-                    <p>• Public Road Shows</p>
+                <div class="footer-column">
+                    <h3 data-translate="footer_ready">Ready to Begin?</h3>
+                    <p data-translate="footer_feature_1">• Free Initial Consultation</p>
+                    <p data-translate="footer_feature_2">• Custom Packages</p>
+                    <p data-translate="footer_feature_3">• 10 R's Guarantee</p>
+                    <a href="contact.html" style="display: inline-flex; align-items: center; gap: 10px; background: #e74c3c; color: white; padding: 15px 30px; border-radius: 8px; text-decoration: none; margin-top: 20px; font-weight: 600; transition: all 0.3s ease;">
+                        <i class="fas fa-rocket"></i>
+                        <span data-translate="footer_button">Start Your Journey</span>
+                    </a>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2023 Event Planners Tanzania. All rights reserved.</p>
+                <p data-translate="footer_copyright">© 2023 Event Planners Tanzania. All rights reserved. | Creating unforgettable experiences across Tanzania</p>
             </div>
         </div>
     </footer>
+
+    <script>
+        // Translations for About Page
+        const translations = {
+            en: {
+                lang_en: "English",
+                lang_sw: "Kiswahili",
+                company_name: "Event Planners Tanzania",
+                tagline: "Creating Moments That Live Forever",
+                nav_home: "Home",
+                nav_about: "About",
+                nav_services: "Services",
+                nav_portfolio: "Portfolio",
+                nav_packages: "Packages",
+                nav_contact: "Contact",
+                page_title: "Our Story: The Heart Behind Every Perfect Event",
+                page_subtitle: "Where passion meets precision, and dreams become unforgettable celebrations",
+                story_quote: "\"We believe that every event tells a story. Our job is to make yours unforgettable.\"",
+                story_text_1: "Founded in 2013 in the heart of Dar es Salaam, Event Planners Tanzania began with a simple yet powerful vision: to transform ordinary gatherings into extraordinary experiences. What started as a small team of passionate event enthusiasts has blossomed into Tanzania's most trusted event planning company.",
+                story_text_2: "Over the past decade, we've had the privilege of orchestrating more than 500 events across Tanzania. From intimate weddings on the beaches of Zanzibar to grand corporate galas in Dar es Salaam, each event has been a unique chapter in our story. Our journey has been guided by our founding principles: creativity, precision, and an unwavering commitment to excellence.",
+                story_text_3: "Today, we stand as a testament to what passion, dedication, and the right team can achieve. But more importantly, we remain humble servants to the dreams of our clients. Because for us, every event isn't just a project—it's a legacy we help create.",
+                mission_title: "Our Guiding Principles",
+                mission_heading: "Our Mission",
+                mission_text: "To transform our clients' visions into reality through exceptional planning, innovative design, and flawless execution, creating unforgettable experiences that celebrate life's most important moments.",
+                vision_heading: "Our Vision",
+                vision_text: "To be Tanzania's most trusted and innovative event planning company, setting the standard for excellence and creativity in every celebration we orchestrate.",
+                values_heading: "Our Values",
+                values_text: "Creativity, Integrity, Excellence, Client Focus, and Passion. These values guide every decision we make and every event we plan.",
+                team_title: "The Dream Weavers",
+                team_subtitle: "Meet the passionate professionals who turn visions into unforgettable realities",
+                team_member_1_name: "Sarah Mwamba",
+                team_member_1_role: "Founder & Creative Director",
+                team_member_1_bio: "10+ years of event planning magic",
+                team_member_2_name: "James Komba",
+                team_member_2_role: "Operations Director",
+                team_member_2_bio: "Makes every detail perfect",
+                team_member_3_name: "Amina Hassan",
+                team_member_3_role: "Design Lead",
+                team_member_3_bio: "Creates visual magic",
+                cta_title: "Ready to Write Your Story With Us?",
+                cta_subtitle: "Every great event begins with a conversation. Let's start writing your unforgettable chapter today.",
+                cta_button: "START YOUR STORY TODAY",
+                footer_company: "Event Planners Tanzania",
+                footer_description: "We create moments that live forever in hearts and memories across Tanzania.",
+                footer_email_label: "Email:",
+                footer_contact: "Your Dream Starts Here",
+                footer_location: "📍 Dar es Salaam, Tanzania",
+                footer_ready: "Ready to Begin?",
+                footer_feature_1: "• Free Initial Consultation",
+                footer_feature_2: "• Custom Packages",
+                footer_feature_3: "• 10 R's Guarantee",
+                footer_button: "Start Your Journey",
+                footer_copyright: "© 2023 Event Planners Tanzania. All rights reserved. | Creating unforgettable experiences across Tanzania"
+            },
+            sw: {
+                lang_en: "English",
+                lang_sw: "Kiswahili",
+                company_name: "Wapangaji wa Matukio Tanzania",
+                tagline: "Kuunda Muda Unaokaa Moyo Milele",
+                nav_home: "Nyumbani",
+                nav_about: "Kuhusu Sisi",
+                nav_services: "Huduma",
+                nav_portfolio: "Portfolio",
+                nav_packages: "Vifurushi",
+                nav_contact: "Wasiliana",
+                page_title: "Hadithi Yetu: Moyo Nyuma ya Kila Tukio Kamili",
+                page_subtitle: "Mahali shauku inakutana na usahihi, na ndoto zinakuwa sherehe zisizosahaulika",
+                story_quote: "\"Tunaamini kwamba kila tukio linasimulia hadithi. Kazi yetu ni kufanya yako isisahaulike.\"",
+                story_text_1: "Ilianzishwa mwaka 2013 katika moyo wa Dar es Salaam, Wapangaji wa Matukio Tanzania walianza na mtazamo rahisi lakini wenye nguvu: kubadilisha mikusanyiko ya kawaida kuwa uzoefu wa kipekee. Kilichoanza kama timu ndogo ya wapenzi wa matukio sasa kimekuwa kampuni ya kupangia matukio yenye kuaminika zaidi nchini Tanzania.",
+                story_text_2: "Katika miongo kadhaa iliyopita, tumepata fursa ya kuandaa zaidi ya matukio 500 kote Tanzania. Kuanzia harusi za karibu kwenye mabwawa ya Zanzibar hadi sherehe kubwa za kampuni huko Dar es Salaam, kila tukio limekuwa sura ya kipekee katika hadithi yetu. Safari yetu imeongozwa na kanuni zetu za kuanzisha: ubunifu, usahihi, na kujitolea kwa ubora.",
+                story_text_3: "Leo, tunasimama kama ushuhuda wa kile shauku, kujitolea, na timu sahihi zinaweza kufikia. Lakini muhimu zaidi, tunabaki watumishi wenye unyenyekevu kwa ndoto za wateja wetu. Kwa sababu kwetu, kila tukio si tu mradi—ni urithi tunausaidia kuunda.",
+                mission_title: "Kanuni Zetu za Kiongozi",
+                mission_heading: "Dhamira Yetu",
+                mission_text: "Kubadilisha mitazamo ya wateja wetu kuwa ukweli kupitia upangaji bora, muundo wa ubunifu, na utekelezaji kamili, kuunda uzoefu usiosahaulika unaosherehekea muda muhimu zaidi wa maisha.",
+                vision_heading: "Mtazamo Wetu",
+                vision_text: "Kuwa kampuni ya kupangia matukio yenye kuaminika na yenye ubunifu zaidi Tanzania, kuweka kiwango cha ubora na ubunifu katika kila sherehe tunayoandaa.",
+                values_heading: "Thamani Zetu",
+                values_text: "Ubunifu, Uaminifu, Ubora, Kulenga Wateja, na Shauku. Thamani hizi huongoza kila uamuzi tunalofanya na kila tukio tunalolipanga.",
+                team_title: "Wafenesi wa Ndoto",
+                team_subtitle: "Kutana na wataalam wenye shauku ambao wanabadilisha mitazamo kuwa ukweli usiosahaulika",
+                team_member_1_name: "Sarah Mwamba",
+                team_member_1_role: "Mwanzilishi na Mkurugenzi wa Ubunifu",
+                team_member_1_bio: "Miaka 10+ ya usanii wa kupangia matukio",
+                team_member_2_name: "James Komba",
+                team_member_2_role: "Mkurugenzi wa Utendaji",
+                team_member_2_bio: "Hufanya kila undani uwe kamili",
+                team_member_3_name: "Amina Hassan",
+                team_member_3_role: "Kiongozi wa Muundo",
+                team_member_3_bio: "Hutengeneza usanii wa kuona",
+                cta_title: "Tayari Kuandika Hadithi Yako Nasi?",
+                cta_subtitle: "Kila tukio kubwa linaanza na mazungumzo. Tuanze kuandika sura yako isiyosahaulika leo.",
+                cta_button: "ANZA HADITHI YAKO LEO",
+                footer_company: "Wapangaji wa Matukio Tanzania",
+                footer_description: "Tunaunda muda unaokaa milele katika mioyo na kumbukumbu kote Tanzania.",
+                footer_email_label: "Barua pepe:",
+                footer_contact: "Ndoto Yako Inaanza Hapa",
+                footer_location: "📍 Dar es Salaam, Tanzania",
+                footer_ready: "Uko Tayari Kuanza?",
+                footer_feature_1: "• Ushauri wa Kwanza wa Bure",
+                footer_feature_2: "• Vifurushi Maalum",
+                footer_feature_3: "• Dhamana ya R 10",
+                footer_button: "Anza Safari Yako",
+                footer_copyright: "© 2023 Wapangaji wa Matukio Tanzania. Haki zote zimehifadhiwa. | Kuunda uzoefu usiosahaulika kote Tanzania"
+            }
+        };
+
+        // Language switching functionality
+        let currentLang = 'en';
+
+        function switchLanguage(lang) {
+            currentLang = lang;
+            
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('data-lang') === lang) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            document.querySelectorAll('[data-translate]').forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[lang][key]) {
+                    element.innerHTML = translations[lang][key];
+                }
+            });
+            
+            document.title = translations[lang].page_title;
+            localStorage.setItem('preferredLang', lang);
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedLang = localStorage.getItem('preferredLang') || 'en';
+            switchLanguage(savedLang);
+            
+            const langTab = document.getElementById('langTab');
+            const languageSwitcher = document.getElementById('languageSwitcher');
+            
+            langTab.addEventListener('click', function() {
+                languageSwitcher.classList.toggle('active');
+            });
+            
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const lang = this.getAttribute('data-lang');
+                    switchLanguage(lang);
+                    languageSwitcher.classList.remove('active');
+                });
+            });
+        });
+    </script>
 </body>
 </html>
