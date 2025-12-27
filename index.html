@@ -3,74 +3,509 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Event Planners Tanzania - Professional Event Management</title>
+    <title>Event Planners Tanzania - We Create Moments That Live Forever</title>
     <style>
         /* CSS INCLUDED DIRECTLY IN HOMEPAGE */
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial', sans-serif; }
-        body { background: #f8f9fa; color: #333; line-height: 1.6; }
+        body { background: #f8f9fa; color: #333; line-height: 1.6; overflow-x: hidden; }
         .container { width: 90%; max-width: 1200px; margin: 0 auto; padding: 0 15px; }
         
         /* Header */
-        header { background: #fff; box-shadow: 0 2px 15px rgba(0,0,0,0.1); position: fixed; width: 100%; top: 0; z-index: 1000; }
-        header .container { display: flex; justify-content: space-between; align-items: center; padding: 20px 15px; }
-        .logo h1 { color: #2c3e50; font-size: 1.8rem; }
+        header { background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); box-shadow: 0 5px 30px rgba(0,0,0,0.1); position: fixed; width: 100%; top: 0; z-index: 1000; transition: all 0.4s ease; }
+        header.scrolled { padding: 10px 0; background: rgba(255,255,255,0.98); }
+        header .container { display: flex; justify-content: space-between; align-items: center; padding: 20px 15px; transition: all 0.4s ease; }
+        .logo h1 { color: #2c3e50; font-size: 1.8rem; transition: all 0.3s ease; }
+        .logo h1:hover { transform: scale(1.05); }
         .logo span { color: #e74c3c; }
         .logo .tagline { color: #e74c3c; font-size: 0.9rem; font-weight: 500; margin-top: 5px; }
         nav ul { display: flex; list-style: none; }
-        nav ul li { margin-left: 30px; }
-        nav ul li a { text-decoration: none; color: #2c3e50; font-weight: 600; padding: 5px 0; position: relative; }
-        nav ul li a:hover, nav ul li a.active { color: #e74c3c; }
-        nav ul li a.active::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 100%; height: 3px; background: #e74c3c; }
+        nav ul li { margin-left: 30px; position: relative; }
+        nav ul li a { text-decoration: none; color: #2c3e50; font-weight: 600; padding: 5px 0; position: relative; transition: all 0.3s ease; }
+        nav ul li a:hover { color: #e74c3c; transform: translateY(-2px); }
+        nav ul li a.active { color: #e74c3c; }
+        nav ul li a.active::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 100%; height: 3px; background: #e74c3c; animation: pulse 2s infinite; }
         
-        /* Hero */
-        .hero { background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80'); background-size: cover; color: white; text-align: center; padding: 180px 20px 120px; margin-top: 80px; }
-        .hero h2 { font-size: 3rem; margin-bottom: 20px; }
-        .hero p { font-size: 1.2rem; max-width: 700px; margin: 0 auto 30px; }
-        .btn { display: inline-block; background: #e74c3c; color: white; padding: 14px 32px; border-radius: 4px; text-decoration: none; font-weight: 600; transition: 0.3s; }
-        .btn:hover { background: #c0392b; transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
         
-        /* 10 R's Section */
-        .ten-rs { padding: 80px 0; background: #2c3e50; color: white; }
-        .ten-rs h2 { text-align: center; margin-bottom: 50px; font-size: 2.2rem; }
-        .rs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .rs-item { background: rgba(255,255,255,0.1); padding: 25px; border-radius: 8px; border-left: 4px solid #e74c3c; }
-        .rs-item h3 { color: #e74c3c; margin-bottom: 15px; font-size: 1.3rem; }
-        .rs-item p { opacity: 0.9; }
+        /* Hero - REDESIGNED WITH EMOTIONAL IMPACT */
+        .hero { 
+            background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.7)), 
+                      url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* Parallax effect */
+            color: white;
+            text-align: center;
+            padding: 220px 20px 150px;
+            margin-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
         
-        /* Services */
-        .services { padding: 80px 0; background: #fff; }
-        .section-title { text-align: center; margin-bottom: 50px; color: #2c3e50; font-size: 2.2rem; }
-        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .service-card { background: #fff; border-radius: 8px; padding: 30px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: 0.3s; border-top: 4px solid #e74c3c; }
-        .service-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
-        .service-icon { font-size: 2.5rem; color: #e74c3c; margin-bottom: 20px; }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(231,76,60,0.1) 0%, rgba(52,152,219,0.1) 100%);
+            animation: shimmer 8s infinite;
+        }
         
-        /* Contact Banner */
-        .contact-banner { padding: 60px 0; background: #e74c3c; color: white; text-align: center; }
-        .contact-banner h2 { font-size: 2.2rem; margin-bottom: 15px; }
-        .contact-numbers { display: flex; justify-content: center; flex-wrap: wrap; gap: 30px; margin-top: 20px; }
-        .contact-number { font-size: 1.2rem; font-weight: 600; }
+        @keyframes shimmer {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.7; }
+        }
+        
+        .hero-content { 
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+            animation: fadeInUp 1.5s ease-out;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hero h2 { 
+            font-size: 3.5rem; 
+            margin-bottom: 25px; 
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            line-height: 1.2;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+        
+        .hero h2 span {
+            color: #e74c3c;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .hero h2 span::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: #e74c3c;
+            transform: scaleX(0);
+            transform-origin: right;
+            animation: underlineExpand 2s 1.5s forwards;
+        }
+        
+        @keyframes underlineExpand {
+            to { transform: scaleX(1); transform-origin: left; }
+        }
+        
+        .hero p { 
+            font-size: 1.4rem; 
+            max-width: 700px; 
+            margin: 0 auto 40px; 
+            opacity: 0.95;
+            font-weight: 300;
+            line-height: 1.8;
+        }
+        
+        /* Emotional Tagline */
+        .emotional-tagline {
+            font-size: 1.2rem;
+            font-style: italic;
+            color: #f1c40f;
+            margin: 25px 0;
+            position: relative;
+            padding: 15px 30px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50px;
+            display: inline-block;
+            animation: glow 3s infinite;
+        }
+        
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 10px rgba(241,196,15,0.3); }
+            50% { box-shadow: 0 0 20px rgba(241,196,15,0.6); }
+        }
+        
+        /* CTA Button - REVAMPED */
+        .btn-hero {
+            display: inline-block;
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+            padding: 18px 45px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 30px rgba(231,76,60,0.3);
+            position: relative;
+            overflow: hidden;
+            border: none;
+            cursor: pointer;
+            letter-spacing: 1px;
+        }
+        
+        .btn-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+        
+        .btn-hero:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(231,76,60,0.4);
+        }
+        
+        .btn-hero:hover::before {
+            left: 100%;
+        }
+        
+        /* Scroll Down Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 0.9rem;
+            opacity: 0.7;
+            animation: bounce 2s infinite;
+        }
+        
+        .scroll-indicator i {
+            display: block;
+            margin-top: 10px;
+            font-size: 1.5rem;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+        
+        /* Emotional Hook Section - NEW */
+        .emotional-hook {
+            padding: 100px 0;
+            background: #fff;
+            text-align: center;
+            position: relative;
+        }
+        
+        .hook-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hook-content h2 {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .hook-content h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: #e74c3c;
+        }
+        
+        .hook-quote {
+            font-size: 1.4rem;
+            line-height: 1.8;
+            color: #555;
+            font-style: italic;
+            margin: 40px 0;
+            padding: 40px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #fff 100%);
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            position: relative;
+            border-left: 5px solid #e74c3c;
+        }
+        
+        .hook-quote::before {
+            content: '"';
+            position: absolute;
+            top: -20px;
+            left: 30px;
+            font-size: 6rem;
+            color: rgba(231,76,60,0.1);
+            font-family: serif;
+        }
+        
+        .hook-cta {
+            margin-top: 50px;
+        }
+        
+        .hook-cta h3 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+        
+        /* Stats Section - VISUAL IMPACT */
+        .stats-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #2c3e50 0%, #1a252f 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+        
+        .stat-item {
+            padding: 30px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .stat-item:hover {
+            transform: translateY(-10px);
+        }
+        
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: #e74c3c;
+            margin-bottom: 15px;
+            line-height: 1;
+        }
+        
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-weight: 500;
+        }
+        
+        /* 10 R's Section - ENHANCED */
+        .ten-rs { 
+            padding: 100px 0; 
+            background: #f8f9fa; 
+            position: relative;
+        }
+        
+        .ten-rs h2 { 
+            text-align: center; 
+            margin-bottom: 60px; 
+            font-size: 2.5rem;
+            color: #2c3e50;
+            position: relative;
+        }
+        
+        .ten-rs h2::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: #e74c3c;
+        }
+        
+        .rs-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 30px; 
+        }
+        
+        .rs-item { 
+            background: #fff; 
+            padding: 30px; 
+            border-radius: 15px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.4s ease;
+            position: relative;
+            border-top: 5px solid #e74c3c;
+            overflow: hidden;
+        }
+        
+        .rs-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .rs-item::before {
+            content: attr(data-number);
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 4rem;
+            font-weight: 800;
+            color: rgba(231,76,60,0.1);
+        }
+        
+        .rs-item h3 { 
+            color: #2c3e50; 
+            margin-bottom: 15px; 
+            font-size: 1.4rem; 
+            position: relative;
+            z-index: 1;
+        }
+        
+        .rs-item p { 
+            color: #666; 
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Immediate CTA Section - URGENCY CREATION */
+        .immediate-cta {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .immediate-cta::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: float 20s linear infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .immediate-cta h2 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .immediate-cta p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.95;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .urgency-timer {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 15px;
+            display: inline-block;
+            margin: 30px 0;
+            position: relative;
+            z-index: 2;
+            backdrop-filter: blur(10px);
+        }
+        
+        .timer-text {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+        
+        .timer {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #f1c40f;
+        }
+        
+        .cta-hotline {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin: 30px 0;
+            position: relative;
+            z-index: 2;
+            animation: pulsePhone 2s infinite;
+        }
+        
+        @keyframes pulsePhone {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
         
         /* Footer */
-        footer { background: #1a252f; color: #ecf0f1; padding: 60px 0 20px; }
-        .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px; }
-        .footer-bottom { text-align: center; padding-top: 20px; border-top: 1px solid #2c3e50; }
+        footer { 
+            background: #1a252f; 
+            color: #ecf0f1; 
+            padding: 80px 0 30px; 
+            position: relative;
+        }
+        
+        .footer-content { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+            gap: 40px; 
+            margin-bottom: 40px; 
+        }
+        
+        .footer-bottom { 
+            text-align: center; 
+            padding-top: 30px; 
+            border-top: 1px solid #2c3e50; 
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
         
         /* Responsive */
         @media (max-width: 768px) {
             nav ul { display: none; }
-            .hero h2 { font-size: 2rem; }
-            .services-grid { grid-template-columns: 1fr; }
-            .contact-numbers { flex-direction: column; gap: 15px; }
+            .hero h2 { font-size: 2.2rem; }
+            .hero p { font-size: 1.1rem; }
+            .emotional-tagline { font-size: 1rem; padding: 10px 20px; }
+            .btn-hero { padding: 15px 30px; }
+            .hook-content h2 { font-size: 1.8rem; }
+            .hook-quote { font-size: 1.1rem; padding: 20px; }
+            .immediate-cta h2 { font-size: 2rem; }
+            .cta-hotline { font-size: 1.6rem; }
         }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <header>
+    <header id="mainHeader">
         <div class="container">
             <div class="logo">
                 <h1>Event Planners <span>Tanzania</span></h1>
-                <p class="tagline">Creating Unforgettable Experiences</p>
+                <p class="tagline">Creating Moments That Live Forever</p>
             </div>
             <nav>
                 <ul>
@@ -85,109 +520,180 @@
         </div>
     </header>
 
+    <!-- HERO SECTION WITH EMOTIONAL IMPACT -->
     <section class="hero">
-        <h2>Professional Event Planning Services in Tanzania</h2>
-        <p>We transform your vision into unforgettable experiences for weddings, corporate events, and private celebrations with our proven 10 R's methodology.</p>
-        <a href="contact.html" class="btn">Book a Consultation</a>
+        <div class="hero-content">
+            <h2>Your Special Day Deserves <span>Perfection</span></h2>
+            <p>We don't just plan events. We craft <strong>unforgettable experiences</strong> that become cherished memories for a lifetime. Where every detail tells your story.</p>
+            
+            <div class="emotional-tagline">
+                <i class="fas fa-heart"></i> Because some moments deserve to be perfect
+            </div>
+            
+            <a href="#emotionalHook" class="btn-hero">
+                <i class="fas fa-calendar-check"></i> Make My Dream Event Real
+            </a>
+            
+            <div class="scroll-indicator">
+                Discover the magic
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </div>
     </section>
 
+    <!-- EMOTIONAL HOOK SECTION - The "Goosebumps" Moment -->
+    <section class="emotional-hook" id="emotionalHook">
+        <div class="container">
+            <div class="hook-content">
+                <h2>Imagine This...</h2>
+                
+                <div class="hook-quote">
+                    "The moment you walk into your perfectly planned wedding, surrounded by loved ones, every detail exactly as you dreamed...<br><br>
+                    The standing ovation at your corporate event that exceeded all expectations...<br><br>
+                    The look on your partner's face when they see the surprise anniversary party you've been planning for months...<br><br>
+                    <strong>These aren't just events. They're milestones. And they deserve to be perfect.</strong>"
+                </div>
+                
+                <div class="hook-cta">
+                    <h3>That feeling you just had? That's what we deliver.</h3>
+                    <p style="font-size: 1.2rem; color: #666; margin-bottom: 30px;">The anticipation. The joy. The unforgettable memories. That's our specialty.</p>
+                    
+                    <a href="contact.html" class="btn-hero" style="background: linear-gradient(135deg, #2c3e50 0%, #1a252f 100%);">
+                        <i class="fas fa-magic"></i> Yes! I Want That Feeling For My Event
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STATS SECTION - Social Proof -->
+    <section class="stats-section">
+        <div class="container">
+            <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Trusted by Those Who Matter Most</h2>
+            <p style="font-size: 1.2rem; opacity: 0.9; margin-bottom: 40px; max-width: 700px; margin-left: auto; margin-right: auto;">
+                We've turned dreams into reality for hundreds of clients across Tanzania
+            </p>
+            
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Events Successfully Planned</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">10+</div>
+                    <div class="stat-label">Years of Excellence</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Client Satisfaction</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Industry Awards & Recognition</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10 R's SECTION -->
     <section class="ten-rs">
         <div class="container">
-            <h2>Our 10 R's of Event Planning Excellence</h2>
+            <h2>The 10 R's: Our Promise of Perfection</h2>
+            <p style="text-align: center; color: #666; max-width: 800px; margin: 0 auto 60px; font-size: 1.2rem;">
+                This is our proven methodology that guarantees your event will be nothing short of extraordinary
+            </p>
+            
             <div class="rs-grid">
-                <div class="rs-item">
-                    <h3>1. Right Planning</h3>
-                    <p>Every successful event starts with a solid, strategic plan.</p>
+                <div class="rs-item" data-number="01">
+                    <h3>Right Planning</h3>
+                    <p>Every successful event starts with a solid, strategic plan tailored to your vision.</p>
                 </div>
-                <div class="rs-item">
-                    <h3>2. Right Packages</h3>
-                    <p>Flexible, value-driven packages tailored to your needs and budget.</p>
+                <div class="rs-item" data-number="02">
+                    <h3>Right Packages</h3>
+                    <p>Flexible, value-driven packages perfectly suited to your needs and budget.</p>
                 </div>
-                <div class="rs-item">
-                    <h3>3. Right Creativity & Innovation</h3>
-                    <p>Bold, fresh, and unique ideas for every event.</p>
+                <div class="rs-item" data-number="03">
+                    <h3>Right Creativity & Innovation</h3>
+                    <p>Bold, fresh ideas that make your event uniquely unforgettable.</p>
                 </div>
-                <div class="rs-item">
-                    <h3>4. Right Team</h3>
-                    <p>Passionate, skilled, and professional team delivering excellence.</p>
+                <div class="rs-item" data-number="04">
+                    <h3>Right Team</h3>
+                    <p>Passionate professionals dedicated to making your vision a reality.</p>
                 </div>
-                <div class="rs-item">
-                    <h3>5. Right Communication</h3>
-                    <p>Clear, timely, and transparent communication from start to finish.</p>
+                <div class="rs-item" data-number="05">
+                    <h3>Right Communication</h3>
+                    <p>You'll always know what's happening, when, and why.</p>
                 </div>
-                <div class="rs-item">
-                    <h3>6. Right Experience</h3>
-                    <p>We curate unforgettable experiences that leave lasting impressions.</p>
+                <div class="rs-item" data-number="06">
+                    <h3>Right Experience</h3>
+                    <p>We curate moments that leave lasting impressions on every guest.</p>
                 </div>
-                <div class="rs-item">
-                    <h3>7. Right Time Management</h3>
-                    <p>Respecting deadlines and executing with precision.</p>
+                <div class="rs-item" data-number="07">
+                    <h3>Right Time Management</h3>
+                    <p>Precision execution that respects your schedule and deadlines.</p>
                 </div>
-                <div class="rs-item">
-                    <h3>8. Right Vendors & Partners</h3>
-                    <p>Collaboration with trusted and quality-driven suppliers.</p>
+                <div class="rs-item" data-number="08">
+                    <h3>Right Vendors & Partners</h3>
+                    <p>Trusted experts who share our commitment to excellence.</p>
                 </div>
-                <div class="rs-item">
-                    <h3>9. Right Reputation</h3>
-                    <p>Built on trust, consistency, and client satisfaction.</p>
+                <div class="rs-item" data-number="09">
+                    <h3>Right Reputation</h3>
+                    <p>Built on trust, consistency, and delivering what we promise.</p>
                 </div>
-                <div class="rs-item">
-                    <h3>10. Right Results</h3>
-                    <p>We don't just plan events — we deliver impact.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="services">
-        <div class="container">
-            <h2 class="section-title">Our Event Planning Services</h2>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">💍</div>
-                    <h3>Wedding Events</h3>
-                    <p>Complete wedding planning from venue selection to ceremony coordination.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">💼</div>
-                    <h3>Corporate Events</h3>
-                    <p>Professional management for conferences, launches, and corporate functions.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🎉</div>
-                    <h3>Private Events</h3>
-                    <p>Birthday parties, anniversaries, family celebrations, and special occasions.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">📢</div>
-                    <h3>Event Marketing & Management</h3>
-                    <p>Complete event promotion and execution services.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🚌</div>
-                    <h3>Guest Logistics Planning</h3>
-                    <p>Transportation, accommodation, and guest management solutions.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🏨</div>
-                    <h3>Event Venue Selection</h3>
-                    <p>Finding and booking the perfect venue for your event.</p>
+                <div class="rs-item" data-number="10">
+                    <h3>Right Results</h3>
+                    <p>We don't just plan events — we deliver experiences that exceed expectations.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="contact-banner">
+    <!-- IMMEDIATE CTA SECTION - URGENCY -->
+    <section class="immediate-cta">
         <div class="container">
-            <h2>Ready to Start Planning Your Event?</h2>
-            <p>Contact us today for expert event planning services across Tanzania.</p>
-            <div class="contact-numbers">
-                <div class="contact-number">📞 +255 655 600 000</div>
-                <div class="contact-number">📞 +255 742 678 777</div>
-                <div class="contact-number">📞 +255 755 775 077</div>
-                <div class="contact-number">📞 +255 656 000 000</div>
+            <h2>Your Perfect Event Date is Waiting</h2>
+            <p>Premium dates book fast. Don't let your dream date slip away. Let's secure it together.</p>
+            
+            <div class="urgency-timer">
+                <div class="timer-text">Next Available Premium Consultation Slot:</div>
+                <div class="timer" id="countdownTimer">24:00:00</div>
             </div>
-            <a href="contact.html" class="btn" style="background: #2c3e50; margin-top: 30px;">Contact Us Now</a>
+            
+            <div class="cta-hotline">
+                <i class="fas fa-phone-alt"></i> Call Now: +255 655 600 000
+            </div>
+            
+            <p style="font-size: 1.1rem; margin-bottom: 40px;">
+                📞 Or try: +255 742 678 777 | +255 755 775 077 | +255 656 000 000
+            </p>
+            
+            <a href="contact.html" class="btn-hero" style="background: linear-gradient(135deg, #2c3e50 0%, #1a252f 100%); box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+                <i class="fas fa-calendar-plus"></i> SECURE MY CONSULTATION NOW
+            </a>
+        </div>
+    </section>
+
+    <!-- QUICK SERVICES PREVIEW -->
+    <section class="services" style="padding: 80px 0; background: #fff;">
+        <div class="container">
+            <h2 class="section-title" style="text-align: center; margin-bottom: 50px; font-size: 2.5rem; color: #2c3e50;">What We Create</h2>
+            <div class="services-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+                <div class="service-card" style="background: #fff; border-radius: 15px; padding: 30px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.08); transition: 0.3s; border-top: 5px solid #e74c3c;">
+                    <div class="service-icon" style="font-size: 3rem; color: #e74c3c; margin-bottom: 20px;">💍</div>
+                    <h3 style="color: #2c3e50; margin-bottom: 15px; font-size: 1.5rem;">Dream Weddings</h3>
+                    <p style="color: #666;">Where your love story becomes an unforgettable celebration</p>
+                </div>
+                <div class="service-card" style="background: #fff; border-radius: 15px; padding: 30px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.08); transition: 0.3s; border-top: 5px solid #3498db;">
+                    <div class="service-icon" style="font-size: 3rem; color: #3498db; margin-bottom: 20px;">💼</div>
+                    <h3 style="color: #2c3e50; margin-bottom: 15px; font-size: 1.5rem;">Corporate Excellence</h3>
+                    <p style="color: #666;">Events that impress, engage, and achieve business goals</p>
+                </div>
+                <div class="service-card" style="background: #fff; border-radius: 15px; padding: 30px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.08); transition: 0.3s; border-top: 5px solid #2ecc71;">
+                    <div class="service-icon" style="font-size: 3rem; color: #2ecc71; margin-bottom: 20px;">🎉</div>
+                    <h3 style="color: #2c3e50; margin-bottom: 15px; font-size: 1.5rem;">Memorable Celebrations</h3>
+                    <p style="color: #666;">Birthdays, anniversaries, and milestones done right</p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -196,12 +702,12 @@
             <div class="footer-content">
                 <div>
                     <h3>Event Planners Tanzania</h3>
-                    <p>Registered Event Planners based in Tanzania, providing best practice, leading edge, creative event management services.</p>
+                    <p>We create moments that live forever in hearts and memories.</p>
                     <p>✉️ info@eventplannerstanzania.co.tz</p>
                     <p>✉️ eventplannertanzania@gmail.com</p>
                 </div>
                 <div>
-                    <h3>Quick Contact</h3>
+                    <h3>Your Dream Starts Here</h3>
                     <p>📍 Dar es Salaam, Tanzania</p>
                     <p>📞 +255 655 600 000</p>
                     <p>📞 +255 742 678 777</p>
@@ -209,18 +715,141 @@
                     <p>📞 +255 656 000 000</p>
                 </div>
                 <div>
-                    <h3>Services</h3>
-                    <p>• Conference & Wedding Planning</p>
-                    <p>• Concerts & Launch Events</p>
-                    <p>• Hotel & Car Hire</p>
-                    <p>• Holiday Packages</p>
-                    <p>• Public Road Shows</p>
+                    <h3>Ready to Begin?</h3>
+                    <p>• Free Initial Consultation</p>
+                    <p>• Custom Packages</p>
+                    <p>• 10 R's Guarantee</p>
+                    <a href="contact.html" style="display: inline-block; background: #e74c3c; color: white; padding: 12px 25px; border-radius: 5px; text-decoration: none; margin-top: 15px; font-weight: 600;">
+                        Start Your Journey
+                    </a>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2023 Event Planners Tanzania. All rights reserved.</p>
+                <p>&copy; 2023 Event Planners Tanzania. All rights reserved. | Creating unforgettable experiences across Tanzania</p>
             </div>
         </div>
     </footer>
+
+    <script>
+        // Countdown Timer for Urgency
+        function updateCountdown() {
+            const now = new Date();
+            const tomorrow = new Date(now);
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            tomorrow.setHours(17, 0, 0, 0); // 5 PM tomorrow
+            
+            const diff = tomorrow - now;
+            
+            if (diff <= 0) {
+                document.getElementById('countdownTimer').textContent = "00:00:00";
+                return;
+            }
+            
+            const hours = Math.floor(diff / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            document.getElementById('countdownTimer').textContent = 
+                `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+        
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+        
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('mainHeader');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Service card hover effects
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px)';
+                this.style.boxShadow = '0 20px 40px rgba(0,0,0,0.15)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = '0 10px 30px rgba(0,0,0,0.08)';
+            });
+        });
+        
+        // Emotional trigger - When user scrolls to emotional hook section
+        const emotionalHook = document.getElementById('emotionalHook');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Add subtle animation to the quote
+                    const quote = document.querySelector('.hook-quote');
+                    quote.style.animation = 'fadeInUp 1s ease-out';
+                    
+                    // Trigger a gentle notification effect
+                    setTimeout(() => {
+                        const notification = document.createElement('div');
+                        notification.style.cssText = `
+                            position: fixed;
+                            bottom: 20px;
+                            right: 20px;
+                            background: #e74c3c;
+                            color: white;
+                            padding: 15px 25px;
+                            border-radius: 10px;
+                            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+                            z-index: 1000;
+                            font-weight: 600;
+                            animation: fadeInRight 0.5s ease-out;
+                        `;
+                        notification.innerHTML = '✨ Ready to make your dream event a reality?';
+                        document.body.appendChild(notification);
+                        
+                        setTimeout(() => {
+                            notification.style.animation = 'fadeOutRight 0.5s ease-out';
+                            setTimeout(() => notification.remove(), 500);
+                        }, 5000);
+                    }, 1000);
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        if (emotionalHook) {
+            observer.observe(emotionalHook);
+        }
+        
+        // Add CSS for notification animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeInRight {
+                from { opacity: 0; transform: translateX(50px); }
+                to { opacity: 1; transform: translateX(0); }
+            }
+            @keyframes fadeOutRight {
+                from { opacity: 1; transform: translateX(0); }
+                to { opacity: 0; transform: translateX(50px); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
 </body>
 </html>
