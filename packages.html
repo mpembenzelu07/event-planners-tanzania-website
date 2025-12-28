@@ -1,260 +1,890 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Packages - Event Planners Tanzania</title>
+    <title data-translate="page_title">Event Packages - Tailored Solutions | Event Planners Tanzania</title>
     <style>
-        /* CSS INCLUDED DIRECTLY IN PACKAGES PAGE */
+        /* MAIN STYLES - Consistent with portfolio */
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial', sans-serif; }
-        body { background: #f8f9fa; color: #333; line-height: 1.6; }
+        body { background: #f8f9fa; color: #333; line-height: 1.6; overflow-x: hidden; }
         .container { width: 90%; max-width: 1200px; margin: 0 auto; padding: 0 15px; }
         
-        /* Header */
-        header { background: #fff; box-shadow: 0 2px 15px rgba(0,0,0,0.1); position: fixed; width: 100%; top: 0; z-index: 1000; }
-        header .container { display: flex; justify-content: space-between; align-items: center; padding: 20px 15px; }
-        .logo h1 { color: #2c3e50; font-size: 1.8rem; }
-        .logo span { color: #e74c3c; }
-        .logo .tagline { color: #e74c3c; font-size: 0.9rem; font-weight: 500; margin-top: 5px; }
-        nav ul { display: flex; list-style: none; }
-        nav ul li { margin-left: 30px; }
-        nav ul li a { text-decoration: none; color: #2c3e50; font-weight: 600; padding: 5px 0; position: relative; }
-        nav ul li a:hover, nav ul li a.active { color: #e74c3c; }
-        nav ul li a.active::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 100%; height: 3px; background: #e74c3c; }
+        /* Language Switcher - Same as portfolio */
+        .language-switcher {
+            position: fixed;
+            top: 100px;
+            right: 0;
+            z-index: 1001;
+            display: flex;
+            flex-direction: column;
+            background: white;
+            border-radius: 10px 0 0 10px;
+            box-shadow: -5px 5px 20px rgba(0,0,0,0.15);
+            overflow: hidden;
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        
+        .language-switcher.active {
+            transform: translateX(0);
+        }
+        
+        .lang-tab {
+            position: absolute;
+            left: -40px;
+            top: 20px;
+            background: #e74c3c;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 10px 0 0 10px;
+            cursor: pointer;
+            font-weight: 700;
+            transform: rotate(-90deg);
+            transform-origin: right center;
+            white-space: nowrap;
+            box-shadow: -3px 3px 10px rgba(231,76,60,0.3);
+        }
+        
+        .lang-buttons {
+            padding: 15px;
+        }
+        
+        .lang-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 20px;
+            border: none;
+            background: #f8f9fa;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+        
+        .lang-btn.active {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+            box-shadow: 0 5px 15px rgba(231,76,60,0.3);
+        }
+        
+        .lang-flag { font-size: 1.2rem; }
+        
+        /* Header - Consistent */
+        header { 
+            background: rgba(255,255,255,0.98); 
+            backdrop-filter: blur(15px);
+            box-shadow: 0 8px 40px rgba(0,0,0,0.08); 
+            position: fixed; 
+            width: 100%; 
+            top: 0; 
+            z-index: 1000; 
+        }
+        
+        header .container { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 20px 15px; 
+        }
+        
+        .logo h1 { 
+            color: #2c3e50; 
+            font-size: 1.8rem; 
+        }
+        
+        .logo span { 
+            color: #e74c3c; 
+        }
+        
+        .logo .tagline { 
+            color: #e74c3c; 
+            font-size: 0.9rem; 
+            font-weight: 600; 
+            margin-top: 5px;
+        }
+        
+        nav ul { 
+            display: flex; 
+            list-style: none; 
+        }
+        
+        nav ul li { 
+            margin-left: 35px; 
+        }
+        
+        nav ul li a { 
+            text-decoration: none; 
+            color: #2c3e50; 
+            font-weight: 600; 
+            padding: 8px 0; 
+            position: relative; 
+            transition: all 0.3s ease;
+        }
+        
+        nav ul li a.active { 
+            color: #e74c3c; 
+        }
+        
+        nav ul li a.active::after { 
+            content: ''; 
+            position: absolute; 
+            bottom: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 3px; 
+            background: linear-gradient(90deg, #e74c3c 0%, #3498db 100%);
+            border-radius: 3px;
+        }
         
         /* Page Header */
-        .page-header { background: linear-gradient(rgba(231,76,60,0.9), rgba(231,76,60,0.9)), url('https://images.unsplash.com/photo-1492684223066-dd23140edf6d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1770&q=80'); background-size: cover; color: white; text-align: center; padding: 150px 20px 80px; margin-top: 80px; }
-        .page-header h1 { font-size: 3rem; margin-bottom: 15px; }
-        .page-header p { font-size: 1.2rem; opacity: 0.9; }
+        .page-header { 
+            background: linear-gradient(rgba(44,62,80,0.92), rgba(44,62,80,0.85)), 
+                      url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&auto=format&fit=crop&w=1769&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            text-align: center;
+            padding: 200px 20px 120px;
+            margin-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
         
-        /* Pricing Toggle */
-        .pricing-toggle { text-align: center; padding: 40px 0; background: #fff; }
-        .toggle { display: inline-flex; background: #ecf0f1; border-radius: 30px; padding: 5px; }
-        .toggle-btn { padding: 10px 30px; border: none; background: transparent; border-radius: 25px; cursor: pointer; font-weight: 600; transition: 0.3s; }
-        .toggle-btn.active { background: #e74c3c; color: white; }
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #e74c3c, #f1c40f, #3498db);
+            background-size: 300% 100%;
+            animation: gradientFlow 8s infinite linear;
+        }
         
-        /* Pricing Tables */
-        .pricing-tables { padding: 40px 0 80px; background: #fff; }
-        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .pricing-card { background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); text-align: center; transition: 0.3s; position: relative; }
-        .pricing-card:hover { transform: translateY(-10px); box-shadow: 0 15px 35px rgba(0,0,0,0.15); }
-        .pricing-card.featured { border: 3px solid #e74c3c; }
-        .featured-badge { position: absolute; top: 20px; right: -35px; background: #e74c3c; color: white; padding: 8px 40px; transform: rotate(45deg); font-weight: 600; font-size: 0.9rem; }
-        .pricing-header { padding: 40px 20px; background: #2c3e50; color: white; }
-        .pricing-header h3 { font-size: 1.8rem; margin-bottom: 10px; }
-        .pricing-header .price { font-size: 3rem; font-weight: 700; margin: 20px 0; }
-        .pricing-header .price span { font-size: 1rem; opacity: 0.9; }
-        .pricing-features { padding: 30px; }
-        .pricing-features ul { list-style: none; }
-        .pricing-features ul li { padding: 12px 0; border-bottom: 1px solid #eee; }
-        .pricing-features ul li:last-child { border-bottom: none; }
-        .pricing-features ul li i { color: #2ecc71; margin-right: 10px; }
-        .pricing-features ul li.disabled { color: #bdc3c7; }
-        .pricing-features ul li.disabled i { color: #bdc3c7; }
-        .pricing-button { padding: 0 30px 40px; }
-        .pricing-button .btn { display: inline-block; width: 100%; background: #e74c3c; color: white; padding: 15px; border-radius: 4px; text-decoration: none; font-weight: 600; transition: 0.3s; border: none; cursor: pointer; }
-        .pricing-button .btn:hover { background: #c0392b; }
+        @keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
         
-        /* Contact Section */
-        .package-contact { padding: 80px 0; background: #f5f7fa; text-align: center; }
-        .package-contact h2 { font-size: 2.5rem; color: #2c3e50; margin-bottom: 20px; }
-        .package-contact p { font-size: 1.2rem; color: #666; max-width: 700px; margin: 0 auto 30px; }
-        .contact-numbers { display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; margin: 30px 0; }
-        .contact-number { background: #fff; padding: 15px 25px; border-radius: 4px; box-shadow: 0 3px 10px rgba(0,0,0,0.1); font-weight: 600; }
+        .page-header h1 { 
+            font-size: 3.5rem; 
+            margin-bottom: 20px; 
+            animation: fadeInUp 1s ease-out;
+        }
         
-        /* FAQ */
-        .faq { padding: 80px 0; background: #fff; }
-        .faq-item { margin-bottom: 20px; border: 1px solid #eee; border-radius: 8px; overflow: hidden; }
-        .faq-question { padding: 20px; background: #f9f9f9; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 600; color: #2c3e50; }
-        .faq-answer { padding: 0 20px; max-height: 0; overflow: hidden; transition: 0.3s; }
-        .faq-answer.active { padding: 20px; max-height: 500px; }
+        .page-header p { 
+            font-size: 1.4rem; 
+            opacity: 0.9; 
+            max-width: 700px;
+            margin: 0 auto;
+            animation: fadeInUp 1s 0.3s both;
+        }
+        
+        /* Packages Section */
+        .packages-section {
+            padding: 100px 0;
+            background: #f8f9fa;
+        }
+        
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+        
+        .package-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+        }
+        
+        .package-card.popular {
+            transform: scale(1.05);
+            border: 3px solid #e74c3c;
+        }
+        
+        .package-card.popular::before {
+            content: 'MOST POPULAR';
+            position: absolute;
+            top: 20px;
+            right: -35px;
+            background: #e74c3c;
+            color: white;
+            padding: 8px 40px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transform: rotate(45deg);
+            box-shadow: 0 5px 15px rgba(231,76,60,0.3);
+        }
+        
+        .package-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+        }
+        
+        .package-card.popular:hover {
+            transform: translateY(-15px) scale(1.05);
+        }
+        
+        .package-header {
+            background: linear-gradient(135deg, #2c3e50 0%, #1a252f 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+        
+        .package-price {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: #f1c40f;
+            margin: 20px 0;
+        }
+        
+        .package-price span {
+            font-size: 1.5rem;
+            color: rgba(255,255,255,0.8);
+        }
+        
+        .package-body {
+            padding: 40px 30px;
+        }
+        
+        .package-features {
+            list-style: none;
+            margin-bottom: 40px;
+        }
+        
+        .package-features li {
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .package-features li i {
+            color: #2ecc71;
+            font-size: 1.1rem;
+        }
+        
+        .package-features li.disabled {
+            color: #95a5a6;
+        }
+        
+        .package-features li.disabled i {
+            color: #bdc3c7;
+        }
+        
+        .btn-package {
+            display: block;
+            width: 100%;
+            padding: 18px;
+            text-align: center;
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-package:hover {
+            background: linear-gradient(135deg, #c0392b 0%, #a93226 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(231,76,60,0.3);
+        }
+        
+        /* Custom Package Section */
+        .custom-package {
+            padding: 120px 0;
+            background: linear-gradient(135deg, #2c3e50 0%, #1a252f 100%);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .custom-package::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1511578314322-379afb476865?ixlib=rb-4.0.3&auto=format&fit=crop&w=1769&q=80') center/cover;
+            opacity: 0.1;
+        }
+        
+        .custom-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .custom-features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin: 50px 0;
+        }
+        
+        .custom-feature {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 25px;
+            border-radius: 15px;
+            flex: 1;
+            min-width: 200px;
+            max-width: 250px;
+        }
+        
+        .custom-feature i {
+            font-size: 2.5rem;
+            color: #f1c40f;
+            margin-bottom: 15px;
+        }
+        
+        /* FAQ Section */
+        .faq-section {
+            padding: 120px 0;
+            background: #fff;
+        }
+        
+        .faq-container {
+            max-width: 800px;
+            margin: 60px auto 0;
+        }
+        
+        .faq-item {
+            background: #f8f9fa;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+        
+        .faq-question {
+            padding: 25px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #2c3e50;
+        }
+        
+        .faq-question i {
+            transition: transform 0.3s ease;
+        }
+        
+        .faq-item.active .faq-question i {
+            transform: rotate(45deg);
+        }
+        
+        .faq-answer {
+            padding: 0 30px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .faq-item.active .faq-answer {
+            padding: 0 30px 25px;
+            max-height: 500px;
+        }
+        
+        /* Comparison Table */
+        .comparison-section {
+            padding: 100px 0;
+            background: #f8f9fa;
+        }
+        
+        .comparison-table {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            margin-top: 60px;
+        }
+        
+        .table-header {
+            display: grid;
+            grid-template-columns: 2fr repeat(3, 1fr);
+            background: #2c3e50;
+            color: white;
+            font-weight: 700;
+            text-align: center;
+        }
+        
+        .table-header > div {
+            padding: 25px;
+            border-right: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .table-header > div:last-child {
+            border-right: none;
+        }
+        
+        .table-row {
+            display: grid;
+            grid-template-columns: 2fr repeat(3, 1fr);
+            border-bottom: 1px solid #eee;
+        }
+        
+        .table-row:last-child {
+            border-bottom: none;
+        }
+        
+        .table-row > div {
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-right: 1px solid #eee;
+        }
+        
+        .table-row > div:first-child {
+            justify-content: flex-start;
+            font-weight: 600;
+        }
+        
+        .table-row > div:last-child {
+            border-right: none;
+        }
+        
+        .table-row i {
+            color: #2ecc71;
+            font-size: 1.2rem;
+        }
+        
+        .table-row i.fa-times {
+            color: #e74c3c;
+        }
+        
+        /* CTA Section */
+        .packages-cta {
+            padding: 120px 0;
+            background: #fff;
+            text-align: center;
+        }
+        
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+            padding: 18px 45px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.4s ease;
+            box-shadow: 0 15px 35px rgba(231,76,60,0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 25px 50px rgba(231,76,60,0.4);
+        }
         
         /* Footer */
-        footer { background: #1a252f; color: #ecf0f1; padding: 60px 0 20px; }
-        .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px; }
-        .footer-bottom { text-align: center; padding-top: 20px; border-top: 1px solid #2c3e50; }
+        footer { 
+            background: linear-gradient(135deg, #1a252f 0%, #0d1218 100%);
+            color: #ecf0f1; 
+            padding: 80px 0 30px; 
+            position: relative;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #e74c3c, #f1c40f, #3498db);
+        }
+        
+        .footer-content { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 50px; 
+            margin-bottom: 50px; 
+            position: relative;
+            z-index: 1;
+        }
+        
+        .footer-column h3 {
+            color: #f1c40f;
+            margin-bottom: 30px;
+            font-size: 1.5rem;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: #e74c3c;
+        }
+        
+        .footer-column p {
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+        
+        .footer-bottom { 
+            text-align: center; 
+            padding-top: 40px; 
+            border-top: 1px solid rgba(255,255,255,0.1); 
+            font-size: 0.9rem;
+            opacity: 0.8;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
         
         /* Responsive */
+        @media (max-width: 1100px) {
+            .packages-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
+        }
+        
         @media (max-width: 768px) {
-            nav ul { display: none; }
+            .page-header h1 { font-size: 2.5rem; }
+            .page-header p { font-size: 1.2rem; }
+            .package-card.popular { transform: none; }
+            .package-card.popular::before { display: none; }
+            .package-card.popular:hover { transform: translateY(-15px); }
+            .table-header, .table-row { grid-template-columns: 2fr 1fr 1fr 1fr; }
+            .custom-feature { min-width: 100%; }
+            nav ul li { margin-left: 20px; }
+        }
+        
+        @media (max-width: 576px) {
+            nav ul { flex-wrap: wrap; justify-content: center; }
+            nav ul li { margin: 0 10px; }
+            .page-header { padding: 150px 20px 80px; }
             .page-header h1 { font-size: 2rem; }
-            .pricing-grid { grid-template-columns: 1fr; }
-            .contact-numbers { flex-direction: column; }
+            .page-header p { font-size: 1rem; }
+            .packages-grid { grid-template-columns: 1fr; }
+            .table-header, .table-row { display: block; }
+            .table-header > div, .table-row > div { display: block; text-align: center; }
         }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+    <!-- Language Switcher -->
+    <div class="language-switcher" id="languageSwitcher">
+        <div class="lang-tab" id="langTab">
+            <i class="fas fa-globe"></i>
+        </div>
+        <div class="lang-buttons">
+            <button class="lang-btn active" data-lang="en">
+                <span class="lang-flag">🇬🇧</span>
+                <span data-translate="lang_en">English</span>
+            </button>
+            <button class="lang-btn" data-lang="sw">
+                <span class="lang-flag">🇹🇿</span>
+                <span data-translate="lang_sw">Kiswahili</span>
+            </button>
+        </div>
+    </div>
+
     <header>
         <div class="container">
             <div class="logo">
-                <h1>Event Planners <span>Tanzania</span></h1>
-                <p class="tagline">Creating Unforgettable Experiences</p>
+                <h1 data-translate="company_name">Event Planners <span>Tanzania</span></h1>
+                <p class="tagline" data-translate="tagline">Creating Moments That Live Forever</p>
             </div>
             <nav>
                 <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="portfolio.html">Portfolio</a></li>
-                    <li><a href="packages.html" class="active">Packages</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="index.html" data-translate="nav_home">Home</a></li>
+                    <li><a href="about.html" data-translate="nav_about">About</a></li>
+                    <li><a href="services.html" data-translate="nav_services">Services</a></li>
+                    <li><a href="portfolio.html" data-translate="nav_portfolio">Portfolio</a></li>
+                    <li><a href="packages.html" class="active" data-translate="nav_packages">Packages</a></li>
+                    <li><a href="contact.html" data-translate="nav_contact">Contact</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
     <section class="page-header">
-        <h1>Event Planning Packages</h1>
-        <p>Flexible packages based on our 10 R's methodology, tailored to your needs and budget</p>
+        <div class="container">
+            <h1 data-translate="packages_title">Tailored Event Packages</h1>
+            <p data-translate="packages_subtitle">Choose from our expertly crafted packages or customize your own. Every celebration deserves perfection.</p>
+        </div>
     </section>
 
-    <section class="pricing-tables">
+    <section class="packages-section">
         <div class="container">
-            <div class="pricing-grid">
-                <div class="pricing-card">
-                    <div class="pricing-header">
-                        <h3>Basic Package</h3>
-                        <p>Perfect for small private events</p>
-                        <div class="price">$999<span>/event</span></div>
+            <h2 style="text-align: center; color: #2c3e50; margin-bottom: 20px; font-size: 2.5rem;" data-translate="packages_main_title">Our Signature Packages</h2>
+            <p style="text-align: center; color: #666; max-width: 700px; margin: 0 auto; font-size: 1.1rem;" data-translate="packages_description">Select the perfect package for your event. All packages include our signature quality and attention to detail.</p>
+            
+            <div class="packages-grid">
+                <!-- Bronze Package -->
+                <div class="package-card">
+                    <div class="package-header">
+                        <h3 data-translate="package_bronze_title">Bronze</h3>
+                        <p data-translate="package_bronze_subtitle">Essential Celebration</p>
+                        <div class="package-price"><span>TZS</span>5,000,000</div>
+                        <p data-translate="package_per_event">per event</p>
                     </div>
-                    <div class="pricing-features">
-                        <ul>
-                            <li><i>✓</i> Initial consultation & Right Planning</li>
-                            <li><i>✓</i> Vendor recommendations (3 Right Vendors)</li>
-                            <li><i>✓</i> Budget planning assistance</li>
-                            <li><i>✓</i> Timeline creation (Right Time Management)</li>
-                            <li><i>✓</i> Basic theme suggestions</li>
-                            <li class="disabled"><i>✗</i> On-site coordination</li>
-                            <li class="disabled"><i>✗</i> Full vendor management</li>
-                            <li class="disabled"><i>✗</i> Custom design & theme development</li>
+                    <div class="package-body">
+                        <ul class="package-features">
+                            <li><i class="fas fa-check"></i> <span data-translate="feature_consultation">Event Consultation</span></li>
+                            <li><i class="fas fa-check"></i> <span data-translate="feature_venue">Venue Selection Assistance</span></li>
+                            <li><i class="fas fa-check"></i> <span data-translate="feature_coordination">Day-of Coordination</span></li>
+                            <li><i class="fas fa-check"></i> <span data-translate="feature_decor">Basic Decor Elements</span></li>
+                            <li class="disabled"><i class="fas fa-times"></i> <span data-translate="feature_catering">Catering Management</span></li>
+                            <li class="disabled"><i class="fas fa-times"></i> <span data-translate="feature_entertainment">Entertainment Coordination</span></li>
+                            <li class="disabled"><i class="fas fa-times"></i> <span data-translate="feature_photo">Professional Photography</span></li>
                         </ul>
-                    </div>
-                    <div class="pricing-button">
-                        <a href="contact.html" class="btn">Choose Basic Package</a>
+                        <a href="contact.html" class="btn-package" data-translate="btn_select_package">Select Package</a>
                     </div>
                 </div>
-
-                <div class="pricing-card featured">
-                    <div class="featured-badge">Most Popular</div>
-                    <div class="pricing-header">
-                        <h3>Premium Package</h3>
-                        <p>Complete planning for medium events</p>
-                        <div class="price">$2,499<span>/event</span></div>
+                
+                <!-- Silver Package (Most Popular) -->
+                <div class="package-card popular">
+                    <div class="package-header">
+                        <h3 data-translate="package_silver_title">Silver</h3>
+                        <p data-translate="package_silver_subtitle">Premium Experience</p>
+                        <div class="package-price"><span>TZS</span>12,000,000</div>
+                        <p data-translate="package_per_event">per event</p>
                     </div>
-                    <div class="pricing-features">
-                        <ul>
-                            <li><i>✓</i> Full planning & coordination (All 10 R's)</li>
-                            <li><i>✓</i> Vendor management (Right Vendors & Partners)</li>
-                            <li><i>✓</i> Custom design & theme (Right Creativity)</li>
-                            <li><i>✓</i> Budget planning & tracking</li>
-                            <li><i>✓</i> On-site coordination (Right Team)</li>
-                            <li><i>✓</i> Venue selection assistance</li>
-                            <li><i>✓</i> Guest logistics planning</li>
-                            <li class="disabled"><i>✗</i> Month-of coordination only</li>
+                    <div class="package-body">
+                        <ul class="package-features">
+                            <li><i class="fas fa-check"></i> <span data-translate="feature_consultation">Event Consultation</span></li>
+                            <li><i class="fas fa-check"></i> <span data-translate="feature_venue">Venue Selection Assistance</span></li>
+                            <li><i class="fas fa-check"></i> <span data-translate="feature_coordination">Full Event Coordination</span></li>
+                            <li><i class="fas fa-check"></i> <span data-translate="feature_decor">Premium Decor Elements</span></li>
+                            <li><i class="fas fa-check"></i> <span data-translate="feature_catering">Catering Management</span></li>
+                            <li><i class="fas fa-check"></i> <span data-translate="feature_entertainment">Entertainment Coordination</span></li>
+                            <li class="disabled"><i class="fas fa-times"></i> <span data-translate="feature_photo">Professional Photography</span></li>
                         </ul>
-                    </div>
-                    <div class="pricing-button">
-                        <a href="contact.html" class="btn">Choose Premium Package</a>
+                        <a href="contact.html" class="btn-package" data-translate="btn_select_package">Select Package</a>
                     </div>
                 </div>
-
-                <div class="pricing-card">
-                    <div class="pricing-header">
-                        <h3>Platinum Package</h3>
-                        <p>Full-service for large or complex events</p>
-                        <div class="price">$4,999<span>/event</span></div>
+                
+                <!-- Gold Package -->
+                <div class="package-card">
+                    <div class="package-header">
+                        <h3 data-translate="package_gold_title">Gold</h3>
+                        <p data-translate="package_gold_subtitle">Ultimate Luxury</p>
+                        <div class="package-price"><span>TZS</span>25,000,000</div>
+                        <p data-translate="package_per_event">per event</p>
                     </div>
-                    <div class="pricing-features">
-                        <ul>
-                            <li><i>✓</i> Full-service planning (Complete 10 R's implementation)</li>
-                            <li><i>✓</i> Unlimited vendor management</li>
-                            <li><i>✓</i> Custom design & theme development</li>
-                            <li><i>✓</i> Complete budget management</li>
-                            <li><i>✓</i> Full on-site coordination (Right Team)</li>
-                            <li><i>✓</i> VIP guest management (Right Experience)</li>
-                            <li><i>✓</i> Post-event follow-up & analysis (Right Results)</li>
-                            <li><i>✓</i> Marketing & promotion assistance</li>
+                    <div class="package-body">
+                        <ul class="package-features">
+                            <li><i class="fas fa-check"></i> <span data-translate="feature_consultation">Event Consultation</span></li>
+                            <li><i class="fas fa-check"></i> <span data-translate="feature_venue">Venue Selection Assistance</span></li>
+                            <li><i class="fas fa-check"></i> <span data-translate="feature_coordination">Full Event Coordination</span></li>
+                            <li><i class="fas fa-check"></i> <span data-translate="feature_decor">Luxury Decor Elements</span></li>
+                            <li><i class="fas fa-check"></i> <span data-translate="feature_catering">Catering Management</span></li>
+                            <li><i class="fas fa-check"></i> <span data-translate="feature_entertainment">Entertainment Coordination</span></li>
+                            <li><i class="fas fa-check"></i> <span data-translate="feature_photo">Professional Photography</span></li>
+                            <li><i class="fas fa-check"></i> <span data-translate="feature_video">Videography Services</span></li>
                         </ul>
-                    </div>
-                    <div class="pricing-button">
-                        <a href="contact.html" class="btn">Choose Platinum Package</a>
+                        <a href="contact.html" class="btn-package" data-translate="btn_select_package">Select Package</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="package-contact">
+    <section class="custom-package">
         <div class="container">
-            <h2>Need a Custom Package?</h2>
-            <p>Every event is unique. Contact us for a personalized quote tailored to your specific requirements, guest count, and budget. We apply our 10 R's methodology to ensure your event's success.</p>
-            
-            <div class="contact-numbers">
-                <div class="contact-number">📞 +255 655 600 000</div>
-                <div class="contact-number">📞 +255 742 678 777</div>
-                <div class="contact-number">📞 +255 755 775 077</div>
-                <div class="contact-number">📞 +255 656 000 000</div>
+            <div class="custom-content">
+                <h2 data-translate="custom_title" style="font-size: 2.5rem; margin-bottom: 20px;">Build Your Dream Package</h2>
+                <p data-translate="custom_description" style="opacity: 0.9; margin-bottom: 40px; font-size: 1.1rem;">Mix and match services to create the perfect package for your unique celebration.</p>
+                
+                <div class="custom-features">
+                    <div class="custom-feature">
+                        <i class="fas fa-palette"></i>
+                        <h4 data-translate="custom_theme">Theme Design</h4>
+                        <p data-translate="custom_theme_desc">Custom themes tailored to your vision</p>
+                    </div>
+                    <div class="custom-feature">
+                        <i class="fas fa-utensils"></i>
+                        <h4 data-translate="custom_catering">Gourmet Catering</h4>
+                        <p data-translate="custom_catering_desc">World-class culinary experiences</p>
+                    </div>
+                    <div class="custom-feature">
+                        <i class="fas fa-music"></i>
+                        <h4 data-translate="custom_entertainment">Live Entertainment</h4>
+                        <p data-translate="custom_entertainment_desc">Bands, DJs, and performers</p>
+                    </div>
+                </div>
+                
+                <a href="contact.html" class="btn-primary" style="margin-top: 40px;">
+                    <span data-translate="btn_custom_package">Create Custom Package</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
             </div>
-            
-            <p>📧 info@eventplannerstanzania.co.tz | 📧 eventplannertanzania@gmail.com</p>
-            
-            <a href="contact.html" class="btn" style="background: #2c3e50; margin-top: 30px;">Request Custom Quote</a>
         </div>
     </section>
 
-    <section class="faq">
+    <section class="comparison-section">
         <div class="container">
-            <h2 class="section-title" style="text-align: center; margin-bottom: 50px;">Frequently Asked Questions</h2>
+            <h2 style="text-align: center; color: #2c3e50; margin-bottom: 20px; font-size: 2.5rem;" data-translate="comparison_title">Package Comparison</h2>
+            <p style="text-align: center; color: #666; max-width: 700px; margin: 0 auto; font-size: 1.1rem;" data-translate="comparison_description">Compare features across our packages to find your perfect match</p>
             
-            <div class="faq-item">
-                <div class="faq-question">
-                    <span>What's included in your packages?</span>
-                    <span>+</span>
+            <div class="comparison-table">
+                <div class="table-header">
+                    <div data-translate="table_feature">Feature</div>
+                    <div data-translate="package_bronze_title">Bronze</div>
+                    <div data-translate="package_silver_title">Silver</div>
+                    <div data-translate="package_gold_title">Gold</div>
                 </div>
-                <div class="faq-answer">
-                    <p>All packages include planning consultations, vendor recommendations, and budget assistance based on our 10 R's methodology. Higher packages include full vendor management, on-site coordination, and custom design services. Exact inclusions vary by package.</p>
+                
+                <div class="table-row">
+                    <div data-translate="feature_consultation">Event Consultation</div>
+                    <div><i class="fas fa-check"></i></div>
+                    <div><i class="fas fa-check"></i></div>
+                    <div><i class="fas fa-check"></i></div>
+                </div>
+                
+                <div class="table-row">
+                    <div data-translate="feature_coordination">Event Coordination</div>
+                    <div data-translate="coordination_basic">Basic</div>
+                    <div data-translate="coordination_full">Full</div>
+                    <div data-translate="coordination_full">Full</div>
+                </div>
+                
+                <div class="table-row">
+                    <div data-translate="feature_decor">Decor Elements</div>
+                    <div data-translate="decor_basic">Basic</div>
+                    <div data-translate="decor_premium">Premium</div>
+                    <div data-translate="decor_luxury">Luxury</div>
+                </div>
+                
+                <div class="table-row">
+                    <div data-translate="feature_catering">Catering Management</div>
+                    <div><i class="fas fa-times"></i></div>
+                    <div><i class="fas fa-check"></i></div>
+                    <div><i class="fas fa-check"></i></div>
+                </div>
+                
+                <div class="table-row">
+                    <div data-translate="feature_entertainment">Entertainment</div>
+                    <div><i class="fas fa-times"></i></div>
+                    <div><i class="fas fa-check"></i></div>
+                    <div><i class="fas fa-check"></i></div>
+                </div>
+                
+                <div class="table-row">
+                    <div data-translate="feature_photo">Photography</div>
+                    <div><i class="fas fa-times"></i></div>
+                    <div><i class="fas fa-times"></i></div>
+                    <div><i class="fas fa-check"></i></div>
+                </div>
+                
+                <div class="table-row">
+                    <div data-translate="feature_vendor">Vendor Management</div>
+                    <div data-translate="vendor_limited">Limited</div>
+                    <div data-translate="vendor_full">Full</div>
+                    <div data-translate="vendor_full">Full</div>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <section class="faq-section">
+        <div class="container">
+            <h2 style="text-align: center; color: #2c3e50; margin-bottom: 20px; font-size: 2.5rem;" data-translate="faq_title">Frequently Asked Questions</h2>
+            <p style="text-align: center; color: #666; max-width: 700px; margin: 0 auto; font-size: 1.1rem;" data-translate="faq_description">Find answers to common questions about our packages</p>
             
-            <div class="faq-item">
-                <div class="faq-question">
-                    <span>How do you implement the 10 R's in your packages?</span>
-                    <span>+</span>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span data-translate="faq_1_q">Can I customize my package?</span>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p data-translate="faq_1_a">Yes! We specialize in creating custom packages tailored to your specific needs and budget. Contact us to discuss your requirements.</p>
+                    </div>
                 </div>
-                <div class="faq-answer">
-                    <p>Our 10 R's methodology is integrated into every package: Right Planning starts each project, Right Packages are tailored to you, Right Creativity ensures unique designs, Right Team handles execution, Right Communication keeps you informed, Right Experience is curated, Right Time Management ensures deadlines, Right Vendors are selected, Right Reputation is maintained, and Right Results are delivered.</p>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span data-translate="faq_2_q">What payment options are available?</span>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p data-translate="faq_2_a">We offer flexible payment plans including installment options. A 30% deposit secures your date, with the balance due 30 days before the event.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span data-translate="faq_3_q">Do you handle destination events?</span>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p data-translate="faq_3_a">Absolutely! We have experience planning events across Tanzania, from Zanzibar beaches to Serengeti lodges and urban venues in Dar es Salaam.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span data-translate="faq_4_q">What's included in "event coordination"?</span>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p data-translate="faq_4_a">Our coordination includes vendor management, timeline creation, rehearsal coordination, and day-of management to ensure everything runs smoothly.</p>
+                    </div>
                 </div>
             </div>
-            
-            <div class="faq-item">
-                <div class="faq-question">
-                    <span>Do you offer month-of coordination only?</span>
-                    <span>+</span>
-                </div>
-                <div class="faq-answer">
-                    <p>Yes, we offer month-of coordination services starting at $1,500. This includes finalizing details, creating timelines, and on-site coordination on the event day - applying Right Time Management and Right Team principles.</p>
-                </div>
-            </div>
-            
-            <div class="faq-item">
-                <div class="faq-question">
-                    <span>Are there any additional fees?</span>
-                    <span>+</span>
-                </div>
-                <div class="faq-answer">
-                    <p>Our packages cover planning fees only. Vendor costs, venue fees, decor, catering, and other event expenses are additional and will be included in your overall event budget as part of our Right Planning process.</p>
-                </div>
-            </div>
-            
-            <div class="faq-item">
-                <div class="faq-question">
-                    <span>What is your payment schedule?</span>
-                    <span>+</span>
-                </div>
-                <div class="faq-answer">
-                    <p>We require a 50% deposit to book your date, 25% at the halfway point, and the remaining 25% two weeks before your event. All payments are outlined in our contract as part of our Right Communication practice.</p>
-                </div>
+        </div>
+    </section>
+
+    <section class="packages-cta">
+        <div class="container">
+            <h2 style="color: #2c3e50; margin-bottom: 20px; font-size: 2.5rem;" data-translate="cta_title">Ready to Start Planning?</h2>
+            <p style="color: #666; max-width: 700px; margin: 0 auto 50px; font-size: 1.2rem;" data-translate="cta_subtitle">Contact us today for a personalized consultation and quote for your dream event.</p>
+            <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                <a href="contact.html" class="btn-primary">
+                    <span data-translate="cta_contact">Contact Us Now</span>
+                    <i class="fas fa-calendar-check"></i>
+                </a>
+                <a href="tel:+255123456789" class="btn-primary" style="background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);">
+                    <span data-translate="cta_call">Call Us: +255 123 456 789</span>
+                    <i class="fas fa-phone"></i>
+                </a>
             </div>
         </div>
     </section>
@@ -262,61 +892,347 @@
     <footer>
         <div class="container">
             <div class="footer-content">
-                <div>
-                    <h3>Event Planners Tanzania</h3>
-                    <p>Registered Event Planners based in Tanzania, providing best practice, leading edge, creative event management services.</p>
-                    <p>✉️ info@eventplannerstanzania.co.tz</p>
-                    <p>✉️ eventplannertanzania@gmail.com</p>
+                <div class="footer-column">
+                    <h3 data-translate="footer_about">About Us</h3>
+                    <p data-translate="footer_about_text">Event Planners Tanzania is the premier event management company in Tanzania, creating unforgettable experiences since 2008.</p>
+                    <p><i class="fas fa-map-marker-alt"></i> <span data-translate="footer_address">Dar es Salaam, Tanzania</span></p>
+                    <p><i class="fas fa-phone"></i> <span>+255 123 456 789</span></p>
+                    <p><i class="fas fa-envelope"></i> <span>info@eventplannerstz.co.tz</span></p>
                 </div>
-                <div>
-                    <h3>Quick Contact</h3>
-                    <p>📍 Dar es Salaam, Tanzania</p>
-                    <p>📞 +255 655 600 000</p>
-                    <p>📞 +255 742 678 777</p>
-                    <p>📞 +255 755 775 077</p>
-                    <p>📞 +255 656 000 000</p>
+                <div class="footer-column">
+                    <h3 data-translate="footer_packages">Our Packages</h3>
+                    <p data-translate="package_bronze_title">Bronze Package</p>
+                    <p data-translate="package_silver_title">Silver Package</p>
+                    <p data-translate="package_gold_title">Gold Package</p>
+                    <p data-translate="footer_custom">Custom Packages</p>
                 </div>
-                <div>
-                    <h3>Services</h3>
-                    <p>• Conference & Wedding Planning</p>
-                    <p>• Concerts & Launch Events</p>
-                    <p>• Hotel & Car Hire</p>
-                    <p>• Holiday Packages</p>
-                    <p>• Public Road Shows</p>
+                <div class="footer-column">
+                    <h3 data-translate="footer_links">Quick Links</h3>
+                    <p><a href="index.html" style="color: #ecf0f1; text-decoration: none;" data-translate="nav_home">Home</a></p>
+                    <p><a href="portfolio.html" style="color: #ecf0f1; text-decoration: none;" data-translate="nav_portfolio">Portfolio</a></p>
+                    <p><a href="services.html" style="color: #ecf0f1; text-decoration: none;" data-translate="nav_services">Services</a></p>
+                    <p><a href="contact.html" style="color: #ecf0f1; text-decoration: none;" data-translate="nav_contact">Contact</a></p>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2023 Event Planners Tanzania. All rights reserved.</p>
+                <p data-translate="footer_copyright">&copy; 2023 Event Planners Tanzania. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // FAQ Accordion
-        document.addEventListener('DOMContentLoaded', function() {
-            const faqQuestions = document.querySelectorAll('.faq-question');
-            
-            faqQuestions.forEach(question => {
-                question.addEventListener('click', function() {
-                    const answer = this.nextElementSibling;
-                    const isActive = answer.classList.contains('active');
-                    
-                    // Close all answers
-                    document.querySelectorAll('.faq-answer').forEach(ans => {
-                        ans.classList.remove('active');
-                    });
-                    
-                    // Update all icons
-                    document.querySelectorAll('.faq-question span:last-child').forEach(icon => {
-                        icon.textContent = '+';
-                    });
-                    
-                    // If not active, open this one
-                    if (!isActive) {
-                        answer.classList.add('active');
-                        this.querySelector('span:last-child').textContent = '−';
+        // Language translations for packages page
+        const translations = {
+            en: {
+                // Page title
+                page_title: "Event Packages - Tailored Solutions | Event Planners Tanzania",
+                
+                // Navigation
+                company_name: "Event Planners Tanzania",
+                tagline: "Creating Moments That Live Forever",
+                nav_home: "Home",
+                nav_about: "About",
+                nav_services: "Services",
+                nav_portfolio: "Portfolio",
+                nav_packages: "Packages",
+                nav_contact: "Contact",
+                
+                // Language switcher
+                lang_en: "English",
+                lang_sw: "Kiswahili",
+                
+                // Page header
+                packages_title: "Tailored Event Packages",
+                packages_subtitle: "Choose from our expertly crafted packages or customize your own. Every celebration deserves perfection.",
+                
+                // Main section
+                packages_main_title: "Our Signature Packages",
+                packages_description: "Select the perfect package for your event. All packages include our signature quality and attention to detail.",
+                
+                // Package titles
+                package_bronze_title: "Bronze",
+                package_bronze_subtitle: "Essential Celebration",
+                package_silver_title: "Silver",
+                package_silver_subtitle: "Premium Experience",
+                package_gold_title: "Gold",
+                package_gold_subtitle: "Ultimate Luxury",
+                package_per_event: "per event",
+                
+                // Features
+                feature_consultation: "Event Consultation",
+                feature_venue: "Venue Selection Assistance",
+                feature_coordination: "Event Coordination",
+                feature_decor: "Decor Elements",
+                feature_catering: "Catering Management",
+                feature_entertainment: "Entertainment Coordination",
+                feature_photo: "Professional Photography",
+                feature_video: "Videography Services",
+                feature_vendor: "Vendor Management",
+                
+                // Coordination levels
+                coordination_basic: "Basic",
+                coordination_full: "Full",
+                
+                // Decor levels
+                decor_basic: "Basic",
+                decor_premium: "Premium",
+                decor_luxury: "Luxury",
+                
+                // Vendor management
+                vendor_limited: "Limited",
+                vendor_full: "Full",
+                
+                // Custom package section
+                custom_title: "Build Your Dream Package",
+                custom_description: "Mix and match services to create the perfect package for your unique celebration.",
+                custom_theme: "Theme Design",
+                custom_theme_desc: "Custom themes tailored to your vision",
+                custom_catering: "Gourmet Catering",
+                custom_catering_desc: "World-class culinary experiences",
+                custom_entertainment: "Live Entertainment",
+                custom_entertainment_desc: "Bands, DJs, and performers",
+                
+                // Comparison table
+                comparison_title: "Package Comparison",
+                comparison_description: "Compare features across our packages to find your perfect match",
+                table_feature: "Feature",
+                
+                // FAQ
+                faq_title: "Frequently Asked Questions",
+                faq_description: "Find answers to common questions about our packages",
+                faq_1_q: "Can I customize my package?",
+                faq_1_a: "Yes! We specialize in creating custom packages tailored to your specific needs and budget. Contact us to discuss your requirements.",
+                faq_2_q: "What payment options are available?",
+                faq_2_a: "We offer flexible payment plans including installment options. A 30% deposit secures your date, with the balance due 30 days before the event.",
+                faq_3_q: "Do you handle destination events?",
+                faq_3_a: "Absolutely! We have experience planning events across Tanzania, from Zanzibar beaches to Serengeti lodges and urban venues in Dar es Salaam.",
+                faq_4_q: "What's included in 'event coordination'?",
+                faq_4_a: "Our coordination includes vendor management, timeline creation, rehearsal coordination, and day-of management to ensure everything runs smoothly.",
+                
+                // CTA
+                cta_title: "Ready to Start Planning?",
+                cta_subtitle: "Contact us today for a personalized consultation and quote for your dream event.",
+                cta_contact: "Contact Us Now",
+                cta_call: "Call Us: +255 123 456 789",
+                
+                // Buttons
+                btn_select_package: "Select Package",
+                btn_custom_package: "Create Custom Package",
+                
+                // Footer
+                footer_about: "About Us",
+                footer_about_text: "Event Planners Tanzania is the premier event management company in Tanzania, creating unforgettable experiences since 2008.",
+                footer_address: "Dar es Salaam, Tanzania",
+                footer_packages: "Our Packages",
+                footer_custom: "Custom Packages",
+                footer_links: "Quick Links",
+                footer_copyright: "© 2023 Event Planners Tanzania. All Rights Reserved."
+            },
+            sw: {
+                // Page title
+                page_title: "Vifurushi vya Matukio - Suluhisho Zilizobinafsishwa | Waupangaji Matukio Tanzania",
+                
+                // Navigation
+                company_name: "Waupangaji Matukio Tanzania",
+                tagline: "Kuunda Muda Unaokaa Milele",
+                nav_home: "Nyumbani",
+                nav_about: "Kuhusu",
+                nav_services: "Huduma",
+                nav_portfolio: "Portfolio",
+                nav_packages: "Vifurushi",
+                nav_contact: "Wasiliana",
+                
+                // Language switcher
+                lang_en: "Kiingereza",
+                lang_sw: "Kiswahili",
+                
+                // Page header
+                packages_title: "Vifurushi vya Matukio Vilivyobinafsishwa",
+                packages_subtitle: "Chagua kutoka kwenye vifurushi vyetu vilivyoundwa kwa ustadi au ubinafsishe vyako. Kila sherehe inastahili ukamilifu.",
+                
+                // Main section
+                packages_main_title: "Vifurushi Vyetu Vya Kipekee",
+                packages_description: "Chagua kifurushi kamili cha tukio lako. Vifurushi vyote vinajumuisha ubora wetu wa kipekee na umakini wa undani.",
+                
+                // Package titles
+                package_bronze_title: "Shaba",
+                package_bronze_subtitle: "Sherehe ya Msingi",
+                package_silver_title: "Fedha",
+                package_silver_subtitle: "Uzoefu wa Premium",
+                package_gold_title: "Dhahabu",
+                package_gold_subtitle: "Anasa ya Kilele",
+                package_per_event: "kwa tukio",
+                
+                // Features
+                feature_consultation: "Majadiliano ya Tukio",
+                feature_venue: "Usaidizi wa Uchaguzi wa Mahali",
+                feature_coordination: "Uratibu wa Tukio",
+                feature_decor: "Vipengele vya Mapambo",
+                feature_catering: "Usimamizi wa Chakula",
+                feature_entertainment: "Uratibu wa Burudani",
+                feature_photo: "Upigaji Picha wa Kitaalam",
+                feature_video: "Huduma za Video",
+                feature_vendor: "Usimamizi wa Wauzaji",
+                
+                // Coordination levels
+                coordination_basic: "Msingi",
+                coordination_full: "Kamili",
+                
+                // Decor levels
+                decor_basic: "Msingi",
+                decor_premium: "Premium",
+                decor_luxury: "Anasa",
+                
+                // Vendor management
+                vendor_limited: "Mdogo",
+                vendor_full: "Kamili",
+                
+                // Custom package section
+                custom_title: "Jenga Kifurushi Chako cha Ndoto",
+                custom_description: "Changanya na linganisha huduma ili kuunda kifurushi kamili cha sherehe yako ya kipekee.",
+                custom_theme: "Ubunifu wa Mandhari",
+                custom_theme_desc: "Mandhari maalum zilizobinafsishwa kwa mtazamo wako",
+                custom_catering: "Chakula cha Gourmet",
+                custom_catering_desc: "Uzoefu wa upishi wa daraja la dunia",
+                custom_entertainment: "Burudani ya Moja kwa Moja",
+                custom_entertainment_desc: "Bendi, DJ, na waigizaji",
+                
+                // Comparison table
+                comparison_title: "Ulinganisho wa Vifurushi",
+                comparison_description: "Linganisha huduma katika vifurushi vyetu ili kupata mechi yako kamili",
+                table_feature: "Huduma",
+                
+                // FAQ
+                faq_title: "Maswali Yanayoulizwa Mara Kwa Mara",
+                faq_description: "Pata majibu ya maswali ya kawaida kuhusu vifurushi vyetu",
+                faq_1_q: "Naweza kubinafsisha kifurushi changu?",
+                faq_1_a: "Ndio! Tunahusika katika kuunda vifurushi vilivyobinafsishwa kulingana na mahitaji yako maalum na bajeti. Wasiliana nasi kujadili mahitaji yako.",
+                faq_2_q: "Chaguzi gani za malipo zinapatikana?",
+                faq_2_a: "Tunatoa mipango rahisi ya malipo ikijumuisha chaguzi za malipo ya awamu. Amana ya 30% inahakikisha tarehe yako, na salio linalolipwa siku 30 kabla ya tukio.",
+                faq_3_q: "Je, mnashughulikia matukio ya marudio?",
+                faq_3_a: "Bila shaka! Tuna uzoefu wa kupanga matukio kote Tanzania, kutoka kwenye maziwa ya Zanzibar hadi vibanda vya Serengeti na maeneo ya mijini Dar es Salaam.",
+                faq_4_q: "Nini kimejumuishwa katika 'uratibu wa tukio'?",
+                faq_4_a: "Uratibu wetu unajumuisha usimamizi wa wauzaji, uundaji wa ratiba, uratibu wa mazoezi, na usimamizi wa siku ya tukio ili kuhakikisha kila kitu kinaendelea vizuri.",
+                
+                // CTA
+                cta_title: "Uko Tayari Kuanza Kupanga?",
+                cta_subtitle: "Wasiliana nasi leo kwa mashauriano yanayobinafsishwa na bei ya tukio lako la ndoto.",
+                cta_contact: "Wasiliana Nasi Sasa",
+                cta_call: "Tupigie: +255 123 456 789",
+                
+                // Buttons
+                btn_select_package: "Chagua Kifurushi",
+                btn_custom_package: "Unda Kifurushi Maalum",
+                
+                // Footer
+                footer_about: "Kuhusu Sisi",
+                footer_about_text: "Waupangaji Matukio Tanzania ni kampuni kuu ya usimamizi wa matukio nchini Tanzania, ikiunda uzoefu usioweza kusahaulika tangu 2008.",
+                footer_address: "Dar es Salaam, Tanzania",
+                footer_packages: "Vifurushi Vyetu",
+                footer_custom: "Vifurushi Maalum",
+                footer_links: "Viungo vya Haraka",
+                footer_copyright: "© 2023 Waupangaji Matukio Tanzania. Haki zote zimehifadhiwa."
+            }
+        };
+
+        // DOM elements
+        let currentLang = 'en';
+        const langSwitcher = document.getElementById('languageSwitcher');
+        const langTab = document.getElementById('langTab');
+        const langButtons = document.querySelectorAll('.lang-btn');
+        const faqItems = document.querySelectorAll('.faq-item');
+
+        // FAQ functionality
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                // Close other open FAQs
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item && otherItem.classList.contains('active')) {
+                        otherItem.classList.remove('active');
                     }
                 });
+                
+                // Toggle current FAQ
+                item.classList.toggle('active');
+            });
+        });
+
+        // Language switching functionality
+        function switchLanguage(lang) {
+            currentLang = lang;
+            
+            // Update active button
+            langButtons.forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.lang === lang);
+            });
+            
+            // Translate all elements with data-translate attribute
+            document.querySelectorAll('[data-translate]').forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[lang] && translations[lang][key]) {
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.placeholder = translations[lang][key];
+                    } else {
+                        element.textContent = translations[lang][key];
+                    }
+                }
+            });
+            
+            // Update page title
+            document.title = translations[lang].page_title;
+        }
+
+        // Event Listeners
+        document.addEventListener('DOMContentLoaded', () => {
+            // Language switcher toggle
+            langTab.addEventListener('click', () => {
+                langSwitcher.classList.toggle('active');
+            });
+            
+            // Language button clicks
+            langButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const lang = button.getAttribute('data-lang');
+                    switchLanguage(lang);
+                    langSwitcher.classList.remove('active');
+                });
+            });
+            
+            // Close language switcher when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!langSwitcher.contains(e.target) && !langTab.contains(e.target)) {
+                    langSwitcher.classList.remove('active');
+                }
+            });
+            
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Header scroll effect
+            window.addEventListener('scroll', () => {
+                const header = document.querySelector('header');
+                if (window.scrollY > 100) {
+                    header.style.boxShadow = '0 8px 40px rgba(0,0,0,0.15)';
+                    header.style.backdropFilter = 'blur(20px)';
+                } else {
+                    header.style.boxShadow = '0 8px 40px rgba(0,0,0,0.08)';
+                    header.style.backdropFilter = 'blur(15px)';
+                }
             });
         });
     </script>
