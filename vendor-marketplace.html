@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vendor Marketplace | Trusted Event Partners | Event Planners Tanzania</title>
+    <style>
+        /* === VENDOR MARKETPLACE STYLES === */
+        :root {
+            --gold: #D4AF37;
+            --gold-glow: rgba(212, 175, 55, 0.3);
+            --deep-red: #C41E3A;
+            --rich-red: #9a162d;
+            --midnight: #0A0A0F;
+            --charcoal: #1A1A1F;
+            --ivory: #FFFDF5;
+            --light-gold: #F5E8C8;
+            --marketplace-green: #00C896;
+            --marketplace-blue: #4A6FA5;
+            --transition-slow: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            --transition-medium: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            --shadow-market: 0 0 40px rgba(0, 200, 150, 0.2);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, #0a0a0f 0%, #0a1a15 100%);
+            color: var(--ivory);
+            min-height: 100vh;
+        }
+        
+        /* === HEADER === */
+        .magical-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 10000;
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            transition: var(--transition-slow);
+        }
+        
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100px;
+        }
+        
+        .logo-magic {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-orb {
+            width: 50px;
+            height: 50px;
+            background: radial-gradient(circle at 30% 30%, var(--gold), var(--deep-red));
+            border-radius: 50%;
+            position: relative;
+            animation: orbPulse 4s ease-in-out infinite;
+        }
+        
+        @keyframes orbPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .logo-text {
+            font-family: 'Georgia', serif;
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(45deg, var(--gold), var(--ivory));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .magic-nav {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .magic-nav a {
+            color: var(--light-gold);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            padding: 10px 0;
+            position: relative;
+            transition: var(--transition-medium);
+        }
+        
+        .magic-nav a:hover {
+            color: var(--gold);
+        }
+        
+        .magic-nav a.active {
+            color: var(--marketplace-green);
+        }
+        
+        /* === MARKETPLACE HERO === */
+        .marketplace-hero {
+            padding: 180px 40px 80px;
+            text-align: center;
+            background: radial-gradient(circle at center, rgba(0, 200, 150, 0.1) 0%, transparent 70%);
+        }
+        
+        .marketplace-hero h1 {
+            font-size: 4rem;
+            background: linear-gradient(45deg, var(--marketplace-green), var(--marketplace-blue));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 20px;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: var(--light-gold);
+            max-width: 800px;
+            margin: 0 auto 40px;
+        }
+        
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin-top: 50px;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--marketplace-green);
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            color: rgba(255, 253, 245, 0.7);
+            font-size: 0.9rem;
+        }
+        
+        /* === SEARCH AND FILTERS === */
+        .search-section {
+            max-width: 1400px;
+            margin: 0 auto 60px;
+            padding: 0 40px;
+        }
+        
+        .search-container {
+            background: rgba(26, 26, 31, 0.8);
+            border: 1px solid rgba(0, 200, 150, 0.2);
+            border-radius: 15px;
+            padding: 40px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .search-box {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .search-input {
+            flex: 1;
+            padding: 18px 25px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--marketplace-green);
+            border-radius: 50px;
+            color: var(--ivory);
+            font-size: 16px;
+        }
+        
+        .search-input::placeholder {
+            color: rgba(255, 253, 245, 0.5);
+        }
+        
+        .search-btn {
+            background: linear-gradient(135deg, var(--marketplace-green), var(--marketplace-blue));
+            color: var(--ivory);
+            border: none;
+            padding: 0 40px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-medium);
+        }
+        
+        .search-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 200, 150, 0.3);
+        }
+        
+        .filter-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .filter-tag {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 200, 150, 0.3);
+            color: var(--marketplace-green);
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition-medium);
+            font-size: 14px;
+        }
+        
+        .filter-tag:hover,
+        .filter-tag.active {
+            background: var(--marketplace-green);
+            color: var(--midnight);
+        }
+        
+        .advanced-filters {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .filter-group select {
+            width: 100%;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 200, 150, 0.3);
+            border-radius: 8px;
+            color: var(--ivory);
+        }
+        
+        /* === VENDOR CATEGORIES === */
+        .categories-section {
+            max-width: 1400px;
+            margin: 0 auto 80px;
+            padding: 0 40px;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--ivory);
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+        
+        .category-card {
+            background: rgba(26, 26, 31, 0.7);
+            border: 1px solid rgba(0, 200, 150, 0.1);
+            border-radius: 15px;
+            padding: 40px 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition-medium);
+        }
+        
+        .category-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--marketplace-green);
+            box-shadow: var(--shadow-market);
+        }
+        
+        .category-icon {
+            font-size: 3rem;
+            color: var(--marketplace-green);
+            margin-bottom: 20px;
+        }
+        
+        .category-title {
+            font-size: 1.5rem;
+            color: var(--ivory);
+            margin-bottom: 10px;
+        }
+        
+        .vendor-count {
+            color: rgba(255, 253, 245, 0.6);
+            font-size: 0.9rem;
+        }
+        
+        /* === VENDORS GRID === */
+        .vendors-section {
+            max-width: 1400px;
+            margin: 0 auto 120px;
+            padding: 0 40px;
+        }
+        
+        .vendors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .vendor-card {
+            background: rgba(26, 26, 31, 0.7);
+            border: 1px solid rgba(0, 200, 150, 0.1);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: var(--transition-medium);
+        }
+        
+        .vendor-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--marketplace-green);
+            box-shadow: var(--shadow-market);
+        }
+        
+        .vendor-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .vendor-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+        
+        .vendor-card:hover .vendor-image img {
+            transform: scale(1.05);
+        }
+        
+        .vendor-content {
+            padding: 30px;
+        }
+        
+        .vendor-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 20px;
+        }
+        
+        .vendor-name h3 {
+            font-size: 1.5rem;
+            color: var(--ivory);
+            margin-bottom: 5px;
+        }
+        
+        .vendor-category {
+            color: var(--marketplace-green);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .vendor-rating {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            background: rgba(0, 200, 150, 0.1);
+            padding: 5px 10px;
+            border-radius: 20px;
+        }
+        
+        .vendor-rating .stars {
+            color: var(--gold);
+        }
+        
+        .vendor-rating .score {
+            color: var(--ivory);
+            font-weight: bold;
+        }
+        
+        .vendor-description {
+            color: rgba(255, 253, 245, 0.7);
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .vendor-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+        
+        .feature-tag {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--light-gold);
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+        }
+        
+        .vendor-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(0, 200, 150, 0.1);
+        }
+        
+        .vendor-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--marketplace-green);
+        }
+        
+        .vendor-price span {
+            font-size: 0.9rem;
+            color: rgba(255, 253, 245, 0.6);
+        }
+        
+        .vendor-action .btn-book {
+            background: var(--marketplace-green);
+            color: var(--midnight);
+            border: none;
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-medium);
+        }
+        
+        .vendor-action .btn-book:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(0, 200, 150, 0.3);
+        }
+        
+        /* === VENDOR APPLY SECTION === */
+        .apply-section {
+            max-width: 1400px;
+            margin: 0 auto 120px;
+            padding: 0 40px;
+        }
+        
+        .apply-container {
+            background: linear-gradient(135deg, rgba(0, 200, 150, 0.1), rgba(74, 111, 165, 0.1));
+            border: 1px solid rgba(0, 200, 150, 0.3);
+            border-radius: 20px;
+            padding: 60px;
+            text-align: center;
+        }
+        
+        .apply-container h2 {
+            font-size: 2.5rem;
+            color: var(--ivory);
+            margin-bottom: 20px;
+        }
+        
+        .apply-container p {
+            color: rgba(255, 253, 245, 0.8);
+            max-width: 700px;
+            margin: 0 auto 40px;
+            font-size: 1.1rem;
+        }
+        
+        .btn-apply {
+            background: linear-gradient(135deg, var(--marketplace-green), var(--marketplace-blue));
+            color: var(--ivory);
+            border: none;
+            padding: 18px 50px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-medium);
+        }
+        
+        .btn-apply:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 200, 150, 0.3);
+        }
+        
+        /* === RESPONSIVE === */
+        @media (max-width: 992px) {
+            .vendors-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .stats-bar {
+                flex-wrap: wrap;
+                gap: 30px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .marketplace-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .header-container {
+                padding: 0 20px;
+                height: 80px;
+            }
+            
+            .magic-nav {
+                display: none;
+            }
+            
+            .vendors-grid,
+            .categories-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .search-box {
+                flex-direction: column;
+            }
+            
+            .search-btn {
+                padding: 18px;
+            }
+            
+            .apply-container {
+                padding: 40px 20px;
+            }
+        }
+        
+        /* === FOOTER === */
+        .footer-magic {
+            background: rgba(10, 10, 15, 0.95);
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+            padding: 80px 40px 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 50px;
+            max-width: 1400px;
+            margin: 0 auto 50px;
+        }
+        
+        .footer-logo-section .logo-text {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-description {
+            color: rgba(255, 253, 245, 0.7);
+        }
+        
+        .footer-links h3 {
+            color: var(--gold);
+            font-size: 18px;
+            margin-bottom: 25px;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 253, 245, 0.7);
+            text-decoration: none;
+            transition: var(--transition-medium);
+        }
+        
+        .footer-links a:hover {
+            color: var(--gold);
+            padding-left: 5px;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+            color: rgba(255, 253, 245, 0.5);
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="magical-header">
+        <div class="header-container">
+            <div class="logo-magic">
+                <div class="logo-orb"></div>
+                <div class="logo-text">Event Planners Tanzania</div>
+            </div>
+            
+            <nav class="magic-nav">
+                <a href="index.html">Home</a>
+                <a href="services.html">Services</a>
+                <a href="portfolio.html">Portfolio</a>
+                <a href="pricing.html">Pricing</a>
+                <a href="booking.html">Booking</a>
+                <a href="ai-planner.html">AI Planner</a>
+                <a href="3d-visualizer.html">3D Visualizer</a>
+                <a href="vendor-marketplace.html" class="active">Vendors</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Marketplace Hero -->
+    <section class="marketplace-hero">
+        <h1>Vendor Marketplace</h1>
+        <div class="hero-subtitle">
+            Connect with Tanzania's best event professionals. Browse, compare, and book 
+            trusted vendors for your perfect event.
+        </div>
+        
+        <div class="stats-bar">
+            <div class="stat-item">
+                <div class="stat-number">250+</div>
+                <div class="stat-label">Verified Vendors</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">4.8★</div>
+                <div class="stat-label">Average Rating</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">5,000+</div>
+                <div class="stat-label">Events Completed</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">24h</div>
+                <div class="stat-label">Quick Response Time</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search and Filters -->
+    <section class="search-section">
+        <div class="search-container">
+            <div class="search-box">
+                <input type="text" class="search-input" placeholder="Search vendors, services, or locations...">
+                <button class="search-btn">
+                    <i class="fas fa-search" style="margin-right: 10px;"></i>
+                    Search
+                </button>
+            </div>
+            
+            <div class="filter-tags">
+                <div class="filter-tag active">All Vendors</div>
+                <div class="filter-tag">Top Rated</div>
+                <div class="filter-tag">Available This Week</div>
+                <div class="filter-tag">Budget Friendly</div>
+                <div class="filter-tag">Premium Services</div>
+                <div class="filter-tag">Dar es Salaam</div>
+                <div class="filter-tag">Zanzibar</div>
+                <div class="filter-tag">Arusha</div>
+            </div>
+            
+            <div class="advanced-filters">
+                <div class="filter-group">
+                    <label style="display: block; color: var(--light-gold); margin-bottom: 10px;">
+                        <i class="fas fa-filter" style="margin-right: 8px;"></i>
+                        Category
+                    </label>
+                    <select>
+                        <option>All Categories</option>
+                        <option>Catering</option>
+                        <option>Photography</option>
+                        <option>Venues</option>
+                        <option>Decor & Flowers</option>
+                        <option>Entertainment</option>
+                        <option>MC & Speakers</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label style="display: block; color: var(--light-gold); margin-bottom: 10px;">
+                        <i class="fas fa-map-marker-alt" style="margin-right: 8px;"></i>
+                        Location
+                    </label>
+                    <select>
+                        <option>All Tanzania</option>
+                        <option>Dar es Salaam</option>
+                        <option>Zanzibar</option>
+                        <option>Arusha</option>
+                        <option>Mwanza</option>
+                        <option>Dodoma</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label style="display: block; color: var(--light-gold); margin-bottom: 10px;">
+                        <i class="fas fa-coins" style="margin-right: 8px;"></i>
+                        Price Range
+                    </label>
+                    <select>
+                        <option>Any Price</option>
+                        <option>Budget (Under 1M TZS)</option>
+                        <option>Standard (1M - 5M TZS)</option>
+                        <option>Premium (5M+ TZS)</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label style="display: block; color: var(--light-gold); margin-bottom: 10px;">
+                        <i class="fas fa-star" style="margin-right: 8px;"></i>
+                        Minimum Rating
+                    </label>
+                    <select>
+                        <option>Any Rating</option>
+                        <option>4 Stars & Above</option>
+                        <option>4.5 Stars & Above</option>
+                        <option>5 Stars Only</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vendor Categories -->
+    <section class="categories-section">
+        <h2 class="section-title">Browse by Category</h2>
+        
+        <div class="categories-grid">
+            <div class="category-card" onclick="filterByCategory('catering')">
+                <div class="category-icon">
+                    <i class="fas fa-utensils"></i>
+                </div>
+                <h3 class="category-title">Catering</h3>
+                <div class="vendor-count">45 Vendors</div>
+            </div>
+            
+            <div class="category-card" onclick="filterByCategory('photography')">
+                <div class="category-icon">
+                    <i class="fas fa-camera"></i>
+                </div>
+                <h3 class="category-title">Photography & Video</h3>
+                <div class="vendor-count">38 Vendors</div>
+            </div>
+            
+            <div class="category-card" onclick="filterByCategory('venues')">
+                <div class="category-icon">
+                    <i class="fas fa-hotel"></i>
+                </div>
+                <h3 class="category-title">Venues</h3>
+                <div class="vendor-count">52 Vendors</div>
+            </div>
+            
+            <div class="category-card" onclick="filterByCategory('decor')">
+                <div class="category-icon">
+                    <i class="fas fa-paint-brush"></i>
+                </div>
+                <h3 class="category-title">Decor & Flowers</h3>
+                <div class="vendor-count">67 Vendors</div>
+            </div>
+            
+            <div class="category-card" onclick="filterByCategory('entertainment')">
+                <div class="category-icon">
+                    <i class="fas fa-music"></i>
+                </div>
+                <h3 class="category-title">Entertainment</h3>
+                <div class="vendor-count">29 Vendors</div>
+            </div>
+            
+            <div class="category-card" onclick="filterByCategory('mc')">
+                <div class="category-icon">
+                    <i class="fas fa-microphone"></i>
+                </div>
+                <h3 class="category-title">MCs & Speakers</h3>
+                <div class="vendor-count">18 Vendors</div>
+            </div>
+            
+            <div class="category-card" onclick="filterByCategory('transport')">
+                <div class="category-icon">
+                    <i class="fas fa-car"></i>
+                </div>
+                <h3 class="category-title">Transport</h3>
+                <div class="vendor-count">22 Vendors</div>
+            </div>
+            
+            <div class="category-card" onclick="filterByCategory('other')">
+                <div class="category-icon">
+                    <i class="fas fa-star"></i>
+                </div>
+                <h3 class="category-title">Other Services</h3>
+                <div class="vendor-count">31 Vendors</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Vendors -->
+    <section class="vendors-section">
+        <h2 class="section-title">Featured Vendors</h2>
+        
+        <div class="vendors-grid">
+            <!-- Vendor 1 -->
+            <div class="vendor-card">
+                <div class="vendor-image">
+                    <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Royal Catering">
+                </div>
+                <div class="vendor-content">
+                    <div class="vendor-header">
+                        <div class="vendor-name">
+                            <h3>Royal Catering Co.</h3>
+                            <div class="vendor-category">
+                                <i class="fas fa-utensils"></i>
+                                Catering
+                            </div>
+                        </div>
+                        <div class="vendor-rating">
+                            <div class="stars">★★★★★</div>
+                            <div class="score">4.9</div>
+                        </div>
+                    </div>
+                    
+                    <p class="vendor-description">
+                        Premium catering service specializing in wedding banquets, corporate events, 
+                        and cultural celebrations with authentic Tanzanian cuisine.
+                    </p>
+                    
+                    <div class="vendor-features">
+                        <span class="feature-tag">Vegetarian Options</span>
+                        <span class="feature-tag">Cultural Cuisine</span>
+                        <span class="feature-tag">On-site Cooking</span>
+                        <span class="feature-tag">Serving Staff</span>
+                    </div>
+                    
+                    <div class="vendor-footer">
+                        <div class="vendor-price">
+                            From <span>TZS</span> 1.2M
+                        </div>
+                        <div class="vendor-action">
+                            <button class="btn-book" onclick="bookVendor('Royal Catering')">
+                                Book Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Vendor 2 -->
+            <div class="vendor-card">
+                <div class="vendor-image">
+                    <img src="https://images.unsplash.com/photo-1554048612-b6a482bc67e5?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Capture Studios">
+                </div>
+                <div class="vendor-content">
+                    <div class="vendor-header">
+                        <div class="vendor-name">
+                            <h3>Capture Studios</h3>
+                            <div class="vendor-category">
+                                <i class="fas fa-camera"></i>
+                                Photography
+                            </div>
+                        </div>
+                        <div class="vendor-rating">
+                            <div class="stars">★★★★★</div>
+                            <div class="score">5.0</div>
+                        </div>
+                    </div>
+                    
+                    <p class="vendor-description">
+                        Award-winning photography and videography team with 10+ years experience 
+                        capturing weddings, corporate events, and special occasions.
+                    </p>
+                    
+                    <div class="vendor-features">
+                        <span class="feature-tag">Drone Footage</span>
+                        <span class="feature-tag">Photo Booth</span>
+                        <span class="feature-tag">Same-Day Edit</span>
+                        <span class="feature-tag">Album Design</span>
+                    </div>
+                    
+                    <div class="vendor-footer">
+                        <div class="vendor-price">
+                            From <span>TZS</span> 850K
+                        </div>
+                        <div class="vendor-action">
+                            <button class="btn-book" onclick="bookVendor('Capture Studios')">
+                                Book Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Vendor 3 -->
+            <div class="vendor-card">
+                <div class="vendor-image">
+                    <img src="https://images.unsplash.com/photo-1560073744-7643b964ca61?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Floral Dreams">
+                </div>
+                <div class="vendor-content">
+                    <div class="vendor-header">
+                        <div class="vendor-name">
+                            <h3>Floral Dreams</h3>
+                            <div class="vendor-category">
+                                <i class="fas fa-spa"></i>
+                                Decor & Flowers
+                            </div>
+                        </div>
+                        <div class="vendor-rating">
+                            <div class="stars">★★★★☆</div>
+                            <div class="score">4.7</div>
+                        </div>
+                    </div>
+                    
+                    <p class="vendor-description">
+                        Creative floral design and event decoration service. Specializing in wedding 
+                        arches, centerpieces, and venue transformation.
+                    </p>
+                    
+                    <div class="vendor-features">
+                        <span class="feature-tag">Live Flowers</span>
+                        <span class="feature-tag">Custom Designs</span>
+                        <span class="feature-tag">Setup & Cleanup</span>
+                        <span class="feature-tag">Rental Items</span>
+                    </div>
+                    
+                    <div class="vendor-footer">
+                        <div class="vendor-price">
+                            From <span>TZS</span> 650K
+                        </div>
+                        <div class="vendor-action">
+                            <button class="btn-book" onclick="bookVendor('Floral Dreams')">
+                                Book Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Vendor 4 -->
+            <div class="vendor-card">
+                <div class="vendor-image">
+                    <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Sound Waves DJ">
+                </div>
+                <div class="vendor-content">
+                    <div class="vendor-header">
+                        <div class="vendor-name">
+                            <h3>Sound Waves DJ</h3>
+                            <div class="vendor-category">
+                                <i class="fas fa-music"></i>
+                                Entertainment
+                            </div>
+                        </div>
+                        <div class="vendor-rating">
+                            <div class="stars">★★★★★</div>
+                            <div class="score">4.8</div>
+                        </div>
+                    </div>
+                    
+                    <p class="vendor-description">
+                        Professional DJ service with state-of-the-art sound and lighting equipment. 
+                        Experience in weddings, corporate events, and parties.
+                    </p>
+                    
+                    <div class="vendor-features">
+                        <span class="feature-tag">Lighting Effects</span>
+                        <span class="feature-tag">MC Services</span>
+                        <span class="feature-tag">Song Requests</span>
+                        <span class="feature-tag">Dance Floor</span>
+                    </div>
+                    
+                    <div class="vendor-footer">
+                        <div class="vendor-price">
+                            From <span>TZS</span> 450K
+                        </div>
+                        <div class="vendor-action">
+                            <button class="btn-book" onclick="bookVendor('Sound Waves DJ')">
+                                Book Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vendor Apply Section -->
+    <section class="apply-section">
+        <div class="apply-container">
+            <h2>Are You a Vendor?</h2>
+            <p>
+                Join Tanzania's premier event vendor marketplace. Get access to premium clients, 
+                manage bookings easily, and grow your business with our trusted platform.
+            </p>
+            <button class="btn-apply" onclick="applyAsVendor()">
+                <i class="fas fa-user-plus" style="margin-right: 10px;"></i>
+                Apply as Vendor
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-magic">
+        <div class="footer-content">
+            <div class="footer-logo-section">
+                <div class="logo-text">Event Planners Tanzania</div>
+                <p class="footer-description">
+                    Creating unforgettable events across Tanzania since 2011. 
+                    We specialize in weddings, corporate events, and private celebrations.
+                </p>
+            </div>
+            
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="portfolio.html">Portfolio</a></li>
+                    <li><a href="pricing.html">Pricing</a></li>
+                    <li><a href="index.html#methodology">The 10 R's Methodology</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-links">
+                <h3>Tech Features</h3>
+                <ul>
+                    <li><a href="3d-visualizer.html">3D Event Visualizer</a></li>
+                    <li><a href="ai-planner.html">AI Package Recommender</a></li>
+                    <li><a href="vendor-marketplace.html">Vendor Marketplace</a></li>
+                    <li><a href="dashboard.html">Client Dashboard</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-links">
+                <h3>Contact</h3>
+                <ul>
+                    <li><a href="tel:+255789456123">+255 789 456 123</a></li>
+                    <li><a href="mailto:info@eventplannerstanzania.co.tz">info@eventplannerstanzania.co.tz</a></li>
+                    <li><a href="booking.html">Contact Form</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2023 Event Planners Tanzania. All Rights Reserved. | Website: eventplannerstanzania.co.tz</p>
+        </div>
+    </footer>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        // Filter functions
+        function filterByCategory(category) {
+            alert(`Filtering by ${category} vendors...`);
+            // In real implementation, this would filter the vendor list
+        }
+        
+        function bookVendor(vendorName) {
+            alert(`Booking request sent to ${vendorName}. They will contact you within 24 hours.`);
+        }
+        
+        function applyAsVendor() {
+            alert('Redirecting to vendor application form...');
+            // In real implementation, this would open a form
+        }
+        
+        // Set current year
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelector('.footer-bottom p').innerHTML = 
+                document.querySelector('.footer-bottom p').innerHTML.replace('2023', new Date().getFullYear());
+            
+            // Add vendor card animations
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            document.querySelectorAll('.vendor-card').forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>
