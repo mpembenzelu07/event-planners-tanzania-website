@@ -3,1417 +3,972 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-translate="page_title">Our Services - Where Dreams Meet Perfection | Event Planners Tanzania</title>
+    <title>Our Services | Event Planners Tanzania</title>
     <style>
-        /* CSS INCLUDED DIRECTLY IN SERVICES PAGE */
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial', sans-serif; }
-        body { background: #f8f9fa; color: #333; line-height: 1.6; overflow-x: hidden; }
-        .container { width: 90%; max-width: 1200px; margin: 0 auto; padding: 0 15px; }
+        /* === SERVICES PAGE STYLES === */
+        :root {
+            --gold: #D4AF37;
+            --gold-glow: rgba(212, 175, 55, 0.3);
+            --deep-red: #C41E3A;
+            --rich-red: #9a162d;
+            --midnight: #0A0A0F;
+            --charcoal: #1A1A1F;
+            --ivory: #FFFDF5;
+            --light-gold: #F5E8C8;
+            --service-purple: #8A2BE2;
+            --service-teal: #20B2AA;
+            --transition-slow: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            --transition-medium: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            --shadow-service: 0 0 40px rgba(138, 43, 226, 0.2);
+        }
         
-        /* Language Switcher */
-        .language-switcher {
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, #0a0a0f 0%, #0f0a1a 100%);
+            color: var(--ivory);
+            min-height: 100vh;
+        }
+        
+        /* === HEADER === */
+        .magical-header {
             position: fixed;
-            top: 100px;
-            right: 0;
-            z-index: 1001;
-            display: flex;
-            flex-direction: column;
-            background: white;
-            border-radius: 10px 0 0 10px;
-            box-shadow: -5px 5px 20px rgba(0,0,0,0.15);
-            overflow: hidden;
-            transform: translateX(100%);
-            transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        }
-        
-        .language-switcher.active {
-            transform: translateX(0);
-        }
-        
-        .lang-tab {
-            position: absolute;
-            left: -40px;
-            top: 20px;
-            background: #e74c3c;
-            color: white;
-            padding: 10px 15px;
-            border-radius: 10px 0 0 10px;
-            cursor: pointer;
-            font-weight: 700;
-            transform: rotate(-90deg);
-            transform-origin: right center;
-            white-space: nowrap;
-            box-shadow: -3px 3px 10px rgba(231,76,60,0.3);
-        }
-        
-        .lang-buttons {
-            padding: 15px;
-        }
-        
-        .lang-btn {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 12px 20px;
-            border: none;
-            background: #f8f9fa;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            width: 100%;
-            margin-bottom: 10px;
-            text-align: left;
-        }
-        
-        .lang-btn.active {
-            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
-            color: white;
-            box-shadow: 0 5px 15px rgba(231,76,60,0.3);
-        }
-        
-        .lang-flag {
-            font-size: 1.2rem;
-        }
-        
-        /* Header */
-        header { 
-            background: rgba(255,255,255,0.98); 
-            backdrop-filter: blur(15px);
-            box-shadow: 0 8px 40px rgba(0,0,0,0.08); 
-            position: fixed; 
-            width: 100%; 
-            top: 0; 
-            z-index: 1000; 
-        }
-        
-        header .container { 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            padding: 20px 15px; 
-        }
-        
-        .logo h1 { 
-            color: #2c3e50; 
-            font-size: 1.8rem; 
-        }
-        
-        .logo span { 
-            color: #e74c3c; 
-        }
-        
-        .logo .tagline { 
-            color: #e74c3c; 
-            font-size: 0.9rem; 
-            font-weight: 600; 
-            margin-top: 5px;
-        }
-        
-        nav ul { 
-            display: flex; 
-            list-style: none; 
-        }
-        
-        nav ul li { 
-            margin-left: 35px; 
-        }
-        
-        nav ul li a { 
-            text-decoration: none; 
-            color: #2c3e50; 
-            font-weight: 600; 
-            padding: 8px 0; 
-            position: relative; 
-            transition: all 0.3s ease;
-        }
-        
-        nav ul li a.active { 
-            color: #e74c3c; 
-        }
-        
-        nav ul li a.active::after { 
-            content: ''; 
-            position: absolute; 
-            bottom: 0; 
-            left: 0; 
-            width: 100%; 
-            height: 3px; 
-            background: linear-gradient(90deg, #e74c3c 0%, #3498db 100%);
-            border-radius: 3px;
-        }
-        
-        /* Page Header */
-        .page-header { 
-            background: linear-gradient(rgba(231,76,60,0.92), rgba(231,76,60,0.85)), 
-                      url('https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=1770&q=80');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            color: white;
-            text-align: center;
-            padding: 200px 20px 120px;
-            margin-top: 80px;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .page-header::before {
-            content: '';
-            position: absolute;
             top: 0;
             left: 0;
-            right: 0;
-            height: 5px;
-            background: linear-gradient(90deg, #2c3e50, #f1c40f, #3498db);
-            background-size: 300% 100%;
-            animation: gradientFlow 8s infinite linear;
+            width: 100%;
+            z-index: 10000;
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            transition: var(--transition-slow);
         }
         
-        @keyframes gradientFlow {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        
-        .page-header h1 { 
-            font-size: 3.5rem; 
-            margin-bottom: 20px; 
-            animation: fadeInUp 1s ease-out;
-        }
-        
-        .page-header p { 
-            font-size: 1.4rem; 
-            opacity: 0.9; 
-            max-width: 700px;
+        .header-container {
+            max-width: 1400px;
             margin: 0 auto;
-            animation: fadeInUp 1s 0.3s both;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100px;
         }
         
-        /* Emotional Hook */
-        .services-hook {
-            padding: 80px 0;
-            background: #fff;
-            text-align: center;
+        .logo-magic {
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
         
-        .hook-text {
-            font-size: 1.8rem;
-            color: #2c3e50;
-            font-style: italic;
-            max-width: 900px;
-            margin: 0 auto 40px;
-            line-height: 1.6;
+        .logo-orb {
+            width: 50px;
+            height: 50px;
+            background: radial-gradient(circle at 30% 30%, var(--gold), var(--deep-red));
+            border-radius: 50%;
             position: relative;
-            padding: 40px;
+            animation: orbPulse 4s ease-in-out infinite;
         }
         
-        .hook-text::before {
-            content: '"';
-            font-size: 8rem;
-            color: rgba(231,76,60,0.1);
-            position: absolute;
-            top: -30px;
-            left: 20px;
-            font-family: serif;
+        @keyframes orbPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
         }
         
-        /* Service Categories */
-        .service-categories {
-            padding: 80px 0;
-            background: #f8f9fa;
+        .logo-text {
+            font-family: 'Georgia', serif;
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(45deg, var(--gold), var(--ivory));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
         
-        .category-nav {
+        .magic-nav {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .magic-nav a {
+            color: var(--light-gold);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            padding: 10px 0;
+            position: relative;
+            transition: var(--transition-medium);
+        }
+        
+        .magic-nav a:hover {
+            color: var(--gold);
+        }
+        
+        .magic-nav a.active {
+            color: var(--service-purple);
+        }
+        
+        /* === SERVICES HERO === */
+        .services-hero {
+            padding: 180px 40px 80px;
+            text-align: center;
+            background: radial-gradient(circle at center, rgba(138, 43, 226, 0.1) 0%, transparent 70%);
+        }
+        
+        .services-hero h1 {
+            font-size: 4rem;
+            background: linear-gradient(45deg, var(--service-purple), var(--service-teal));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 20px;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: var(--light-gold);
+            max-width: 800px;
+            margin: 0 auto 40px;
+        }
+        
+        /* === SERVICES NAVIGATION === */
+        .services-nav {
+            max-width: 1400px;
+            margin: 0 auto 60px;
+            padding: 0 40px;
+        }
+        
+        .nav-container {
+            background: rgba(26, 26, 31, 0.8);
+            border: 1px solid rgba(138, 43, 226, 0.2);
+            border-radius: 15px;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .nav-tabs {
             display: flex;
             justify-content: center;
+            gap: 20px;
             flex-wrap: wrap;
-            gap: 15px;
+        }
+        
+        .nav-tab {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(138, 43, 226, 0.3);
+            color: var(--light-gold);
+            padding: 15px 30px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition-medium);
+            font-weight: 600;
+            font-size: 15px;
+        }
+        
+        .nav-tab:hover,
+        .nav-tab.active {
+            background: linear-gradient(135deg, var(--service-purple), var(--service-teal));
+            color: var(--ivory);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(138, 43, 226, 0.3);
+        }
+        
+        /* === SERVICES CONTENT === */
+        .services-content {
+            max-width: 1400px;
+            margin: 0 auto 120px;
+            padding: 0 40px;
+        }
+        
+        .service-section {
+            display: none;
+            animation: fadeIn 0.8s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .service-section.active {
+            display: block;
+        }
+        
+        .section-header {
+            text-align: center;
             margin-bottom: 60px;
         }
         
-        .category-btn {
-            padding: 15px 30px;
-            background: #f8f9fa;
-            border: 2px solid #e9ecef;
-            border-radius: 50px;
-            font-weight: 600;
-            color: #2c3e50;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 1rem;
+        .section-header h2 {
+            font-size: 3rem;
+            color: var(--ivory);
+            margin-bottom: 20px;
         }
         
-        .category-btn.active {
-            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
-            color: white;
-            border-color: #e74c3c;
-            box-shadow: 0 10px 25px rgba(231,76,60,0.2);
-            transform: translateY(-3px);
+        .section-icon {
+            font-size: 4rem;
+            color: var(--service-purple);
+            margin-bottom: 30px;
         }
         
-        /* Service Grid */
-        .service-grid {
+        .section-description {
+            color: rgba(255, 253, 245, 0.8);
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+        
+        /* === SERVICE FEATURES === */
+        .service-features {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
         }
         
-        .service-card {
-            background: #fff;
-            border-radius: 25px;
-            overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            opacity: 1;
-            transform: translateY(0);
-            animation: fadeInUp 0.6s ease-out;
-        }
-        
-        .service-card.hidden {
-            opacity: 0;
-            transform: translateY(20px);
-            display: none;
-        }
-        
-        .service-card:hover {
-            transform: translateY(-20px) scale(1.02);
-            box-shadow: 0 30px 60px rgba(0,0,0,0.15);
-        }
-        
-        .service-image {
-            height: 250px;
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .service-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        
-        .service-card:hover .service-image img {
-            transform: scale(1.1);
-        }
-        
-        .service-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.7) 100%);
-            display: flex;
-            align-items: flex-end;
-            padding: 30px;
-        }
-        
-        .service-icon {
-            width: 70px;
-            height: 70px;
-            background: #e74c3c;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            color: white;
-            margin-bottom: 20px;
-        }
-        
-        .service-content {
+        .feature-card {
+            background: rgba(26, 26, 31, 0.7);
+            border: 1px solid rgba(138, 43, 226, 0.1);
+            border-radius: 15px;
             padding: 40px;
+            transition: var(--transition-medium);
         }
         
-        .service-content h3 {
-            color: #2c3e50;
-            font-size: 1.8rem;
-            margin-bottom: 20px;
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--service-purple);
+            box-shadow: var(--shadow-service);
         }
         
-        .service-content p {
-            color: #666;
-            line-height: 1.7;
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--service-teal);
             margin-bottom: 25px;
         }
         
-        .service-features {
-            list-style: none;
-            margin: 25px 0;
-        }
-        
-        .service-features li {
-            padding: 10px 0;
-            padding-left: 30px;
-            position: relative;
-            color: #666;
-        }
-        
-        .service-features li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: #2ecc71;
-            font-weight: bold;
-        }
-        
-        /* Process Section */
-        .process-section {
-            padding: 100px 0;
-            background: linear-gradient(135deg, #2c3e50 0%, #1a252f 100%);
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .process-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23e74c3c' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
-            animation: backgroundFloat 60s linear infinite;
-        }
-        
-        @keyframes backgroundFloat {
-            from { transform: translate(0, 0); }
-            to { transform: translate(-100px, -100px); }
-        }
-        
-        .process-steps {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 80px;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .process-steps::before {
-            content: '';
-            position: absolute;
-            top: 40px;
-            left: 50px;
-            right: 50px;
-            height: 3px;
-            background: rgba(255,255,255,0.2);
-            z-index: 1;
-        }
-        
-        .process-step {
-            text-align: center;
-            position: relative;
-            z-index: 2;
-            flex: 1;
-        }
-        
-        .step-number {
-            width: 80px;
-            height: 80px;
-            background: #e74c3c;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            font-weight: 900;
-            margin: 0 auto 30px;
-            box-shadow: 0 10px 30px rgba(231,76,60,0.3);
-        }
-        
-        .step-content h4 {
+        .feature-title {
             font-size: 1.5rem;
+            color: var(--ivory);
             margin-bottom: 15px;
-            color: #f1c40f;
         }
         
-        .step-content p {
-            opacity: 0.9;
+        .feature-description {
+            color: rgba(255, 253, 245, 0.7);
             line-height: 1.6;
         }
         
-        /* Why Choose Us */
-        .why-choose {
-            padding: 120px 0;
-            background: #fff;
+        /* === PROCESS STEPS === */
+        .process-steps {
+            max-width: 1000px;
+            margin: 0 auto 60px;
         }
         
-        .why-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
+        .step {
+            display: flex;
+            align-items: center;
+            margin-bottom: 40px;
+            background: rgba(26, 26, 31, 0.5);
+            border-radius: 15px;
+            padding: 40px;
+            position: relative;
+        }
+        
+        .step-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--service-purple);
+            min-width: 80px;
+        }
+        
+        .step-content {
+            flex: 1;
+        }
+        
+        .step-title {
+            font-size: 1.8rem;
+            color: var(--ivory);
+            margin-bottom: 15px;
+        }
+        
+        .step-description {
+            color: rgba(255, 253, 245, 0.8);
+            line-height: 1.6;
+        }
+        
+        /* === SERVICE PACKAGES === */
+        .service-packages {
+            background: rgba(26, 26, 31, 0.5);
+            border-radius: 20px;
+            padding: 60px;
             margin-top: 60px;
         }
         
-        .why-card {
+        .packages-header {
             text-align: center;
-            padding: 40px 30px;
-            border-radius: 20px;
-            background: #f8f9fa;
-            transition: all 0.3s ease;
+            margin-bottom: 50px;
         }
         
-        .why-card:hover {
-            background: white;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.1);
-            transform: translateY(-10px);
+        .packages-header h3 {
+            font-size: 2.5rem;
+            color: var(--ivory);
+            margin-bottom: 20px;
         }
         
-        .why-icon {
-            font-size: 3.5rem;
-            margin-bottom: 25px;
-            color: #e74c3c;
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
         }
         
-        .why-card h3 {
-            font-size: 1.6rem;
-            color: #2c3e50;
-            margin-bottom: 15px;
-        }
-        
-        /* CTA Section */
-        .service-cta {
-            padding: 100px 0;
-            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
-            color: white;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .service-cta::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
-            background-size: 60px 60px;
-            animation: float 25s linear infinite;
-        }
-        
-        @keyframes float {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        .service-cta h2 {
-            font-size: 2.8rem;
-            margin-bottom: 30px;
-            position: relative;
-            z-index: 2;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-        }
-        
-        .service-cta p {
-            font-size: 1.4rem;
-            margin-bottom: 40px;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-            opacity: 0.95;
-            position: relative;
-            z-index: 2;
-            line-height: 1.7;
-        }
-        
-        .contact-info {
-            background: rgba(255,255,255,0.15);
-            padding: 30px;
+        .package-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(138, 43, 226, 0.2);
             border-radius: 15px;
-            margin: 40px 0;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.2);
-            position: relative;
-            z-index: 2;
+            padding: 40px;
+            text-align: center;
         }
         
-        .contact-info p {
-            font-size: 1.2rem;
-            margin-bottom: 15px;
-        }
-        
-        .phone-numbers {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 20px;
-            font-size: 1.3rem;
-            font-weight: 600;
-        }
-        
-        .btn-primary {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            background: #2c3e50;
-            color: white;
-            padding: 18px 45px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1.1rem;
-            transition: all 0.4s ease;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-            position: relative;
-            z-index: 2;
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-8px) scale(1.05);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
-        }
-        
-        /* Footer */
-        footer { 
-            background: linear-gradient(135deg, #1a252f 0%, #0d1218 100%);
-            color: #ecf0f1; 
-            padding: 80px 0 30px; 
-            position: relative;
-        }
-        
-        footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #e74c3c, #f1c40f, #3498db);
-        }
-        
-        .footer-content { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-            gap: 50px; 
-            margin-bottom: 50px; 
-            position: relative;
-            z-index: 1;
-        }
-        
-        .footer-column h3 {
-            color: #f1c40f;
-            margin-bottom: 30px;
+        .package-name {
             font-size: 1.5rem;
-            position: relative;
-            padding-bottom: 15px;
+            color: var(--service-teal);
+            margin-bottom: 20px;
         }
         
-        .footer-column h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 60px;
-            height: 3px;
-            background: #e74c3c;
+        .package-price {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--gold);
+            margin-bottom: 30px;
         }
         
-        .footer-column p {
-            margin-bottom: 10px;
-            opacity: 0.9;
+        .package-features {
+            text-align: left;
+            margin-bottom: 30px;
         }
         
-        .footer-bottom { 
-            text-align: center; 
-            padding-top: 40px; 
-            border-top: 1px solid rgba(255,255,255,0.1); 
-            font-size: 0.9rem;
-            opacity: 0.8;
-            position: relative;
-            z-index: 1;
+        .package-features li {
+            margin-bottom: 15px;
+            color: rgba(255, 253, 245, 0.8);
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
         
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .package-features li i {
+            color: var(--service-purple);
         }
         
-        /* Responsive */
-        @media (max-width: 1100px) {
-            .process-steps {
-                flex-direction: column;
-                gap: 60px;
+        /* === CTA SECTION === */
+        .cta-section {
+            max-width: 1200px;
+            margin: 0 auto 120px;
+            padding: 0 40px;
+        }
+        
+        .cta-container {
+            background: linear-gradient(135deg, rgba(138, 43, 226, 0.1), rgba(32, 178, 170, 0.1));
+            border: 1px solid rgba(138, 43, 226, 0.3);
+            border-radius: 20px;
+            padding: 80px 60px;
+            text-align: center;
+        }
+        
+        .cta-container h3 {
+            font-size: 2.5rem;
+            color: var(--ivory);
+            margin-bottom: 30px;
+        }
+        
+        .cta-container p {
+            color: rgba(255, 253, 245, 0.8);
+            max-width: 700px;
+            margin: 0 auto 50px;
+            font-size: 1.2rem;
+        }
+        
+        .btn-cta {
+            background: linear-gradient(135deg, var(--service-purple), var(--service-teal));
+            color: var(--ivory);
+            border: none;
+            padding: 20px 60px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-medium);
+        }
+        
+        .btn-cta:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(138, 43, 226, 0.3);
+        }
+        
+        /* === RESPONSIVE === */
+        @media (max-width: 992px) {
+            .service-features,
+            .packages-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
             
-            .process-steps::before {
-                display: none;
+            .step {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .step-number {
+                margin-bottom: 20px;
             }
         }
         
         @media (max-width: 768px) {
-            .page-header h1 { font-size: 2.5rem; }
-            .page-header p { font-size: 1.2rem; }
-            .hook-text { font-size: 1.4rem; padding: 20px; }
-            .hook-text::before { font-size: 5rem; top: -15px; }
-            .service-grid { grid-template-columns: 1fr; }
-            .category-nav { flex-direction: column; align-items: center; }
-            .category-btn { width: 100%; max-width: 300px; }
-            .phone-numbers { flex-direction: column; gap: 10px; }
-            .service-cta h2 { font-size: 2.2rem; }
-            .service-cta p { font-size: 1.2rem; }
-            .why-grid { grid-template-columns: 1fr; }
+            .services-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .header-container {
+                padding: 0 20px;
+                height: 80px;
+            }
+            
+            .magic-nav {
+                display: none;
+            }
+            
+            .service-features,
+            .packages-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .service-packages {
+                padding: 40px 20px;
+            }
+            
+            .cta-container {
+                padding: 40px 20px;
+            }
+        }
+        
+        /* === FOOTER === */
+        .footer-magic {
+            background: rgba(10, 10, 15, 0.95);
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+            padding: 80px 40px 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 50px;
+            max-width: 1400px;
+            margin: 0 auto 50px;
+        }
+        
+        .footer-logo-section .logo-text {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-description {
+            color: rgba(255, 253, 245, 0.7);
+        }
+        
+        .footer-links h3 {
+            color: var(--gold);
+            font-size: 18px;
+            margin-bottom: 25px;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 253, 245, 0.7);
+            text-decoration: none;
+            transition: var(--transition-medium);
+        }
+        
+        .footer-links a:hover {
+            color: var(--gold);
+            padding-left: 5px;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+            color: rgba(255, 253, 245, 0.5);
+            font-size: 14px;
         }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- Language Switcher -->
-    <div class="language-switcher" id="languageSwitcher">
-        <div class="lang-tab" id="langTab">
-            <i class="fas fa-globe"></i>
-        </div>
-        <div class="lang-buttons">
-            <button class="lang-btn active" data-lang="en">
-                <span class="lang-flag">🇬🇧</span>
-                <span data-translate="lang_en">English</span>
-            </button>
-            <button class="lang-btn" data-lang="sw">
-                <span class="lang-flag">🇹🇿</span>
-                <span data-translate="lang_sw">Kiswahili</span>
-            </button>
-        </div>
-    </div>
-
-    <header>
-        <div class="container">
-            <div class="logo">
-                <h1 data-translate="company_name">Event Planners <span>Tanzania</span></h1>
-                <p class="tagline" data-translate="tagline">Creating Moments That Live Forever</p>
+    <!-- Header -->
+    <header class="magical-header">
+        <div class="header-container">
+            <div class="logo-magic">
+                <div class="logo-orb"></div>
+                <div class="logo-text">Event Planners Tanzania</div>
             </div>
-            <nav>
-                <ul>
-                    <li><a href="index.html" data-translate="nav_home">Home</a></li>
-                    <li><a href="about.html" data-translate="nav_about">About</a></li>
-                    <li><a href="services.html" class="active" data-translate="nav_services">Services</a></li>
-                    <li><a href="portfolio.html" data-translate="nav_portfolio">Portfolio</a></li>
-                    <li><a href="packages.html" data-translate="nav_packages">Packages</a></li>
-                    <li><a href="contact.html" data-translate="nav_contact">Contact</a></li>
-                </ul>
+            
+            <nav class="magic-nav">
+                <a href="index.html">Home</a>
+                <a href="services.html" class="active">Services</a>
+                <a href="portfolio.html">Portfolio</a>
+                <a href="pricing.html">Pricing</a>
+                <a href="booking.html">Booking</a>
+                <a href="ai-planner.html">AI Planner</a>
+                <a href="3d-visualizer.html">3D Visualizer</a>
+                <a href="vendor-marketplace.html">Vendors</a>
             </nav>
         </div>
     </header>
 
-    <section class="page-header">
-        <h1 data-translate="page_title">Where Your Dreams Meet Our Expertise</h1>
-        <p data-translate="page_subtitle">Every service we offer is crafted with one goal: to create moments you'll cherish forever</p>
-    </section>
-
-    <section class="services-hook">
-        <div class="container">
-            <p class="hook-text" data-translate="hook_text">
-                "Imagine walking into your perfectly planned event, where every detail tells your story, every moment captures your essence, and every guest feels the magic you envisioned. That's not just an event—it's a memory being born."
-            </p>
+    <!-- Services Hero -->
+    <section class="services-hero">
+        <h1>Our Legendary Event Services</h1>
+        <div class="hero-subtitle">
+            From intimate gatherings to grand celebrations, we craft unforgettable experiences 
+            with meticulous attention to detail and creative excellence.
         </div>
     </section>
 
-    <section class="service-categories">
-        <div class="container">
-            <div class="category-nav">
-                <button class="category-btn active" data-category="all" data-translate="category_all">All Services</button>
-                <button class="category-btn" data-category="wedding" data-translate="category_wedding">Weddings</button>
-                <button class="category-btn" data-category="corporate" data-translate="category_corporate">Corporate</button>
-                <button class="category-btn" data-category="private" data-translate="category_private">Private Events</button>
-                <button class="category-btn" data-category="specialized" data-translate="category_specialized">Specialized</button>
+    <!-- Services Navigation -->
+    <section class="services-nav">
+        <div class="nav-container">
+            <div class="nav-tabs">
+                <div class="nav-tab active" onclick="showService('weddings')">
+                    <i class="fas fa-heart"></i> Weddings
+                </div>
+                <div class="nav-tab" onclick="showService('corporate')">
+                    <i class="fas fa-briefcase"></i> Corporate Events
+                </div>
+                <div class="nav-tab" onclick="showService('private')">
+                    <i class="fas fa-champagne-glasses"></i> Private Celebrations
+                </div>
+                <div class="nav-tab" onclick="showService('cultural')">
+                    <i class="fas fa-globe-africa"></i> Cultural Events
+                </div>
+                <div class="nav-tab" onclick="showService('destination')">
+                    <i class="fas fa-umbrella-beach"></i> Destination Events
+                </div>
+                <div class="nav-tab" onclick="showService('full')">
+                    <i class="fas fa-star"></i> Full Planning
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Content -->
+    <section class="services-content">
+        <!-- Weddings Service -->
+        <div class="service-section active" id="weddings">
+            <div class="section-header">
+                <div class="section-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <h2>Wedding Planning & Design</h2>
+                <p class="section-description">
+                    Transform your wedding day into a fairytale experience. We handle every detail 
+                    from venue selection to the final dance, ensuring your special day is everything 
+                    you've dreamed of and more.
+                </p>
             </div>
             
-            <div class="service-grid">
-                <!-- Wedding Services -->
-                <div class="service-card" data-category="wedding">
-                    <div class="service-image">
-                        <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-4.0.3&auto=format&fit=crop&w=1770&q=80" alt="Wedding Planning">
-                        <div class="service-overlay">
-                            <div class="service-icon">💍</div>
-                        </div>
+            <div class="service-features">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-ring"></i>
                     </div>
-                    <div class="service-content">
-                        <h3 data-translate="service_wedding_title">Complete Wedding Planning</h3>
-                        <p data-translate="service_wedding_desc">From the first "yes" to the final dance, we handle every detail of your dream wedding with love and precision.</p>
-                        <ul class="service-features">
-                            <li data-translate="wedding_feature_1">Venue selection & booking</li>
-                            <li data-translate="wedding_feature_2">Vendor coordination</li>
-                            <li data-translate="wedding_feature_3">Theme & decor design</li>
-                            <li data-translate="wedding_feature_4">Day-of coordination</li>
-                            <li data-translate="wedding_feature_5">Guest management</li>
-                        </ul>
-                    </div>
+                    <h3 class="feature-title">Ceremony Design</h3>
+                    <p class="feature-description">
+                        Custom ceremony setups including traditional Tanzanian elements, 
+                        religious ceremonies, and personalized vows.
+                    </p>
                 </div>
                 
-                <!-- Corporate Services -->
-                <div class="service-card" data-category="corporate">
-                    <div class="service-image">
-                        <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=1770&q=80" alt="Corporate Events">
-                        <div class="service-overlay">
-                            <div class="service-icon">💼</div>
-                        </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-camera"></i>
                     </div>
-                    <div class="service-content">
-                        <h3 data-translate="service_corporate_title">Corporate Events & Conferences</h3>
-                        <p data-translate="service_corporate_desc">Professional event management that impresses clients, engages employees, and achieves business objectives.</p>
-                        <ul class="service-features">
-                            <li data-translate="corporate_feature_1">Conference planning</li>
-                            <li data-translate="corporate_feature_2">Product launches</li>
-                            <li data-translate="corporate_feature_3">Team building</li>
-                            <li data-translate="corporate_feature_4">Corporate gala dinners</li>
-                            <li data-translate="corporate_feature_5">Exhibition management</li>
-                        </ul>
-                    </div>
+                    <h3 class="feature-title">Photography & Video</h3>
+                    <p class="feature-description">
+                        Professional photography and videography teams to capture every 
+                        precious moment of your special day.
+                    </p>
                 </div>
                 
-                <!-- Private Events -->
-                <div class="service-card" data-category="private">
-                    <div class="service-image">
-                        <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1770&q=80" alt="Private Events">
-                        <div class="service-overlay">
-                            <div class="service-icon">🎉</div>
-                        </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-utensils"></i>
                     </div>
-                    <div class="service-content">
-                        <h3 data-translate="service_private_title">Private Celebrations</h3>
-                        <p data-translate="service_private_desc">Transform your special moments into unforgettable celebrations that reflect your unique personality.</p>
-                        <ul class="service-features">
-                            <li data-translate="private_feature_1">Birthday parties</li>
-                            <li data-translate="private_feature_2">Anniversary celebrations</li>
-                            <li data-translate="private_feature_3">Graduation parties</li>
-                            <li data-translate="private_feature_4">Baby showers</li>
-                            <li data-translate="private_feature_5">Family reunions</li>
-                        </ul>
-                    </div>
+                    <h3 class="feature-title">Catering Management</h3>
+                    <p class="feature-description">
+                        Gourmet catering with Tanzanian and international cuisine options, 
+                        dietary accommodations, and beverage services.
+                    </p>
                 </div>
                 
-                <!-- Specialized Services -->
-                <div class="service-card" data-category="specialized">
-                    <div class="service-image">
-                        <img src="https://images.unsplash.com/photo-1492684223066-dd23140edf6d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1770&q=80" alt="Event Marketing">
-                        <div class="service-overlay">
-                            <div class="service-icon">📢</div>
-                        </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-music"></i>
                     </div>
-                    <div class="service-content">
-                        <h3 data-translate="service_marketing_title">Event Marketing & Management</h3>
-                        <p data-translate="service_marketing_desc">Comprehensive event promotion and management to ensure maximum attendance and impact.</p>
-                        <ul class="service-features">
-                            <li data-translate="marketing_feature_1">Event promotion</li>
-                            <li data-translate="marketing_feature_2">Ticket sales management</li>
-                            <li data-translate="marketing_feature_3">Sponsorship coordination</li>
-                            <li data-translate="marketing_feature_4">Media relations</li>
-                            <li data-translate="marketing_feature_5">Post-event analysis</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <!-- Logistics Services -->
-                <div class="service-card" data-category="specialized">
-                    <div class="service-image">
-                        <img src="https://images.unsplash.com/photo-1464366400600-716db5d4d949?ixlib=rb-4.0.3&auto=format&fit=crop&w=1770&q=80" alt="Logistics">
-                        <div class="service-overlay">
-                            <div class="service-icon">🚌</div>
-                        </div>
-                    </div>
-                    <div class="service-content">
-                        <h3 data-translate="service_logistics_title">Guest Logistics Planning</h3>
-                        <p data-translate="service_logistics_desc">Seamless transportation, accommodation, and guest management for stress-free events.</p>
-                        <ul class="service-features">
-                            <li data-translate="logistics_feature_1">Transportation arrangements</li>
-                            <li data-translate="logistics_feature_2">Accommodation booking</li>
-                            <li data-translate="logistics_feature_3">Airport transfers</li>
-                            <li data-translate="logistics_feature_4">Guest registration</li>
-                            <li data-translate="logistics_feature_5">VIP handling</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <!-- Venue Services -->
-                <div class="service-card" data-category="specialized">
-                    <div class="service-image">
-                        <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1770&q=80" alt="Venue Selection">
-                        <div class="service-overlay">
-                            <div class="service-icon">🏨</div>
-                        </div>
-                    </div>
-                    <div class="service-content">
-                        <h3 data-translate="service_venue_title">Venue Selection & Management</h3>
-                        <p data-translate="service_venue_desc">Finding and managing the perfect venue that matches your vision, budget, and requirements.</p>
-                        <ul class="service-features">
-                            <li data-translate="venue_feature_1">Venue sourcing</li>
-                            <li data-translate="venue_feature_2">Contract negotiation</li>
-                            <li data-translate="venue_feature_3">Layout planning</li>
-                            <li data-translate="venue_feature_4">Technical requirements</li>
-                            <li data-translate="venue_feature_5">Venue decoration</li>
-                        </ul>
-                    </div>
+                    <h3 class="feature-title">Entertainment</h3>
+                    <p class="feature-description">
+                        Live bands, DJs, traditional Tanzanian dancers, and cultural 
+                        performances tailored to your preferences.
+                    </p>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <section class="process-section">
-        <div class="container">
-            <h2 style="text-align: center; font-size: 2.8rem; margin-bottom: 20px;" data-translate="process_title">Our 5-Step Perfection Process</h2>
-            <p style="text-align: center; font-size: 1.3rem; opacity: 0.9; max-width: 700px; margin: 0 auto 60px;" data-translate="process_subtitle">
-                The journey from your vision to a perfect reality, handled with care at every step
-            </p>
             
             <div class="process-steps">
-                <div class="process-step">
-                    <div class="step-number">1</div>
+                <div class="step">
+                    <div class="step-number">01</div>
                     <div class="step-content">
-                        <h4 data-translate="step_1_title">Dream Discovery</h4>
-                        <p data-translate="step_1_text">We listen deeply to understand your vision, desires, and the emotions you want to create.</p>
+                        <h3 class="step-title">Initial Consultation</h3>
+                        <p class="step-description">
+                            We meet to understand your vision, preferences, budget, and 
+                            cultural traditions to create a personalized wedding plan.
+                        </p>
                     </div>
                 </div>
                 
-                <div class="process-step">
-                    <div class="step-number">2</div>
+                <div class="step">
+                    <div class="step-number">02</div>
                     <div class="step-content">
-                        <h4 data-translate="step_2_title">Creative Design</h4>
-                        <p data-translate="step_2_text">Our team crafts a unique concept that brings your vision to life with creativity and innovation.</p>
+                        <h3 class="step-title">Design & Planning</h3>
+                        <p class="step-description">
+                            Our design team creates mood boards, color schemes, and 
+                            decor concepts tailored to your vision.
+                        </p>
                     </div>
                 </div>
                 
-                <div class="process-step">
-                    <div class="step-number">3</div>
+                <div class="step">
+                    <div class="step-number">03</div>
                     <div class="step-content">
-                        <h4 data-translate="step_3_title">Precision Planning</h4>
-                        <p data-translate="step_3_text">Every detail is meticulously planned, scheduled, and prepared for flawless execution.</p>
-                    </div>
-                </div>
-                
-                <div class="process-step">
-                    <div class="step-number">4</div>
-                    <div class="step-content">
-                        <h4 data-translate="step_4_title">Perfect Execution</h4>
-                        <p data-translate="step_4_text">On the day, our team ensures everything runs smoothly while you enjoy every moment.</p>
-                    </div>
-                </div>
-                
-                <div class="process-step">
-                    <div class="step-number">5</div>
-                    <div class="step-content">
-                        <h4 data-translate="step_5_title">Lasting Memories</h4>
-                        <p data-translate="step_5_text">We capture the magic and ensure the memories last long after the event ends.</p>
+                        <h3 class="step-title">Vendor Coordination</h3>
+                        <p class="step-description">
+                            We coordinate with photographers, caterers, florists, and 
+                            entertainment to ensure seamless execution.
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-
-    <section class="why-choose">
-        <div class="container">
-            <h2 style="text-align: center; font-size: 2.8rem; margin-bottom: 20px; color: #2c3e50;" data-translate="why_title">Why Choose Our Services?</h2>
-            <p style="text-align: center; font-size: 1.3rem; color: #666; margin-bottom: 60px; max-width: 700px; margin-left: auto; margin-right: auto;" data-translate="why_subtitle">
-                We don't just plan events—we create experiences that become cherished memories
-            </p>
-            
-            <div class="why-grid">
-                <div class="why-card">
-                    <div class="why-icon">✨</div>
-                    <h3 data-translate="why_1_title">10 R's Guarantee</h3>
-                    <p data-translate="why_1_text">Our proven methodology ensures every event achieves Right Planning, Right Results, and Right Experience.</p>
+        
+        <!-- Corporate Events Service -->
+        <div class="service-section" id="corporate">
+            <div class="section-header">
+                <div class="section-icon">
+                    <i class="fas fa-briefcase"></i>
                 </div>
-                
-                <div class="why-card">
-                    <div class="why-icon">🎨</div>
-                    <h3 data-translate="why_2_title">Creative Excellence</h3>
-                    <p data-translate="why_2_text">Unique, innovative designs that make your event stand out and create the "wow" factor.</p>
-                </div>
-                
-                <div class="why-card">
-                    <div class="why-icon">⏱️</div>
-                    <h3 data-translate="why_3_title">Stress-Free Experience</h3>
-                    <p data-translate="why_3_text">We handle all the details so you can focus on enjoying your special moments without worry.</p>
-                </div>
-                
-                <div class="why-card">
-                    <div class="why-icon">🤝</div>
-                    <h3 data-translate="why_4_title">Trusted Partnerships</h3>
-                    <p data-translate="why_4_text">We work with the best vendors in Tanzania to ensure quality and reliability at every step.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="service-cta">
-        <div class="container">
-            <h2 data-translate="cta_title">Ready to Bring Your Vision to Life?</h2>
-            <p data-translate="cta_subtitle">
-                Every great event begins with a conversation. Let's discuss how we can create something extraordinary for you.
-            </p>
-            
-            <div class="contact-info">
-                <p data-translate="contact_text">Speak with our event specialists:</p>
-                <div class="phone-numbers">
-                    <span>📞 +255 655 600 000</span>
-                    <span>📞 +255 742 678 777</span>
-                    <span>📞 +255 755 775 077</span>
-                    <span>📞 +255 656 000 000</span>
-                </div>
+                <h2>Corporate Event Management</h2>
+                <p class="section-description">
+                    Professional event solutions for businesses. From product launches to 
+                    annual galas, we create impactful corporate experiences that achieve 
+                    your business objectives.
+                </p>
             </div>
             
-            <a href="contact.html" class="btn-primary">
-                <i class="fas fa-calendar-check"></i>
-                <span data-translate="cta_button">SCHEDULE YOUR CONSULTATION</span>
-            </a>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3 data-translate="footer_company">Event Planners Tanzania</h3>
-                    <p data-translate="footer_description">We create moments that live forever in hearts and memories across Tanzania.</p>
-                    <p><strong data-translate="footer_email_label">Email:</strong></p>
-                    <p>✉️ info@eventplannerstanzania.co.tz</p>
-                    <p>✉️ eventplannertanzania@gmail.com</p>
+            <div class="service-features">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="feature-title">Conferences & Seminars</h3>
+                    <p class="feature-description">
+                        Full-scale conference planning including venue selection, 
+                        speaker management, and attendee registration.
+                    </p>
                 </div>
-                <div class="footer-column">
-                    <h3 data-translate="footer_contact">Your Dream Starts Here</h3>
-                    <p data-translate="footer_location">📍 Dar es Salaam, Tanzania</p>
-                    <p>📞 +255 655 600 000</p>
-                    <p>📞 +255 742 678 777</p>
-                    <p>📞 +255 755 775 077</p>
-                    <p>📞 +255 656 000 000</p>
-                </div>
-                <div class="footer-column">
-                    <h3 data-translate="footer_ready">Ready to Begin?</h3>
-                    <p data-translate="footer_feature_1">• Free Initial Consultation</p>
-                    <p data-translate="footer_feature_2">• Custom Packages</p>
-                    <p data-translate="footer_feature_3">• 10 R's Guarantee</p>
-                    <a href="contact.html" style="display: inline-flex; align-items: center; gap: 10px; background: #e74c3c; color: white; padding: 15px 30px; border-radius: 8px; text-decoration: none; margin-top: 20px; font-weight: 600; transition: all 0.3s ease;">
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
                         <i class="fas fa-rocket"></i>
-                        <span data-translate="footer_button">Start Your Journey</span>
-                    </a>
+                    </div>
+                    <h3 class="feature-title">Product Launches</h3>
+                    <p class="feature-description">
+                        Strategic launch events that create buzz and generate media 
+                        coverage for your new products.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="feature-title">Team Building</h3>
+                    <p class="feature-description">
+                        Engaging team-building activities and retreats that foster 
+                        collaboration and boost morale.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <h3 class="feature-title">Award Ceremonies</h3>
+                    <p class="feature-description">
+                        Prestigious award ceremonies with elegant staging, 
+                        professional hosting, and entertainment.
+                    </p>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p data-translate="footer_copyright">© 2023 Event Planners Tanzania. All rights reserved. | Creating unforgettable experiences across Tanzania</p>
+        </div>
+        
+        <!-- Private Celebrations Service -->
+        <div class="service-section" id="private">
+            <div class="section-header">
+                <div class="section-icon">
+                    <i class="fas fa-champagne-glasses"></i>
+                </div>
+                <h2>Private Celebrations</h2>
+                <p class="section-description">
+                    Create cherished memories with perfectly planned private events. 
+                    From milestone birthdays to family reunions, we make every occasion special.
+                </p>
             </div>
+            
+            <div class="service-features">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-birthday-cake"></i>
+                    </div>
+                    <h3 class="feature-title">Birthday Parties</h3>
+                    <p class="feature-description">
+                        Themed birthday celebrations for all ages, from children's 
+                        parties to milestone adult birthdays.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <h3 class="feature-title">Anniversaries</h3>
+                    <p class="feature-description">
+                        Romantic anniversary celebrations, vow renewals, and 
+                        milestone commemorations.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-baby"></i>
+                    </div>
+                    <h3 class="feature-title">Baby Showers</h3>
+                    <p class="feature-description">
+                        Beautifully decorated baby showers with games, gifts, 
+                        and memorable photo opportunities.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3 class="feature-title">Graduation Parties</h3>
+                    <p class="feature-description">
+                        Celebrations for academic achievements with custom 
+                        decor and entertainment.
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Service Packages -->
+        <div class="service-packages">
+            <div class="packages-header">
+                <h3>Service Packages</h3>
+                <p style="color: rgba(255, 253, 245, 0.7);">Choose the level of service that fits your needs</p>
+            </div>
+            
+            <div class="packages-grid">
+                <div class="package-card">
+                    <h4 class="package-name">Day-of Coordination</h4>
+                    <div class="package-price">From TZS 1.5M</div>
+                    <ul class="package-features">
+                        <li><i class="fas fa-check"></i> Final venue walk-through</li>
+                        <li><i class="fas fa-check"></i> Vendor coordination on event day</li>
+                        <li><i class="fas fa-check"></i> Timeline management</li>
+                        <li><i class="fas fa-check"></i> On-site problem solving</li>
+                        <li><i class="fas fa-check"></i> 8 hours of coordination</li>
+                    </ul>
+                    <button class="btn-cta" style="padding: 12px 30px; font-size: 16px;" 
+                            onclick="selectPackage('Day-of Coordination')">
+                        Select Package
+                    </button>
+                </div>
+                
+                <div class="package-card">
+                    <h4 class="package-name">Partial Planning</h4>
+                    <div class="package-price">From TZS 3.5M</div>
+                    <ul class="package-features">
+                        <li><i class="fas fa-check"></i> All Day-of Coordination services</li>
+                        <li><i class="fas fa-check"></i> Vendor recommendations</li>
+                        <li><i class="fas fa-check"></i> Budget management</li>
+                        <li><i class="fas fa-check"></i> Design consultation</li>
+                        <li><i class="fas fa-check"></i> 3 planning meetings</li>
+                    </ul>
+                    <button class="btn-cta" style="padding: 12px 30px; font-size: 16px;" 
+                            onclick="selectPackage('Partial Planning')">
+                        Select Package
+                    </button>
+                </div>
+                
+                <div class="package-card">
+                    <h4 class="package-name">Full Planning</h4>
+                    <div class="package-price">From TZS 8.5M</div>
+                    <ul class="package-features">
+                        <li><i class="fas fa-check"></i> Complete event design</li>
+                        <li><i class="fas fa-check"></i> Full vendor management</li>
+                        <li><i class="fas fa-check"></i> Unlimited planning meetings</li>
+                        <li><i class="fas fa-check"></i> Budget creation & tracking</li>
+                        <li><i class="fas fa-check"></i> Timeline from start to finish</li>
+                    </ul>
+                    <button class="btn-cta" style="padding: 12px 30px; font-size: 16px;" 
+                            onclick="selectPackage('Full Planning')">
+                        Select Package
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-container">
+            <h3>Ready to Create Your Perfect Event?</h3>
+            <p>
+                Contact us today for a personalized consultation. Let's discuss your vision 
+                and create an event that will be remembered for years to come.
+            </p>
+            <button class="btn-cta" onclick="window.location.href='booking.html'">
+                <i class="fas fa-calendar-check" style="margin-right: 10px;"></i>
+                Book Your Consultation
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-magic">
+        <div class="footer-content">
+            <div class="footer-logo-section">
+                <div class="logo-text">Event Planners Tanzania</div>
+                <p class="footer-description">
+                    Creating unforgettable events across Tanzania since 2011. 
+                    We specialize in weddings, corporate events, and private celebrations.
+                </p>
+            </div>
+            
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="portfolio.html">Portfolio</a></li>
+                    <li><a href="pricing.html">Pricing</a></li>
+                    <li><a href="index.html#methodology">The 10 R's Methodology</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-links">
+                <h3>Tech Features</h3>
+                <ul>
+                    <li><a href="3d-visualizer.html">3D Event Visualizer</a></li>
+                    <li><a href="ai-planner.html">AI Package Recommender</a></li>
+                    <li><a href="vendor-marketplace.html">Vendor Marketplace</a></li>
+                    <li><a href="dashboard.html">Client Dashboard</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-links">
+                <h3>Contact</h3>
+                <ul>
+                    <li><a href="tel:+255789456123">+255 789 456 123</a></li>
+                    <li><a href="mailto:info@eventplannerstanzania.co.tz">info@eventplannerstanzania.co.tz</a></li>
+                    <li><a href="booking.html">Contact Form</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2023 Event Planners Tanzania. All Rights Reserved. | Website: eventplannerstanzania.co.tz</p>
         </div>
     </footer>
 
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <script>
-        // COMPLETE Translations for Services Page
-        const translations = {
-            en: {
-                lang_en: "English",
-                lang_sw: "Kiswahili",
-                company_name: "Event Planners Tanzania",
-                tagline: "Creating Moments That Live Forever",
-                nav_home: "Home",
-                nav_about: "About",
-                nav_services: "Services",
-                nav_portfolio: "Portfolio",
-                nav_packages: "Packages",
-                nav_contact: "Contact",
-                page_title: "Where Your Dreams Meet Our Expertise",
-                page_subtitle: "Every service we offer is crafted with one goal: to create moments you'll cherish forever",
-                hook_text: "\"Imagine walking into your perfectly planned event, where every detail tells your story, every moment captures your essence, and every guest feels the magic you envisioned. That's not just an event—it's a memory being born.\"",
-                category_all: "All Services",
-                category_wedding: "Weddings",
-                category_corporate: "Corporate",
-                category_private: "Private Events",
-                category_specialized: "Specialized",
-                service_wedding_title: "Complete Wedding Planning",
-                service_wedding_desc: "From the first 'yes' to the final dance, we handle every detail of your dream wedding with love and precision.",
-                wedding_feature_1: "Venue selection & booking",
-                wedding_feature_2: "Vendor coordination",
-                wedding_feature_3: "Theme & decor design",
-                wedding_feature_4: "Day-of coordination",
-                wedding_feature_5: "Guest management",
-                service_corporate_title: "Corporate Events & Conferences",
-                service_corporate_desc: "Professional event management that impresses clients, engages employees, and achieves business objectives.",
-                corporate_feature_1: "Conference planning",
-                corporate_feature_2: "Product launches",
-                corporate_feature_3: "Team building",
-                corporate_feature_4: "Corporate gala dinners",
-                corporate_feature_5: "Exhibition management",
-                service_private_title: "Private Celebrations",
-                service_private_desc: "Transform your special moments into unforgettable celebrations that reflect your unique personality.",
-                private_feature_1: "Birthday parties",
-                private_feature_2: "Anniversary celebrations",
-                private_feature_3: "Graduation parties",
-                private_feature_4: "Baby showers",
-                private_feature_5: "Family reunions",
-                service_marketing_title: "Event Marketing & Management",
-                service_marketing_desc: "Comprehensive event promotion and management to ensure maximum attendance and impact.",
-                marketing_feature_1: "Event promotion",
-                marketing_feature_2: "Ticket sales management",
-                marketing_feature_3: "Sponsorship coordination",
-                marketing_feature_4: "Media relations",
-                marketing_feature_5: "Post-event analysis",
-                service_logistics_title: "Guest Logistics Planning",
-                service_logistics_desc: "Seamless transportation, accommodation, and guest management for stress-free events.",
-                logistics_feature_1: "Transportation arrangements",
-                logistics_feature_2: "Accommodation booking",
-                logistics_feature_3: "Airport transfers",
-                logistics_feature_4: "Guest registration",
-                logistics_feature_5: "VIP handling",
-                service_venue_title: "Venue Selection & Management",
-                service_venue_desc: "Finding and managing the perfect venue that matches your vision, budget, and requirements.",
-                venue_feature_1: "Venue sourcing",
-                venue_feature_2: "Contract negotiation",
-                venue_feature_3: "Layout planning",
-                venue_feature_4: "Technical requirements",
-                venue_feature_5: "Venue decoration",
-                process_title: "Our 5-Step Perfection Process",
-                process_subtitle: "The journey from your vision to a perfect reality, handled with care at every step",
-                step_1_title: "Dream Discovery",
-                step_1_text: "We listen deeply to understand your vision, desires, and the emotions you want to create.",
-                step_2_title: "Creative Design",
-                step_2_text: "Our team crafts a unique concept that brings your vision to life with creativity and innovation.",
-                step_3_title: "Precision Planning",
-                step_3_text: "Every detail is meticulously planned, scheduled, and prepared for flawless execution.",
-                step_4_title: "Perfect Execution",
-                step_4_text: "On the day, our team ensures everything runs smoothly while you enjoy every moment.",
-                step_5_title: "Lasting Memories",
-                step_5_text: "We capture the magic and ensure the memories last long after the event ends.",
-                why_title: "Why Choose Our Services?",
-                why_subtitle: "We don't just plan events—we create experiences that become cherished memories",
-                why_1_title: "10 R's Guarantee",
-                why_1_text: "Our proven methodology ensures every event achieves Right Planning, Right Results, and Right Experience.",
-                why_2_title: "Creative Excellence",
-                why_2_text: "Unique, innovative designs that make your event stand out and create the 'wow' factor.",
-                why_3_title: "Stress-Free Experience",
-                why_3_text: "We handle all the details so you can focus on enjoying your special moments without worry.",
-                why_4_title: "Trusted Partnerships",
-                why_4_text: "We work with the best vendors in Tanzania to ensure quality and reliability at every step.",
-                cta_title: "Ready to Bring Your Vision to Life?",
-                cta_subtitle: "Every great event begins with a conversation. Let's discuss how we can create something extraordinary for you.",
-                contact_text: "Speak with our event specialists:",
-                cta_button: "SCHEDULE YOUR CONSULTATION",
-                footer_company: "Event Planners Tanzania",
-                footer_description: "We create moments that live forever in hearts and memories across Tanzania.",
-                footer_email_label: "Email:",
-                footer_contact: "Your Dream Starts Here",
-                footer_location: "📍 Dar es Salaam, Tanzania",
-                footer_ready: "Ready to Begin?",
-                footer_feature_1: "• Free Initial Consultation",
-                footer_feature_2: "• Custom Packages",
-                footer_feature_3: "• 10 R's Guarantee",
-                footer_button: "Start Your Journey",
-                footer_copyright: "© 2023 Event Planners Tanzania. All rights reserved. | Creating unforgettable experiences across Tanzania"
-            },
-            sw: {
-                lang_en: "English",
-                lang_sw: "Kiswahili",
-                company_name: "Wapangaji wa Matukio Tanzania",
-                tagline: "Kuunda Muda Unaokaa Moyo Milele",
-                nav_home: "Nyumbani",
-                nav_about: "Kuhusu Sisi",
-                nav_services: "Huduma",
-                nav_portfolio: "Portfolio",
-                nav_packages: "Vifurushi",
-                nav_contact: "Wasiliana",
-                page_title: "Mahali Ndoto Zako Zinakutana na Utaalam Wetu",
-                page_subtitle: "Kila huduma tunayotoa imetengenezwa kwa lengo moja: kuunda muda utakaokaa moyoni mwako milele",
-                hook_text: "\"Fikiria kuingia kwenye tukio lako lililopangiwa kikamilifu, ambapo kila undani unasimulia hadithi yako, kila wakati unakamata kiini chako, na kila mgeni anahisi uchawi ulioupanga. Hiyo sio tukio tu—ni kumbukumbu inazaliwa.\"",
-                category_all: "Huduma Zote",
-                category_wedding: "Harusi",
-                category_corporate: "Kikampuni",
-                category_private: "Matukio ya Kibinafsi",
-                category_specialized: "Maalum",
-                service_wedding_title: "Upangaji Kamili wa Harusi",
-                service_wedding_desc: "Kutoka 'ndiyo' ya kwanza hadi densi ya mwisho, tunashughulikia kila undani wa harusi yako ya ndoto kwa upendo na usahihi.",
-                wedding_feature_1: "Uteuzi na uhifadhi wa mahali",
-                wedding_feature_2: "Urudhusi wa wauzaji",
-                wedding_feature_3: "Muundo wa mandhari na mapambo",
-                wedding_feature_4: "Urudhusi wa siku ya harusi",
-                wedding_feature_5: "Usimamizi wa wageni",
-                service_corporate_title: "Matukio ya Kikampuni na Mkutano",
-                service_corporate_desc: "Usimamizi wa kitaalam wa matukio unaovutia wateja, unawashirikisha wafanyakazi, na unafikia malengo ya biashara.",
-                corporate_feature_1: "Upangaji wa mikutano",
-                corporate_feature_2: "Uzinduzi wa bidhaa",
-                corporate_feature_3: "Kujenga timu",
-                corporate_feature_4: "Mikahawa ya sherehe za kampuni",
-                corporate_feature_5: "Usimamizi wa maonyesho",
-                service_private_title: "Sherehe za Kibinafsi",
-                service_private_desc: "Badilisha muda wako maalum kuwa sherehe zisizosahaulika zinazodhihirisha utu wako wa kipekee.",
-                private_feature_1: "Sherehe za kuzaliwa",
-                private_feature_2: "Sherehe za maadhimisho",
-                private_feature_3: "Sherehe za kuhitimu",
-                private_feature_4: "Kuinua mtoto",
-                private_feature_5: "Kukutana kwa familia",
-                service_marketing_title: "Uuzaji wa Matukio na Usimamizi",
-                service_marketing_desc: "Uenezaji kamili wa tukio na usimamizi ili kuhakikisha uwepo wa juu na athari.",
-                marketing_feature_1: "Uenezaji wa tukio",
-                marketing_feature_2: "Usimamizi wa mauzo ya tikiti",
-                marketing_feature_3: "Urudhusi wa udhamini",
-                marketing_feature_4: "Uhusiano na vyombo vya habari",
-                marketing_feature_5: "Uchambuzi wa baada ya tukio",
-                service_logistics_title: "Upangaji wa Usafiri wa Wageni",
-                service_logistics_desc: "Usafiri mwepesi, malazi, na usimamizi wa wageni kwa matukio yasiyo na shida.",
-                logistics_feature_1: "Mipango ya usafiri",
-                logistics_feature_2: "Uhifadhi wa malazi",
-                logistics_feature_3: "Usafiri wa uwanja wa ndege",
-                logistics_feature_4: "Usajili wa wageni",
-                logistics_feature_5: "Utunzaji wa Watu Muhimu",
-                service_venue_title: "Uchaguzi wa Mahali na Usimamizi",
-                service_venue_desc: "Kupata na kusimamia mahali kamili kinacholingana na mtazamo wako, bajeti, na mahitaji.",
-                venue_feature_1: "Utafutaji wa mahali",
-                venue_feature_2: "Majadiliano ya mkataba",
-                venue_feature_3: "Upangaji wa mpangilio",
-                venue_feature_4: "Mahitaji ya kiufundi",
-                venue_feature_5: "Mapambo ya mahali",
-                process_title: "Mchakato Wetu wa Hatua 5 za Ukamilifu",
-                process_subtitle: "Safari kutoka kwenye mtazamo wako hadi ukweli kamili, ikishughulikiwa kwa uangalifu katika kila hatua",
-                step_1_title: "Uvumbuzi wa Ndoto",
-                step_1_text: "Tunasikiliza kwa kina kuelewa mtazamo wako, matamanio, na hisia unazotaka kuunda.",
-                step_2_title: "Muundo wa Ubunifu",
-                step_2_text: "Timu yetu hutengeneza dhana ya kipekee inayofanya mtazamo wako uwe hai kwa ubunifu na uvumbuzi.",
-                step_3_title: "Upangaji wa Usahihi",
-                step_3_text: "Kila undani umepangiwa kwa uangalifu, umepangwa, na kutayarishwa kwa utekelezaji kamili.",
-                step_4_title: "Utekelezaji Kamili",
-                step_4_text: "Siku hiyo, timu yetu inahakikisha kila kitu kinaenda vizuri huku ukifurahia kila wakati.",
-                step_5_title: "Kumbukumbu za Kudumu",
-                step_5_text: "Tunakamata uchawi na kuhakikisha kumbukumbu zinadumu muda mrefu baada ya tukio kumalizika.",
-                why_title: "Kwa Nini Kuchagua Huduma Zetu?",
-                why_subtitle: "Hatupangii matukio tu—tunaunda uzoefu ambao unakuwa kumbukumbu za thamani",
-                why_1_title: "Dhamana ya R 10",
-                why_1_text: "Mbinu yetu thabiti inahakikisha kila tukio kinafikia Upangaji Sahihi, Matokeo Sahihi, na Uzoefu Sahihi.",
-                why_2_title: "Ubora wa Ubunifu",
-                why_2_text: "Miundo ya kipekee na ya uvumbuzi ambayo hufanya tukio lako litoke na kuunda kipengele cha 'wow'.",
-                why_3_title: "Uzoefu bila Mkazo",
-                why_3_text: "Tunashughulikia maelezo yote ili uweze kuzingatia kufurahia muda wako maalum bila wasiwasi.",
-                why_4_title: "Ushirikiano Unaaminika",
-                why_4_text: "Tunafanya kazi na wauzaji bora nchini Tanzania ili kuhakikisha ubora na uaminifu katika kila hatua.",
-                cta_title: "Tayari Kufanya Mtazamo Wako Uwe Hai?",
-                cta_subtitle: "Kila tukio kubwa linaanza na mazungumzo. Tujadili jinsi tunaweza kuunda kitu cha kipekee kwako.",
-                contact_text: "Zungumza na wataalam wetu wa matukio:",
-                cta_button: "PANGA USHAURI WAKO",
-                footer_company: "Wapangaji wa Matukio Tanzania",
-                footer_description: "Tunaunda muda unaokaa milele katika mioyo na kumbukumbu kote Tanzania.",
-                footer_email_label: "Barua pepe:",
-                footer_contact: "Ndoto Yako Inaanza Hapa",
-                footer_location: "📍 Dar es Salaam, Tanzania",
-                footer_ready: "Uko Tayari Kuanza?",
-                footer_feature_1: "• Ushauri wa Kwanza wa Bure",
-                footer_feature_2: "• Vifurushi Maalum",
-                footer_feature_3: "• Dhamana ya R 10",
-                footer_button: "Anza Safari Yako",
-                footer_copyright: "© 2023 Wapangaji wa Matukio Tanzania. Haki zote zimehifadhiwa. | Kuunda uzoefu usiosahaulika kote Tanzania"
-            }
-        };
-
-        // Language switching functionality
-        let currentLang = 'en';
-
-        function switchLanguage(lang) {
-            currentLang = lang;
-            
-            // Update language buttons
-            document.querySelectorAll('.lang-btn').forEach(btn => {
-                btn.classList.remove('active');
-                if (btn.getAttribute('data-lang') === lang) {
-                    btn.classList.add('active');
-                }
+        // Service navigation
+        function showService(serviceId) {
+            // Update active tab
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
             });
+            event.currentTarget.classList.add('active');
             
-            // Update all translatable elements
-            document.querySelectorAll('[data-translate]').forEach(element => {
-                const key = element.getAttribute('data-translate');
-                if (translations[lang][key]) {
-                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
-                        element.placeholder = translations[lang][key];
-                    } else {
-                        element.innerHTML = translations[lang][key];
-                    }
-                }
+            // Update active section
+            document.querySelectorAll('.service-section').forEach(section => {
+                section.classList.remove('active');
             });
+            document.getElementById(serviceId).classList.add('active');
             
-            // Update page title
-            document.title = translations[lang].page_title;
-            
-            // Save language preference
-            localStorage.setItem('preferredLang', lang);
-            
-            // Show language change notification
-            showLanguageNotification(lang);
+            // Scroll to section
+            document.getElementById(serviceId).scrollIntoView({ behavior: 'smooth' });
         }
-
-        function showLanguageNotification(lang) {
-            const messages = {
-                en: "Language changed to English",
-                sw: "Lugha imebadilishwa kuwa Kiswahili"
-            };
-            
-            const notification = document.createElement('div');
-            notification.style.cssText = `
-                position: fixed;
-                bottom: 30px;
-                right: 30px;
-                background: linear-gradient(135deg, #2c3e50, #e74c3c);
-                color: white;
-                padding: 20px 30px;
-                border-radius: 15px;
-                box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-                z-index: 10000;
-                font-weight: 600;
-                animation: slideInRight 0.5s ease-out;
-                display: flex;
-                align-items: center;
-                gap: 15px;
-                backdrop-filter: blur(10px);
-                border: 1px solid rgba(255,255,255,0.2);
-            `;
-            
-            notification.innerHTML = `
-                <i class="fas fa-language" style="font-size: 1.5rem;"></i>
-                <span>${messages[lang]}</span>
-            `;
-            
-            document.body.appendChild(notification);
-            
-            setTimeout(() => {
-                notification.style.animation = 'slideOutRight 0.5s ease-out forwards';
-                setTimeout(() => notification.remove(), 500);
-            }, 3000);
+        
+        // Package selection
+        function selectPackage(packageName) {
+            alert(`You selected the ${packageName} package. Redirecting to booking...`);
+            window.location.href = 'booking.html?package=' + encodeURIComponent(packageName);
         }
-
+        
         // Initialize
-        document.addEventListener('DOMContentLoaded', function() {
-            // Language setup
-            const savedLang = localStorage.getItem('preferredLang') || 'en';
-            switchLanguage(savedLang);
+        document.addEventListener('DOMContentLoaded', () => {
+            // Set current year
+            document.querySelector('.footer-bottom p').innerHTML = 
+                document.querySelector('.footer-bottom p').innerHTML.replace('2023', new Date().getFullYear());
             
-            // Language switcher interactions
-            const langTab = document.getElementById('langTab');
-            const languageSwitcher = document.getElementById('languageSwitcher');
-            
-            langTab.addEventListener('click', function() {
-                languageSwitcher.classList.toggle('active');
-            });
-            
-            document.querySelectorAll('.lang-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const lang = this.getAttribute('data-lang');
-                    switchLanguage(lang);
-                    languageSwitcher.classList.remove('active');
-                });
-            });
-            
-            // Service category filtering
-            const categoryBtns = document.querySelectorAll('.category-btn');
-            const serviceCards = document.querySelectorAll('.service-card');
-            
-            categoryBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    // Remove active class from all buttons
-                    categoryBtns.forEach(b => b.classList.remove('active'));
-                    // Add active class to clicked button
-                    this.classList.add('active');
-                    
-                    const category = this.getAttribute('data-category');
-                    
-                    // Filter service cards
-                    serviceCards.forEach(card => {
-                        const cardCategory = card.getAttribute('data-category');
-                        
-                        if (category === 'all' || category === cardCategory) {
-                            card.classList.remove('hidden');
-                            setTimeout(() => {
-                                card.style.opacity = '1';
-                                card.style.transform = 'translateY(0)';
-                            }, 100);
-                        } else {
-                            card.style.opacity = '0';
-                            card.style.transform = 'translateY(20px)';
-                            setTimeout(() => {
-                                card.classList.add('hidden');
-                            }, 300);
-                        }
-                    });
-                });
-            });
-            
-            // Service card hover animations
-            serviceCards.forEach(card => {
-                card.addEventListener('mouseenter', function() {
-                    this.style.transform = 'translateY(-20px) scale(1.02)';
-                });
-                
-                card.addEventListener('mouseleave', function() {
-                    this.style.transform = 'translateY(0) scale(1)';
-                });
-            });
-            
-            // Animate process steps on scroll
-            const observerOptions = {
-                threshold: 0.5
-            };
-            
+            // Add animations
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        const steps = entry.target.querySelectorAll('.process-step');
-                        steps.forEach((step, index) => {
-                            setTimeout(() => {
-                                step.style.opacity = '1';
-                                step.style.transform = 'translateY(0)';
-                            }, index * 200);
-                        });
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
                     }
                 });
-            }, observerOptions);
+            }, { threshold: 0.1 });
             
-            const processSection = document.querySelector('.process-section');
-            if (processSection) {
-                observer.observe(processSection);
-                
-                // Set initial state for animation
-                document.querySelectorAll('.process-step').forEach(step => {
-                    step.style.opacity = '0';
-                    step.style.transform = 'translateY(30px)';
-                    step.style.transition = 'all 0.6s ease';
-                });
-            }
+            document.querySelectorAll('.feature-card').forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+                observer.observe(card);
+            });
             
-            // Why cards animation
-            const whySection = document.querySelector('.why-choose');
-            if (whySection) {
-                const whyObserver = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            const cards = entry.target.querySelectorAll('.why-card');
-                            cards.forEach((card, index) => {
-                                setTimeout(() => {
-                                    card.style.opacity = '1';
-                                    card.style.transform = 'translateY(0)';
-                                }, index * 200);
-                            });
-                        }
-                    });
-                }, observerOptions);
-                
-                whyObserver.observe(whySection);
-                
-                // Set initial state
-                document.querySelectorAll('.why-card').forEach(card => {
-                    card.style.opacity = '0';
-                    card.style.transform = 'translateY(30px)';
-                    card.style.transition = 'all 0.6s ease';
-                });
-            }
-            
-            // Auto language detection for Tanzanian visitors
-            const userLang = navigator.language || navigator.userLanguage;
-            if (userLang.includes('sw') && localStorage.getItem('preferredLang') === null) {
-                setTimeout(() => {
-                    switchLanguage('sw');
-                }, 2000);
-            }
+            document.querySelectorAll('.step').forEach((step, index) => {
+                step.style.opacity = '0';
+                step.style.transform = 'translateX(-30px)';
+                step.style.transition = `opacity 0.6s ease ${index * 0.2}s, transform 0.6s ease ${index * 0.2}s`;
+                observer.observe(step);
+            });
         });
     </script>
 </body>
