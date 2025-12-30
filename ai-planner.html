@@ -19,7 +19,6 @@
             --ai-purple: #9B51E0;
             --transition-slow: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
             --transition-medium: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            --shadow-gold: 0 0 40px var(--gold-glow);
             --shadow-ai: 0 0 40px rgba(74, 144, 226, 0.3);
         }
         
@@ -180,27 +179,25 @@
             display: flex;
             justify-content: space-between;
             margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .wizard-steps::before {
+            content: '';
+            position: absolute;
+            top: 25px;
+            left: 50px;
+            right: 50px;
+            height: 2px;
+            background: rgba(74, 144, 226, 0.3);
+            z-index: 1;
         }
         
         .wizard-step {
             text-align: center;
             flex: 1;
             position: relative;
-        }
-        
-        .wizard-step::after {
-            content: '';
-            position: absolute;
-            top: 25px;
-            left: 50%;
-            width: 100%;
-            height: 2px;
-            background: rgba(74, 144, 226, 0.3);
-            z-index: 1;
-        }
-        
-        .wizard-step:last-child::after {
-            display: none;
+            z-index: 2;
         }
         
         .step-number {
@@ -217,10 +214,16 @@
             color: var(--ai-blue);
             margin: 0 auto 15px;
             position: relative;
-            z-index: 2;
+            transition: var(--transition-medium);
         }
         
         .step-number.active {
+            background: var(--ai-blue);
+            color: var(--ivory);
+            transform: scale(1.1);
+        }
+        
+        .step-number.completed {
             background: var(--ai-blue);
             color: var(--ivory);
         }
@@ -233,16 +236,16 @@
         /* === WIZARD FORMS === */
         .wizard-content {
             display: none;
-        }
-        
-        .wizard-content.active {
-            display: block;
             animation: fadeIn 0.5s ease;
         }
         
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .wizard-content.active {
+            display: block;
         }
         
         .wizard-question {
@@ -475,6 +478,45 @@
             min-width: 150px;
         }
         
+        /* === LOADING ANIMATION === */
+        .ai-loading {
+            text-align: center;
+            padding: 60px;
+            display: none;
+        }
+        
+        .loading-spinner {
+            width: 80px;
+            height: 80px;
+            border: 4px solid rgba(74, 144, 226, 0.1);
+            border-top: 4px solid var(--ai-blue);
+            border-radius: 50%;
+            margin: 0 auto 30px;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .loading-text {
+            color: var(--ai-blue);
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .loading-dots {
+            display: inline-block;
+            animation: dots 1.5s infinite;
+        }
+        
+        @keyframes dots {
+            0%, 20% { content: '.'; }
+            40% { content: '..'; }
+            60%, 100% { content: '...'; }
+        }
+        
         /* === RESPONSIVE === */
         @media (max-width: 992px) {
             .wizard-container {
@@ -486,12 +528,12 @@
                 gap: 20px;
             }
             
-            .wizard-step {
-                flex: 0 0 calc(33.333% - 20px);
+            .wizard-steps::before {
+                display: none;
             }
             
-            .wizard-step::after {
-                display: none;
+            .wizard-step {
+                flex: 0 0 calc(33.333% - 20px);
             }
         }
         
@@ -516,6 +558,16 @@
             .wizard-step {
                 flex: 0 0 100%;
                 margin-bottom: 20px;
+            }
+            
+            .wizard-navigation {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .btn-ai {
+                width: 100%;
+                text-align: center;
             }
         }
         
@@ -606,7 +658,7 @@
             Answer a few questions and get personalized event recommendations, 
             timeline, and budget estimates powered by artificial intelligence.
         </div>
-        <span class="ai-pulse"></span> <span style="color: var(--ai-blue);">AI is thinking...</span>
+        <span class="ai-pulse"></span> <span style="color: var(--ai-blue);">AI Assistant Ready</span>
     </section>
 
     <!-- AI Wizard -->
@@ -641,12 +693,23 @@
                 </div>
             </div>
             
+            <!-- AI Loading Animation -->
+            <div class="ai-loading" id="aiLoading">
+                <div class="loading-spinner"></div>
+                <div class="loading-text">
+                    AI is analyzing your preferences<span class="loading-dots"></span>
+                </div>
+                <p style="color: rgba(255, 253, 245, 0.6); margin-top: 20px;">
+                    Creating your personalized event plan based on 500+ successful events
+                </p>
+            </div>
+            
             <!-- Step 1: Event Type -->
             <div class="wizard-content active" id="step1">
                 <div class="wizard-question">What type of event are you planning?</div>
                 
                 <div class="options-grid">
-                    <div class="option-card" onclick="selectOption(this, 'wedding')">
+                    <div class="option-card" data-value="wedding">
                         <div class="option-icon">
                             <i class="fas fa-heart"></i>
                         </div>
@@ -656,7 +719,7 @@
                         </div>
                     </div>
                     
-                    <div class="option-card" onclick="selectOption(this, 'corporate')">
+                    <div class="option-card" data-value="corporate">
                         <div class="option-icon">
                             <i class="fas fa-briefcase"></i>
                         </div>
@@ -666,7 +729,7 @@
                         </div>
                     </div>
                     
-                    <div class="option-card" onclick="selectOption(this, 'birthday')">
+                    <div class="option-card" data-value="birthday">
                         <div class="option-icon">
                             <i class="fas fa-birthday-cake"></i>
                         </div>
@@ -676,7 +739,7 @@
                         </div>
                     </div>
                     
-                    <div class="option-card" onclick="selectOption(this, 'anniversary')">
+                    <div class="option-card" data-value="anniversary">
                         <div class="option-icon">
                             <i class="fas fa-champagne-glasses"></i>
                         </div>
@@ -686,7 +749,7 @@
                         </div>
                     </div>
                     
-                    <div class="option-card" onclick="selectOption(this, 'conference')">
+                    <div class="option-card" data-value="conference">
                         <div class="option-icon">
                             <i class="fas fa-users"></i>
                         </div>
@@ -696,7 +759,7 @@
                         </div>
                     </div>
                     
-                    <div class="option-card" onclick="selectOption(this, 'other')">
+                    <div class="option-card" data-value="other">
                         <div class="option-icon">
                             <i class="fas fa-star"></i>
                         </div>
@@ -709,7 +772,9 @@
                 
                 <div class="wizard-navigation">
                     <div></div>
-                    <button class="btn-ai btn-ai-primary" onclick="nextStep(2)">Next →</button>
+                    <button class="btn-ai btn-ai-primary" onclick="goToStep(2)">
+                        Next: Guest Count →
+                    </button>
                 </div>
             </div>
             
@@ -720,10 +785,10 @@
                 <div class="slider-container">
                     <div class="slider-label">
                         <span style="color: var(--ivory);">Guest Count</span>
-                        <span class="slider-value" id="guestCount">100</span>
+                        <span class="slider-value" id="guestCountValue">100</span>
                     </div>
                     <input type="range" min="20" max="1000" value="100" class="range-slider" 
-                           oninput="updateGuestCount(this.value)">
+                           id="guestSlider" oninput="updateGuestValue()">
                     <div style="display: flex; justify-content: space-between; margin-top: 10px;">
                         <span style="color: rgba(255, 253, 245, 0.6);">20</span>
                         <span style="color: rgba(255, 253, 245, 0.6);">1000+</span>
@@ -731,8 +796,12 @@
                 </div>
                 
                 <div class="wizard-navigation">
-                    <button class="btn-ai btn-ai-secondary" onclick="prevStep(1)">← Back</button>
-                    <button class="btn-ai btn-ai-primary" onclick="nextStep(3)">Next →</button>
+                    <button class="btn-ai btn-ai-secondary" onclick="goToStep(1)">
+                        ← Back
+                    </button>
+                    <button class="btn-ai btn-ai-primary" onclick="goToStep(3)">
+                        Next: Budget →
+                    </button>
                 </div>
             </div>
             
@@ -748,14 +817,14 @@
                     
                     <div class="budget-slider">
                         <input type="range" min="1000000" max="50000000" value="5000000" 
-                               step="100000" class="range-slider" oninput="updateBudget(this.value)">
+                               step="100000" class="range-slider" id="budgetSlider" oninput="updateBudgetValue()">
                         <div style="display: flex; justify-content: space-between; margin-top: 20px;">
                             <span style="color: rgba(255, 253, 245, 0.6);">1M TZS</span>
                             <span style="color: rgba(255, 253, 245, 0.6);">50M TZS</span>
                         </div>
                     </div>
                     
-                    <div style="margin-top: 40px; display: flex; justify-content: center; gap: 20px;">
+                    <div style="margin-top: 40px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
                         <button class="btn-ai btn-ai-secondary" onclick="setBudget('basic')">
                             Basic (1-3M)
                         </button>
@@ -769,8 +838,12 @@
                 </div>
                 
                 <div class="wizard-navigation">
-                    <button class="btn-ai btn-ai-secondary" onclick="prevStep(2)">← Back</button>
-                    <button class="btn-ai btn-ai-primary" onclick="nextStep(4)">Next →</button>
+                    <button class="btn-ai btn-ai-secondary" onclick="goToStep(2)">
+                        ← Back
+                    </button>
+                    <button class="btn-ai btn-ai-primary" onclick="goToStep(4)">
+                        Next: Location →
+                    </button>
                 </div>
             </div>
             
@@ -779,7 +852,7 @@
                 <div class="wizard-question">Where will your event take place?</div>
                 
                 <div class="options-grid">
-                    <div class="option-card" onclick="selectLocation(this, 'dar')">
+                    <div class="option-card" data-value="dar">
                         <div class="option-icon">
                             <i class="fas fa-city"></i>
                         </div>
@@ -789,7 +862,7 @@
                         </div>
                     </div>
                     
-                    <div class="option-card" onclick="selectLocation(this, 'zanzibar')">
+                    <div class="option-card" data-value="zanzibar">
                         <div class="option-icon">
                             <i class="fas fa-umbrella-beach"></i>
                         </div>
@@ -799,7 +872,7 @@
                         </div>
                     </div>
                     
-                    <div class="option-card" onclick="selectLocation(this, 'arusha')">
+                    <div class="option-card" data-value="arusha">
                         <div class="option-icon">
                             <i class="fas fa-mountain"></i>
                         </div>
@@ -809,7 +882,7 @@
                         </div>
                     </div>
                     
-                    <div class="option-card" onclick="selectLocation(this, 'mwanza')">
+                    <div class="option-card" data-value="mwanza">
                         <div class="option-icon">
                             <i class="fas fa-water"></i>
                         </div>
@@ -819,7 +892,7 @@
                         </div>
                     </div>
                     
-                    <div class="option-card" onclick="selectLocation(this, 'other')">
+                    <div class="option-card" data-value="other">
                         <div class="option-icon">
                             <i class="fas fa-map-marker-alt"></i>
                         </div>
@@ -835,32 +908,48 @@
                         <i class="fas fa-calendar-alt" style="color: var(--ai-blue); margin-right: 10px;"></i>
                         Preferred Month
                     </label>
-                    <select style="width: 100%; padding: 15px; background: rgba(255,255,255,0.1); 
+                    <select id="eventMonth" style="width: 100%; padding: 15px; background: rgba(255,255,255,0.1); 
                            border: 1px solid var(--ai-blue); border-radius: 10px; color: var(--ivory);">
-                        <option>Select month...</option>
-                        <option>January 2024</option>
-                        <option>February 2024</option>
-                        <option>March 2024</option>
-                        <option>April 2024</option>
-                        <option>May 2024</option>
+                        <option value="">Select month...</option>
+                        <option value="january">January 2024</option>
+                        <option value="february">February 2024</option>
+                        <option value="march">March 2024</option>
+                        <option value="april">April 2024</option>
+                        <option value="may">May 2024</option>
+                        <option value="june">June 2024</option>
+                        <option value="july">July 2024</option>
+                        <option value="august">August 2024</option>
+                        <option value="september">September 2024</option>
+                        <option value="october">October 2024</option>
+                        <option value="november">November 2024</option>
+                        <option value="december">December 2024</option>
                     </select>
                 </div>
                 
                 <div class="wizard-navigation">
-                    <button class="btn-ai btn-ai-secondary" onclick="prevStep(3)">← Back</button>
-                    <button class="btn-ai btn-ai-primary" onclick="generateRecommendation()">Get AI Recommendation →</button>
+                    <button class="btn-ai btn-ai-secondary" onclick="goToStep(3)">
+                        ← Back
+                    </button>
+                    <button class="btn-ai btn-ai-primary" onclick="generateAIRecommendation()">
+                        <i class="fas fa-robot" style="margin-right: 10px;"></i>
+                        Get AI Recommendation →
+                    </button>
                 </div>
             </div>
             
             <!-- Step 5: Results -->
             <div class="wizard-content" id="step5">
                 <div class="ai-results" id="resultsContainer">
-                    <!-- Results will be populated here -->
+                    <!-- Results will be populated here by JavaScript -->
                 </div>
                 
-                <div class="wizard-navigation">
-                    <button class="btn-ai btn-ai-secondary" onclick="prevStep(4)">← Back</button>
-                    <a href="booking.html" class="btn-ai btn-ai-primary">Book This Package →</a>
+                <div class="wizard-navigation" id="resultsNavigation">
+                    <button class="btn-ai btn-ai-secondary" onclick="goToStep(4)">
+                        ← Back
+                    </button>
+                    <a href="booking.html" class="btn-ai btn-ai-primary">
+                        Book This Package →
+                    </a>
                 </div>
             </div>
         </div>
@@ -917,237 +1006,406 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <script>
-        // Current step
-        let currentStep = 1;
-        let selectedEventType = '';
-        let guestCount = 100;
-        let budget = 5000000;
-        let location = '';
-        
-        // Step navigation
-        function nextStep(step) {
-            document.querySelectorAll('.wizard-content').forEach(content => {
-                content.classList.remove('active');
-            });
-            document.querySelectorAll('.step-number').forEach((num, index) => {
-                if (index + 1 <= step) {
-                    num.classList.add('active');
-                } else {
-                    num.classList.remove('active');
-                }
-            });
-            document.getElementById(`step${step}`).classList.add('active');
-            currentStep = step;
-        }
-        
-        function prevStep(step) {
-            nextStep(step);
-        }
-        
-        // Option selection
-        function selectOption(element, type) {
-            document.querySelectorAll('.option-card').forEach(card => {
-                card.classList.remove('selected');
-            });
-            element.classList.add('selected');
-            selectedEventType = type;
-        }
-        
-        function selectLocation(element, loc) {
-            document.querySelectorAll('.option-card').forEach(card => {
-                card.classList.remove('selected');
-            });
-            element.classList.add('selected');
-            location = loc;
-        }
-        
-        // Update guest count
-        function updateGuestCount(value) {
-            guestCount = parseInt(value);
-            document.getElementById('guestCount').textContent = value;
-        }
-        
-        // Update budget
-        function updateBudget(value) {
-            budget = parseInt(value);
-            document.getElementById('budgetAmount').textContent = 
-                new Intl.NumberFormat().format(value);
-        }
-        
-        function setBudget(level) {
-            let amount = 5000000;
-            switch(level) {
-                case 'basic': amount = 2000000; break;
-                case 'standard': amount = 5000000; break;
-                case 'premium': amount = 15000000; break;
-            }
-            document.querySelector('input[type="range"]').value = amount;
-            updateBudget(amount);
-        }
-        
-        // Generate AI recommendation
-        function generateRecommendation() {
-            // Simulate AI thinking
-            document.querySelector('.ai-pulse').style.animation = 'aiPulse 0.5s infinite';
-            
-            setTimeout(() => {
-                document.querySelector('.ai-pulse').style.animation = '';
-                nextStep(5);
-                
-                // Generate package based on selections
-                let packageName = '';
-                let price = budget;
-                let features = [];
-                
-                if (selectedEventType === 'wedding') {
-                    packageName = 'Premium Wedding Experience';
-                    features = [
-                        'Venue decoration and setup',
-                        'Professional photography & videography',
-                        'Wedding cake design',
-                        'Bridal makeup and styling',
-                        'Entertainment (DJ/Live band)',
-                        'Catering for ' + guestCount + ' guests',
-                        'Wedding planner coordination',
-                        'Transportation arrangements'
-                    ];
-                    price = Math.round(budget * 0.9); // 10% discount
-                } else if (selectedEventType === 'corporate') {
-                    packageName = 'Corporate Excellence Package';
-                    features = [
-                        'Venue selection and booking',
-                        'Audio-visual equipment setup',
-                        'Professional networking facilitation',
-                        'Catering and refreshments',
-                        'Marketing and promotional materials',
-                        'Registration and check-in management',
-                        'Post-event feedback collection',
-                        'Full technical support'
-                    ];
-                    price = Math.round(budget * 0.85); // 15% discount
-                } else {
-                    packageName = 'Signature Celebration Package';
-                    features = [
-                        'Themed decoration and setup',
-                        'Professional photography',
-                        'Entertainment arrangement',
-                        'Catering service',
-                        'Event coordination',
-                        'Guest management',
-                        'Venue selection assistance',
-                        'Post-event cleanup'
-                    ];
-                    price = Math.round(budget * 0.95); // 5% discount
-                }
-                
-                // Calculate timeline
-                let timeline = [];
-                let today = new Date();
-                
-                timeline.push({
-                    date: 'Today',
-                    task: 'Initial consultation and concept development'
-                });
-                
-                timeline.push({
-                    date: 'Week 1',
-                    task: 'Venue booking and vendor selection'
-                });
-                
-                timeline.push({
-                    date: 'Week 2-3',
-                    task: 'Design approval and planning finalization'
-                });
-                
-                timeline.push({
-                    date: 'Week 4',
-                    task: 'Vendor coordination and logistics planning'
-                });
-                
-                timeline.push({
-                    date: 'Week 5-6',
-                    task: 'Final preparations and rehearsals'
-                });
-                
-                timeline.push({
-                    date: 'Event Day',
-                    task: 'Full event execution and coordination'
-                });
-                
-                // Generate results HTML
-                let resultsHTML = `
-                    <div class="results-header">
-                        <h3>Your AI-Generated Event Plan</h3>
-                        <p style="color: rgba(255, 253, 245, 0.7);">
-                            Perfectly tailored for your ${selectedEventType} with ${guestCount} guests in ${location}
-                        </p>
-                    </div>
-                    
-                    <div class="ai-recommendation">
-                        <h3 class="recommendation-title">${packageName}</h3>
-                        
-                        <div class="recommendation-price">
-                            TZS ${new Intl.NumberFormat().format(price)}
-                        </div>
-                        
-                        <div style="color: var(--light-gold); font-size: 1.1rem; margin-bottom: 30px;">
-                            <i class="fas fa-check-circle" style="color: var(--ai-blue); margin-right: 10px;"></i>
-                            Perfect match for your budget of TZS ${new Intl.NumberFormat().format(budget)}
-                        </div>
-                        
-                        <div class="features-list">
-                            ${features.map(feature => `
-                                <div class="feature-item">
-                                    <i class="fas fa-check"></i>
-                                    ${feature}
-                                </div>
-                            `).join('')}
-                        </div>
-                    </div>
-                    
-                    <div style="background: rgba(26, 26, 31, 0.7); border-radius: 20px; padding: 40px; margin: 40px 0;">
-                        <h3 style="color: var(--gold); margin-bottom: 30px; font-size: 1.8rem;">
-                            <i class="fas fa-calendar-alt" style="color: var(--ai-blue); margin-right: 10px;"></i>
-                            Recommended Timeline
-                        </h3>
-                        
-                        <div class="timeline">
-                            ${timeline.map(item => `
-                                <div class="timeline-item">
-                                    <div class="timeline-date">${item.date}</div>
-                                    <div style="flex: 1; color: var(--light-gold);">${item.task}</div>
-                                    <div style="color: var(--ai-blue);">
-                                        <i class="fas fa-clock"></i>
-                                    </div>
-                                </div>
-                            `).join('')}
-                        </div>
-                    </div>
-                    
-                    <div style="text-align: center; margin: 50px 0;">
-                        <h4 style="color: var(--ivory); margin-bottom: 20px; font-size: 1.3rem;">
-                            Ready to bring your event to life?
-                        </h4>
-                        <a href="booking.html" class="btn-ai btn-ai-primary" style="padding: 20px 60px; font-size: 18px;">
-                            <i class="fas fa-calendar-check" style="margin-right: 10px;"></i>
-                            Book This Package Now
-                        </a>
-                        <p style="color: rgba(255, 253, 245, 0.6); margin-top: 20px;">
-                            Or call us at <a href="tel:+255789456123" style="color: var(--gold);">+255 789 456 123</a> for immediate assistance
-                        </p>
-                    </div>
-                `;
-                
-                document.getElementById('resultsContainer').innerHTML = resultsHTML;
-                document.getElementById('resultsContainer').style.display = 'block';
-                
-            }, 1500);
-        }
-        
-        // Set current year in footer
-        document.addEventListener('DOMContentLoaded', () => {
+        // Current state
+        const aiState = {
+            currentStep: 1,
+            eventType: '',
+            guestCount: 100,
+            budget: 5000000,
+            location: '',
+            month: ''
+        };
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set current year in footer
             document.querySelector('.footer-bottom p').innerHTML = 
                 document.querySelector('.footer-bottom p').innerHTML.replace('2023', new Date().getFullYear());
+            
+            // Initialize option card selection
+            initializeOptionCards();
+            
+            // Set initial slider values
+            updateGuestValue();
+            updateBudgetValue();
+        });
+
+        // Initialize option card selection
+        function initializeOptionCards() {
+            document.querySelectorAll('.option-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    // Remove selected class from all cards in this step
+                    const step = this.closest('.wizard-content');
+                    step.querySelectorAll('.option-card').forEach(c => {
+                        c.classList.remove('selected');
+                    });
+                    
+                    // Add selected class to clicked card
+                    this.classList.add('selected');
+                    
+                    // Store the value
+                    const value = this.getAttribute('data-value');
+                    const stepId = step.id;
+                    
+                    if (stepId === 'step1') {
+                        aiState.eventType = value;
+                    } else if (stepId === 'step4') {
+                        aiState.location = value;
+                    }
+                });
+            });
+        }
+
+        // Step navigation
+        function goToStep(stepNumber) {
+            // Update step indicators
+            document.querySelectorAll('.step-number').forEach((circle, index) => {
+                circle.classList.remove('active', 'completed');
+                if (index + 1 < stepNumber) {
+                    circle.classList.add('completed');
+                } else if (index + 1 === stepNumber) {
+                    circle.classList.add('active');
+                }
+            });
+            
+            // Hide all steps
+            document.querySelectorAll('.wizard-content').forEach(step => {
+                step.classList.remove('active');
+            });
+            
+            // Show current step
+            document.getElementById(`step${stepNumber}`).classList.add('active');
+            
+            aiState.currentStep = stepNumber;
+            
+            // Scroll to top of wizard
+            document.querySelector('.wizard-container').scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'start' 
+            });
+        }
+
+        // Update guest count display
+        function updateGuestValue() {
+            const slider = document.getElementById('guestSlider');
+            const value = parseInt(slider.value);
+            aiState.guestCount = value;
+            document.getElementById('guestCountValue').textContent = 
+                value.toLocaleString();
+        }
+
+        // Update budget display
+        function updateBudgetValue() {
+            const slider = document.getElementById('budgetSlider');
+            const value = parseInt(slider.value);
+            aiState.budget = value;
+            document.getElementById('budgetAmount').textContent = 
+                formatCurrency(value);
+        }
+
+        // Set budget preset
+        function setBudget(preset) {
+            let amount;
+            switch(preset) {
+                case 'basic':
+                    amount = 2000000;
+                    break;
+                case 'standard':
+                    amount = 5000000;
+                    break;
+                case 'premium':
+                    amount = 15000000;
+                    break;
+                default:
+                    amount = 5000000;
+            }
+            
+            document.getElementById('budgetSlider').value = amount;
+            updateBudgetValue();
+            
+            // Update button states
+            document.querySelectorAll('.budget-container .btn-ai').forEach(btn => {
+                btn.classList.remove('btn-ai-primary');
+                btn.classList.add('btn-ai-secondary');
+            });
+            
+            event.currentTarget.classList.remove('btn-ai-secondary');
+            event.currentTarget.classList.add('btn-ai-primary');
+        }
+
+        // Format currency
+        function formatCurrency(amount) {
+            if (amount >= 1000000) {
+                return (amount / 1000000).toFixed(1) + 'M';
+            } else if (amount >= 1000) {
+                return (amount / 1000).toFixed(0) + 'K';
+            }
+            return amount.toString();
+        }
+
+        // Generate AI recommendation
+        function generateAIRecommendation() {
+            // Get month value
+            const monthSelect = document.getElementById('eventMonth');
+            aiState.month = monthSelect.value;
+            
+            // Show loading animation
+            document.getElementById('aiLoading').style.display = 'block';
+            document.getElementById('step4').style.display = 'none';
+            
+            // Simulate AI processing
+            setTimeout(() => {
+                document.getElementById('aiLoading').style.display = 'none';
+                document.getElementById('step4').style.display = 'none';
+                
+                // Update step indicators
+                document.querySelectorAll('.step-number').forEach((circle, index) => {
+                    circle.classList.remove('active');
+                    circle.classList.add('completed');
+                });
+                
+                // Generate and display results
+                const recommendation = generateRecommendation();
+                displayResults(recommendation);
+                
+                // Show results step
+                document.getElementById('step5').style.display = 'block';
+                document.getElementById('step5').classList.add('active');
+                
+                // Scroll to results
+                document.getElementById('resultsContainer').scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'start' 
+                });
+            }, 3000);
+        }
+
+        // Generate recommendation based on user input
+        function generateRecommendation() {
+            let recommendation = {
+                packageName: '',
+                price: 0,
+                features: [],
+                timeline: [],
+                description: ''
+            };
+            
+            // Determine package based on event type and budget
+            if (aiState.eventType === 'wedding') {
+                recommendation.packageName = 'Premium Wedding Experience';
+                recommendation.price = Math.round(aiState.budget * 0.85); // 15% discount
+                recommendation.description = `A magical wedding celebration for ${aiState.guestCount} guests in ${getLocationName(aiState.location)}`;
+                
+                recommendation.features = [
+                    'Venue decoration and setup',
+                    'Professional photography & videography',
+                    'Wedding cake design',
+                    'Bridal makeup and styling',
+                    'Entertainment (DJ/Live band)',
+                    `Catering for ${aiState.guestCount} guests`,
+                    'Wedding planner coordination',
+                    'Transportation arrangements',
+                    'Guest accommodation assistance',
+                    'Post-wedding brunch planning'
+                ];
+                
+                recommendation.timeline = [
+                    { date: 'Today', task: 'Initial consultation and concept development' },
+                    { date: 'Week 1', task: 'Venue selection and booking confirmation' },
+                    { date: 'Week 2-3', task: 'Vendor selection and contracts' },
+                    { date: 'Month 1', task: 'Design approval and theme finalization' },
+                    { date: 'Month 2', task: 'Invitation design and guest list management' },
+                    { date: 'Month 3', task: 'Menu tasting and finalization' },
+                    { date: 'Month 4', task: 'Dress fitting and bridal party coordination' },
+                    { date: 'Week Before', task: 'Final walkthrough and rehearsal' },
+                    { date: 'Event Day', task: 'Full event execution and coordination' }
+                ];
+                
+            } else if (aiState.eventType === 'corporate') {
+                recommendation.packageName = 'Corporate Excellence Package';
+                recommendation.price = Math.round(aiState.budget * 0.80); // 20% discount
+                recommendation.description = `Professional corporate event for ${aiState.guestCount} attendees in ${getLocationName(aiState.location)}`;
+                
+                recommendation.features = [
+                    'Venue selection and booking',
+                    'Audio-visual equipment setup',
+                    'Professional networking facilitation',
+                    'Catering and refreshments',
+                    'Marketing and promotional materials',
+                    'Registration and check-in management',
+                    'Post-event feedback collection',
+                    'Full technical support',
+                    'Speaker coordination',
+                    'Branding and signage'
+                ];
+                
+                recommendation.timeline = [
+                    { date: 'Today', task: 'Initial consultation and objectives definition' },
+                    { date: 'Week 1', task: 'Venue booking and vendor selection' },
+                    { date: 'Week 2', task: 'Agenda development and speaker confirmation' },
+                    { date: 'Week 3-4', task: 'Marketing and registration setup' },
+                    { date: 'Month 2', task: 'Content development and materials design' },
+                    { date: 'Month 3', task: 'Logistics planning and run-through' },
+                    { date: 'Week Before', task: 'Final preparations and team briefing' },
+                    { date: 'Event Day', task: 'On-site execution and management' },
+                    { date: 'After Event', task: 'Feedback analysis and reporting' }
+                ];
+                
+            } else {
+                recommendation.packageName = 'Signature Celebration Package';
+                recommendation.price = Math.round(aiState.budget * 0.90); // 10% discount
+                recommendation.description = `Unforgettable celebration for ${aiState.guestCount} guests in ${getLocationName(aiState.location)}`;
+                
+                recommendation.features = [
+                    'Themed decoration and setup',
+                    'Professional photography',
+                    'Entertainment arrangement',
+                    'Catering service',
+                    'Event coordination',
+                    'Guest management',
+                    'Venue selection assistance',
+                    'Post-event cleanup',
+                    'Custom menu design',
+                    'Special effects and lighting'
+                ];
+                
+                recommendation.timeline = [
+                    { date: 'Today', task: 'Concept development and theme selection' },
+                    { date: 'Week 1', task: 'Venue booking and vendor coordination' },
+                    { date: 'Week 2-3', task: 'Design approval and planning finalization' },
+                    { date: 'Month 1', task: 'Invitations and guest communications' },
+                    { date: 'Month 2', task: 'Vendor coordination and logistics planning' },
+                    { date: 'Month 3', task: 'Final preparations and rehearsals' },
+                    { date: 'Week Before', task: 'Final walkthrough and setup' },
+                    { date: 'Event Day', task: 'Full event execution' },
+                    { date: 'After Event', task: 'Photo delivery and feedback collection' }
+                ];
+            }
+            
+            return recommendation;
+        }
+
+        // Get location name
+        function getLocationName(locationCode) {
+            const locations = {
+                'dar': 'Dar es Salaam',
+                'zanzibar': 'Zanzibar',
+                'arusha': 'Arusha',
+                'mwanza': 'Mwanza',
+                'other': 'your chosen location'
+            };
+            return locations[locationCode] || 'Tanzania';
+        }
+
+        // Display results
+        function displayResults(recommendation) {
+            const resultsContainer = document.getElementById('resultsContainer');
+            
+            // Generate HTML for features
+            const featuresHTML = recommendation.features.map(feature => `
+                <div class="feature-item">
+                    <i class="fas fa-check"></i>
+                    ${feature}
+                </div>
+            `).join('');
+            
+            // Generate HTML for timeline
+            const timelineHTML = recommendation.timeline.map(item => `
+                <div class="timeline-item">
+                    <div class="timeline-date">${item.date}</div>
+                    <div style="flex: 1; color: var(--light-gold);">${item.task}</div>
+                    <div style="color: var(--ai-blue);">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                </div>
+            `).join('');
+            
+            // Set results HTML
+            resultsContainer.innerHTML = `
+                <div class="results-header">
+                    <h3>Your AI-Generated Event Plan</h3>
+                    <p style="color: rgba(255, 253, 245, 0.7);">
+                        ${recommendation.description}
+                    </p>
+                </div>
+                
+                <div class="ai-recommendation">
+                    <h3 class="recommendation-title">${recommendation.packageName}</h3>
+                    
+                    <div class="recommendation-price">
+                        TZS ${formatCurrency(recommendation.price)}
+                    </div>
+                    
+                    <div style="color: var(--light-gold); font-size: 1.1rem; margin-bottom: 30px;">
+                        <i class="fas fa-check-circle" style="color: var(--ai-blue); margin-right: 10px;"></i>
+                        Perfect match for your budget of TZS ${formatCurrency(aiState.budget)}
+                    </div>
+                    
+                    <h4 style="color: var(--ivory); margin: 40px 0 20px; font-size: 1.5rem;">
+                        <i class="fas fa-star" style="color: var(--ai-blue); margin-right: 10px;"></i>
+                        Package Includes:
+                    </h4>
+                    
+                    <div class="features-list">
+                        ${featuresHTML}
+                    </div>
+                </div>
+                
+                <div style="background: rgba(26, 26, 31, 0.7); border-radius: 20px; padding: 40px; margin: 40px 0;">
+                    <h3 style="color: var(--gold); margin-bottom: 30px; font-size: 1.8rem;">
+                        <i class="fas fa-calendar-alt" style="color: var(--ai-blue); margin-right: 10px;"></i>
+                        Recommended Timeline
+                    </h3>
+                    
+                    <div class="timeline">
+                        ${timelineHTML}
+                    </div>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, rgba(74, 144, 226, 0.1), rgba(155, 81, 224, 0.1)); 
+                     border-radius: 20px; padding: 40px; margin: 40px 0;">
+                    <h4 style="color: var(--ivory); margin-bottom: 20px; font-size: 1.5rem;">
+                        <i class="fas fa-lightbulb" style="color: var(--ai-blue); margin-right: 10px;"></i>
+                        AI Suggestions for Your Event
+                    </h4>
+                    <ul style="color: var(--light-gold); padding-left: 20px; line-height: 1.8;">
+                        <li>Based on ${aiState.guestCount} guests, consider ${aiState.guestCount <= 100 ? 'intimate' : 'grand'} venue settings</li>
+                        <li>For ${getLocationName(aiState.location)}, our local vendor network ensures the best quality and pricing</li>
+                        <li>Your budget allocation is optimal for a ${aiState.eventType} of this scale</li>
+                        <li>We recommend booking ${aiState.month ? 'in ' + aiState.month.charAt(0).toUpperCase() + aiState.month.slice(1) : 'soon'} for best vendor availability</li>
+                    </ul>
+                </div>
+                
+                <div style="text-align: center; margin: 50px 0;">
+                    <h4 style="color: var(--ivory); margin-bottom: 20px; font-size: 1.3rem;">
+                        Ready to bring your event to life?
+                    </h4>
+                    <a href="booking.html" class="btn-ai btn-ai-primary" style="padding: 20px 60px; font-size: 18px;">
+                        <i class="fas fa-calendar-check" style="margin-right: 10px;"></i>
+                        Book This Package Now
+                    </a>
+                    <p style="color: rgba(255, 253, 245, 0.6); margin-top: 20px;">
+                        Or call us at <a href="tel:+255789456123" style="color: var(--gold);">+255 789 456 123</a> for immediate assistance
+                    </p>
+                </div>
+            `;
+            
+            resultsContainer.style.display = 'block';
+        }
+
+        // Animation for option cards on load
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.option-card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = `opacity 0.5s ease ${index * 0.1}s, transform 0.5s ease ${index * 0.1}s`;
+                
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 100);
+            });
         });
     </script>
 </body>
